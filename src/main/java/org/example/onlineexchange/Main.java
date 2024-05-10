@@ -2,25 +2,39 @@ package org.example.onlineexchange;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class Main extends Application {
+    public static Stage stg;
+
     @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("hello-view.fxml"));
+    public void start(Stage PrimaryStage) throws IOException {
+        stg = PrimaryStage;
+        PrimaryStage.setResizable(false);
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Image icon = new Image("logo.jpg");
-        stage.getIcons().add(icon);
-        stage.setTitle("Online Exchange");
-        stage.setScene(scene);
-        stage.show();
+        PrimaryStage.getIcons().add(icon);
+        PrimaryStage.setTitle("Online Exchange-Login");
+        PrimaryStage.setScene(scene);
+        PrimaryStage.show();
+    }
+    public void changeScene (String fxml) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml+".fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stg.setScene(scene);
+        stg.show();
+
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
+
     }
 }
