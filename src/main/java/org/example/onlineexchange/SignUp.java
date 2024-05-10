@@ -2,14 +2,18 @@ package org.example.onlineexchange;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.Random;
+import java.util.ResourceBundle;
 
-public class SignUp {
+public class SignUp implements Initializable {
     @FXML
     private TextField Username ;
     @FXML
@@ -32,6 +36,16 @@ public class SignUp {
     private Button Exit ;
     @FXML
     private Button SignUp ;
+    @FXML
+    private Label captcha ;
+
+    static String CAPTCHA ;
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        CAPTCHA = Login.generateCaptcha(3);
+        captcha.setText(CAPTCHA);
+    }
+
 
     public void ClickOnExit (ActionEvent event) throws IOException {
         System.exit(0);

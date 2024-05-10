@@ -63,13 +63,16 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Button fx:id="ChooseFile" layoutX="556.0" layoutY="296.0" mnemonicParsing="false" onAction="#ClickOnChooseFile" style="-fx-background-color: #1EF1B1; -fx-background-radius: 6;" text="choose file" textFill="WHITE">
+      <Button fx:id="ChooseFile" layoutX="556.0" layoutY="296.0" mnemonicParsing="false" onAction="#ClickOnChooseFile" style="-fx-background-color: #1EF1B1; -fx-background-radius: 10;" text="choose file" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <Label layoutX="338.0" layoutY="341.0" prefHeight="18.0" prefWidth="41.0" textFill="WHITE" />
-      <Button fx:id="SignUp" layoutX="224.0" layoutY="416.0" mnemonicParsing="false" onAction="#ClickOnSignUp" prefHeight="26.0" prefWidth="273.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 6;" text="Sign Up" textFill="WHITE">
+      <Label fx:id="captcha" layoutX="349.0" layoutY="346.0" prefHeight="18.0" prefWidth="41.0" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+      <Button fx:id="SignUp" layoutX="224.0" layoutY="416.0" mnemonicParsing="false" onAction="#ClickOnSignUp" prefHeight="26.0" prefWidth="273.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 10;" text="Sign Up" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
