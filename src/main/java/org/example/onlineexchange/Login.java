@@ -1,16 +1,20 @@
 package org.example.onlineexchange;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Random;
+import java.util.ResourceBundle;
 
-public class Login {
+public class Login implements Initializable {
     @FXML
     private Button login ;
     @FXML
@@ -29,60 +33,107 @@ public class Login {
     private Label captcha ;
     @FXML
     private Label loginMessage;
+    @FXML
+    private Label UsernameMessage;
+    @FXML
+    private Label PasswordMessage;
+    @FXML
+    private Label CodeMessage;
 
-    public String CAPTCHA = generateCaptchaString();
+    static String CAPTCHA ;
 
-    public void login (ActionEvent event) throws IOException {
-        checkLogin();
-    }
-    public String generateCaptchaString() {
-        Random random = new Random();
-        int length = 7 + (Math.abs(random.nextInt()) % 3);
-
-        StringBuffer captchaStringBuffer = new StringBuffer();
-        for (int i = 0; i < length; i++) {
-            int baseCharNumber = Math.abs(random.nextInt()) % 62;
-            int charNumber = 0;
-            if (baseCharNumber < 26) {
-                charNumber = 65 + baseCharNumber;
-            }
-            else if (baseCharNumber < 52){
-                charNumber = 97 + (baseCharNumber - 26);
-            }
-            else {
-                charNumber = 48 + (baseCharNumber - 52);
-            }
-            captchaStringBuffer.append((char)charNumber);
+    static String generateCaptcha(int n)
+    {
+        Random rand = new Random(62);
+        String chrs = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        String captcha = "";
+        while (n-->0){
+            int index = (int)(Math.random()*62);
+            captcha+=chrs.charAt(index);
         }
-
-        return captchaStringBuffer.toString();
+        return captcha;
     }
-    private void checkLogin() throws IOException {
-        Main m = new Main();
-        boolean sw = false ;
-        String Username = username.getText().toString();
-        String Password = password.getText().toString();
 
-        for (int i = 0 ; i < User.user.length && !sw ; i++){
-           if(Username.equals(User.user[i].getUsername()) && Password.equals(User.user[i].getPassword())){
-               sw=true;
-           }
+    @Override
+    public void initialize(URL location, ResourceBundle rb){
+            CAPTCHA = generateCaptcha(3);
+            captcha.setText(CAPTCHA);
+    }
+
+    public void ClickOnLogin (ActionEvent event) throws IOException {
+        String Username = username.getText();
+        String Password = password.getText();
+        String Code = code.getText();
+
+        boolean userFill = Username.isEmpty();
+        boolean passFill = Password.isEmpty();
+        boolean codeFill = Code.isEmpty();
+
+        boolean swUsername = false;
+        boolean swPassword = false;
+        boolean swCode = false;
+        int numberOfUser=0 ;
+
+        if(!userFill){
+            UsernameMessage.setVisible(false);
+            for (int i = 0 ; i<User.user.length && User.user[i] != null ; i++){
+                if(User.user[i].getUsername().equals(Username)){
+                    swUsername = true;
+                    numberOfUser = i;
+                    break;
+                }
+            }
         }
-        if(sw){
-            loginMessage.setText("Successful!");
-            //m.changeScene("afterLogin.fxml");
+        else{
+            UsernameMessage.setVisible(true);
+        }
+        if(!passFill){
+            PasswordMessage.setVisible(false);
+            if(!userFill && User.user[numberOfUser].getPassword().equals(Password)){
+                swPassword = true;
+            }
         }
         else {
-            if(Username.isEmpty()||Password.isEmpty()){
-                loginMessage.setText("Please enter your data!");
-            }
-            else{
-                loginMessage.setText("wrong username or password!");
+            PasswordMessage.setVisible(true);
+        }
+        if(!codeFill){
+            CodeMessage.setVisible(false);
+            if(Code.equals(CAPTCHA)){
+                swCode=true;
             }
         }
+        else {
+            CodeMessage.setVisible(true);
+        }
+        if(swUsername && swPassword && swCode){
+            Main m = new Main();
+            m.changeScene("mainPage");
+            loginMessage.setVisible(false);
+            UsernameMessage.setVisible(false);
+            PasswordMessage.setVisible(false);
+            CodeMessage.setVisible(false);
+            loginMessage.setVisible(false);
+            CAPTCHA = generateCaptcha(3);
+            captcha.setText(CAPTCHA);
+        }
+        else{
+            loginMessage.setVisible(true);
+            CAPTCHA = generateCaptcha(3);
+            captcha.setText(CAPTCHA);
+        }
     }
-    // باید کپچا رو درست کنم یعنی لیبلش ست تکست بشه
-    //باید چنج سین رو درست کنم
+
+    public void ClickOnSignUp (ActionEvent event) throws IOException {
+        Main m = new Main();
+        m.changeScene("signUp");
+    }
+    public void ClickOnExit (ActionEvent event) throws  IOException {
+        System.exit(0);
+    }
+    public void ClickOnForgetPassword (ActionEvent event) throws  IOException {
+        Main m = new Main();
+        m.changeScene("forgetPassword");
+    }
 
 }
 
