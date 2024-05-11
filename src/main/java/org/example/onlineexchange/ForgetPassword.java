@@ -33,7 +33,10 @@ public class ForgetPassword {
     private TextField EnterEmail ;
     @FXML
     private TextField EnterCode;
-
+    @FXML
+    private Label MessageReceivedCode;
+    @FXML
+    private Button ResendCode;
     public void ClickOnLoginButton (ActionEvent event) throws IOException {
 
     }
