@@ -49,7 +49,7 @@ public class ForgetPassword {
 
     public boolean sendEmail (String recipientEmail){
         final String username = "onlineexchangedandp@gmail.com";
-        final String password = "aakhpnjipafgxuiw";
+        final String password = "****";
 
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.gmail.com");
