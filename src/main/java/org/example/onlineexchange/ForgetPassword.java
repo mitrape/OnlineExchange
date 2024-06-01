@@ -89,19 +89,39 @@ public class ForgetPassword {
     public void ClickOnLoginButton (ActionEvent event) throws IOException {
         String enteredCode = EnterCode.getText();
         if(enteredCode.equals(code.toString())){
-            //بره صفحه های بعدی
+            Main m4 = new Main();
+            WrongCodeMessage.setVisible(false);
+            m4.changeScene("nextScene");
         }
         else{
-            // نشون بده غلطه
+            WrongCodeMessage.setVisible(true);
         }
     }
     public void ClickOnSubmitButton (ActionEvent event) throws IOException {
         String email = EnterEmail.getText();
-        // بره ببینه همچین جییملی هست یا نه
-        emailSent = sendEmail(email);
-        if(emailSent){
-            //باید تمام دکمه های جدید رو نمایان کنه
+        boolean flagEmail = false;
+        for (int i = 0; i < User.user.length && User.user[i] != null ; i++) {
+            if(User.user[i].getEmail().equals(email)){
+                flagEmail = true;
+                break;
+            }
         }
+        if(flagEmail){
+            WrongEmailMessage.setVisible(false);
+            sendEmail(email);
+            SubmitButton.setVisible(false);
+            LoginButton.setVisible(true);
+            EmailLabel.setVisible(false);
+            CodeLabel.setVisible(true);
+            EnterEmail.setVisible(false);
+            EnterCode.setVisible(true);
+            MessageEnterEmail.setVisible(false);
+            MessageEnterCode.setVisible(true);
+        }
+        else {
+            WrongEmailMessage.setVisible(true);
+        }
+
     }
     public void ClickOnExit (ActionEvent event) throws IOException {
         System.exit(0);
