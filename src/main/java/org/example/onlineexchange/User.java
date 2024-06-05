@@ -14,6 +14,16 @@ public class User {
     private String phoneNumber;//6
     public boolean[] correctInfo = new boolean[7];
 
+    public User(String username, String password, String firstname, String lastname, String email, String phoneNumber){
+        setUsername(username);
+        setEmail(email);
+        setFirstname(firstname);
+        setLastname(lastname);
+        setPassword(password);
+        setPhoneNumber(phoneNumber);
+    }
+    public User (){
+    }
 
     public void setUsername(String username) {
         boolean sw =true;
