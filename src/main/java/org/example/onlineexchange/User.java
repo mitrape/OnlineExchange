@@ -1,10 +1,14 @@
 package org.example.onlineexchange;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class User {
     public static User[] user = new User[100];
+    public static int countUser;
     private String username;//0
     private String password;//1
     //repeat password 2
@@ -12,17 +16,28 @@ public class User {
     private String lastname;//4
     private String email;//5
     private String phoneNumber;//6
-    public boolean[] correctInfo = new boolean[7];
+    //code7
+    private Image profilePhoto ;
+    public boolean[] correctInfo = new boolean[8];
 
-    public User(String username, String password, String firstname, String lastname, String email, String phoneNumber){
+    public User(String username, String password, String firstname, String lastname, String email, String phoneNumber, WritableImage image){
         setUsername(username);
         setEmail(email);
         setFirstname(firstname);
         setLastname(lastname);
         setPassword(password);
         setPhoneNumber(phoneNumber);
+        setProfilePhoto(image);
     }
     public User (){
+    }
+
+    public void setProfilePhoto(Image profilePhoto) {
+        this.profilePhoto = profilePhoto;
+    }
+
+    public Image getProfilePhoto() {
+        return profilePhoto;
     }
 
     public void setUsername(String username) {
