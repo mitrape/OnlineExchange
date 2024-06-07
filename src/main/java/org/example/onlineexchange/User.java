@@ -1,5 +1,8 @@
 package org.example.onlineexchange;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class User {
     public static User[] user = new User[100];
     private String username;//0
@@ -11,6 +14,16 @@ public class User {
     private String phoneNumber;//6
     public boolean[] correctInfo = new boolean[7];
 
+    public User(String username, String password, String firstname, String lastname, String email, String phoneNumber){
+        setUsername(username);
+        setEmail(email);
+        setFirstname(firstname);
+        setLastname(lastname);
+        setPassword(password);
+        setPhoneNumber(phoneNumber);
+    }
+    public User (){
+    }
 
     public void setUsername(String username) {
         boolean sw =true;
@@ -118,7 +131,17 @@ public class User {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        String regexPat = "^(?=.[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})(?!.[<>])[^<>]*$";
+        Pattern pattern = Pattern.compile(regexPat);
+        Matcher matcher = pattern.matcher(email);
+        if(matcher.matches()){
+            this.email = email;
+            correctInfo[5] = true;
+        }
+        else {
+            correctInfo[5] = false;
+        }
+
     }
 
     public String getPhoneNumber() {
