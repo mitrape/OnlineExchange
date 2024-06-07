@@ -19,8 +19,8 @@ public class Main extends Application {
         PrimaryStage.setResizable(false);
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        //Image icon = new Image("logo.jpg");
-        //PrimaryStage.getIcons().add(icon);
+        Image icon = new Image("logo.jpg");
+        PrimaryStage.getIcons().add(icon);
         PrimaryStage.setTitle("Online Exchange-Login");
         PrimaryStage.setScene(scene);
         PrimaryStage.show();
@@ -35,8 +35,10 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         User.user[0]=new User();
-        User.user[0].setUsername("mitra");
-        User.user[0].setPassword("123456");
+        User.user[0].setUsername("mP.1");
+        User.user[0].setPassword("1Mp@2222");
+        User.user[0].setEmail("miti1383@gmail.com");
+
         launch(args);
 
     }
