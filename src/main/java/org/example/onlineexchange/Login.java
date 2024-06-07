@@ -8,6 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,7 +32,7 @@ public class Login implements Initializable {
     @FXML
     private TextField code;
     @FXML
-    private Label captcha ;
+    private ImageView captcha ;
     @FXML
     private Label loginMessage;
     @FXML
@@ -40,24 +42,20 @@ public class Login implements Initializable {
     @FXML
     private Label CodeMessage;
 
-    static String CAPTCHA ;
+    public static String[] Captchaa = {"33189","42553","23085","08652","86291","46639"};
+    public static String CAPTCHA ;
 
-    static String generateCaptcha(int n)
-    {
-        Random rand = new Random(62);
-        String chrs = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        String captcha = "";
-        while (n-->0){
-            int index = (int)(Math.random()*62);
-            captcha+=chrs.charAt(index);
-        }
-        return captcha;
+    public void setCaptcha (){
+        Random rand = new Random();
+        int randomNumber = rand.nextInt(6)+1;
+        Image Captcha = new Image("captcha"+randomNumber+".jpg");
+        captcha.setImage(Captcha);
+        CAPTCHA = Captchaa[randomNumber-1];
     }
 
     @Override
     public void initialize(URL location, ResourceBundle rb){
-            CAPTCHA = generateCaptcha(3);
-            captcha.setText(CAPTCHA);
+        setCaptcha();
     }
 
     public void ClickOnLogin (ActionEvent event) throws IOException {
@@ -89,7 +87,7 @@ public class Login implements Initializable {
         }
         if(!passFill){
             PasswordMessage.setVisible(false);
-            if(!userFill && User.user[numberOfUser].getPassword().equals(Password)){
+            if(!userFill && Password.equals(User.user[numberOfUser].getPassword())){
                 swPassword = true;
             }
         }
@@ -107,19 +105,17 @@ public class Login implements Initializable {
         }
         if(swUsername && swPassword && swCode){
             Main m = new Main();
-            m.changeScene("mainPage");
+            m.changeScene("homePage");
             loginMessage.setVisible(false);
             UsernameMessage.setVisible(false);
             PasswordMessage.setVisible(false);
             CodeMessage.setVisible(false);
             loginMessage.setVisible(false);
-            CAPTCHA = generateCaptcha(3);
-            captcha.setText(CAPTCHA);
+            setCaptcha();
         }
         else{
             loginMessage.setVisible(true);
-            CAPTCHA = generateCaptcha(3);
-            captcha.setText(CAPTCHA);
+            setCaptcha();
         }
     }
 

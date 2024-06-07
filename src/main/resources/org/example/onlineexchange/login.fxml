@@ -73,11 +73,6 @@
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></PasswordField>
-            <Label fx:id="captcha" layoutX="184.0" layoutY="225.0" prefHeight="16.0" prefWidth="66.0" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="11.0" />
-               </font>
-            </Label>
             <Button fx:id="forgetPassword" layoutX="233.0" layoutY="341.0" mnemonicParsing="false" onAction="#ClickOnForgetPassword" prefHeight="26.0" prefWidth="88.0" style="-fx-background-color: #7C51FA; -fx-background-radius: 10;" text="Forget Password" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="9.0" />
@@ -86,7 +81,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TextField fx:id="code" layoutX="154.0" layoutY="249.0" prefHeight="26.0" prefWidth="84.0" promptText="CAPTCHA">
+            <TextField fx:id="code" layoutX="154.0" layoutY="257.0" prefHeight="26.0" prefWidth="84.0" promptText="CAPTCHA">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></TextField>
@@ -101,6 +96,10 @@
             <Label fx:id="UsernameMessage" layoutX="167.0" layoutY="96.0" text="fill this box" textFill="RED" visible="false" />
             <Label fx:id="PasswordMessage" layoutX="167.0" layoutY="156.0" text="fill this box" textFill="RED" visible="false" />
             <Label fx:id="CodeMessage" layoutX="93.0" layoutY="253.0" text="fill this box" textFill="RED" visible="false" />
+            <ImageView fx:id="captcha" fitHeight="39.0" fitWidth="144.0" layoutX="117.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../image/captcha1.jpg" />
+               </image></ImageView>
          </children>
       </AnchorPane>
    </right>
