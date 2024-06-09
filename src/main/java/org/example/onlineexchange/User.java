@@ -3,11 +3,11 @@ package org.example.onlineexchange;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 
+import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class User {
-    public static User[] user = new User[100];
     public static int countUser;
     private String username;//0
     private String password;//1
@@ -18,6 +18,7 @@ public class User {
     private String phoneNumber;//6
     //code7
     private Image profilePhoto ;
+    private String imageName;
     public boolean[] correctInfo = new boolean[8];
 
     public User(String username, String password, String firstname, String lastname, String email, String phoneNumber, WritableImage image){
@@ -34,6 +35,13 @@ public class User {
 
     public void setProfilePhoto(Image profilePhoto) {
         this.profilePhoto = profilePhoto;
+    }
+    public void setProfilePhoto(String imageName){
+        this.imageName = imageName;
+    }
+
+    public String getImageName() {
+        return imageName;
     }
 
     public Image getProfilePhoto() {

@@ -19,6 +19,9 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -68,7 +71,8 @@ public class SignUp implements Initializable{
     public static String[] Captchaa = {"33189","42553","23085","08652","86291","46639"};
     public static String CAPTCHA ;
     public boolean photoFlag = false;
-    WritableImage croppedImage;
+    WritableImage croppedImage = null;
+    File selectedFile = null;
 
 
     public void setCaptcha (){
@@ -84,10 +88,28 @@ public class SignUp implements Initializable{
         setCaptcha();
     }
 
-    public void ClickOnSignUp (ActionEvent event) throws  IOException {
+    public void ClickOnSignUp (ActionEvent event) throws IOException, SQLException {
        User user = new User(username.getText(),password.getText(),firstName.getText(),lastName.getText(),email.getText(),phoneNumber.getText(),croppedImage);
-       //avaz konm
-       User.user[0] = user;
+        PreparedStatement psInsert = null ;
+
+        PreparedStatement psCheckUsernameExists1 = null;
+        ResultSet resultSet1 = null;
+        psCheckUsernameExists1 = Main.connection.prepareStatement("SELECT * FROM usersdata WHERE username = ?");
+        psCheckUsernameExists1.setString(1,username.getText());
+        resultSet1 = psCheckUsernameExists1.executeQuery();
+
+        PreparedStatement psCheckUsernameExists2 = null;
+        ResultSet resultSet2 = null;
+        psCheckUsernameExists2 = Main.connection.prepareStatement("SELECT * FROM usersdata WHERE phoneNumber = ?");
+        psCheckUsernameExists2.setString(1,phoneNumber.getText());
+        resultSet2 = psCheckUsernameExists2.executeQuery();
+
+        PreparedStatement psCheckUsernameExists4 = null;
+        ResultSet resultSet4 = null;
+        psCheckUsernameExists4 = Main.connection.prepareStatement("SELECT * FROM usersdata WHERE email = ?");
+        psCheckUsernameExists4.setString(1,email.getText());
+        resultSet4 = psCheckUsernameExists4.executeQuery();
+
         if(username.getText().isEmpty()){
             usernameMessage.setText("Please fill this field");
             usernameMessage.setVisible(true);
@@ -95,6 +117,13 @@ public class SignUp implements Initializable{
         else if(!user.correctInfo[0]){
             usernameMessage.setText("Incorrect username input");
             usernameMessage.setVisible(true);
+        }
+        else if (resultSet1.isBeforeFirst()){
+            usernameMessage.setText("Username already exist");
+            usernameMessage.setVisible(true);
+            user.correctInfo[0]=false;
+            System.out.println("loop");
+            System.out.println(user.correctInfo[0]);
         }
         else {
             usernameMessage.setVisible(false);
@@ -140,6 +169,11 @@ public class SignUp implements Initializable{
             emailMessage.setText("Email does not exist");
             emailMessage.setVisible(true);
         }
+        else if (resultSet4.isBeforeFirst()){
+            emailMessage.setText("email already exist");
+            emailMessage.setVisible(true);
+            user.correctInfo[5] = false;
+        }
         else {
             emailMessage.setVisible(false);
         }
@@ -150,6 +184,11 @@ public class SignUp implements Initializable{
         else if(!user.correctInfo[6]){
             phoneNumberMessage.setText("Number does not exist");
             phoneNumberMessage.setVisible(true);
+        }
+        else if (resultSet2.isBeforeFirst()){
+            phoneNumberMessage.setText("Phone number already exist");
+            phoneNumberMessage.setVisible(true);
+            user.correctInfo[6]=false;
         }
         else {
             phoneNumberMessage.setVisible(false);
@@ -167,7 +206,6 @@ public class SignUp implements Initializable{
             repeatPasswordMessage.setVisible(false);
             user.correctInfo[2]=true;
         }
-        /////?????
         if(code.getText().isEmpty()){
             codeMessage.setText("Please fill this field");
             codeMessage.setVisible(true);
@@ -192,13 +230,58 @@ public class SignUp implements Initializable{
             }
         }
         if(swFinal){
+            try {
+                Main.username = username.getText();
+                psInsert= Main.connection.prepareStatement("INSERT INTO usersdata (username , password , firstName , lastName , email , phoneNumber , photoName )VAlUES (? , ? , ? , ? , ? , ? , ?)");
+                psInsert.setString(1 ,username.getText());
+                psInsert.setString(2 ,password.getText());
+                psInsert.setString(3 ,firstName.getText());
+                psInsert.setString(4 ,lastName.getText());
+                psInsert.setString(5 ,email.getText());
+                psInsert.setString(6 ,phoneNumber.getText());
+                psInsert.setString(7 ,selectedFile.getName());
+                psInsert.executeUpdate();
+                user.setProfilePhoto(selectedFile.getName());
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+            finally {
+                try {
+                    if(resultSet1 != null ){
+                        resultSet1.close();
+                    }
+                    if(resultSet2 != null){
+                        resultSet2.close();
+                    }
+                    if(resultSet4!= null){
+                        resultSet4.close();
+                    }
+                    if(psInsert != null){
+                        psInsert.close();
+                    }
+                    if(psCheckUsernameExists1 != null){
+                        psCheckUsernameExists1.close();
+                    }
+                    if(psCheckUsernameExists2 != null){
+                        psCheckUsernameExists2.close();
+                    }
+                    if (psCheckUsernameExists4 != null){
+                        psCheckUsernameExists4.close();
+                    }
+                }
+               catch (SQLException e){
+                    e.printStackTrace();
+               }
+            }
+
             Main m = new Main();
             m.changeScene("HomePage");
         }
         else{
             setCaptcha();
             if(croppedImage == null){
-                fileMessage.setText("please choose a photo");
+                fileMessage.setText("Please choose a photo");
                 fileMessage.setVisible(true);
             }
         }
@@ -208,12 +291,17 @@ public class SignUp implements Initializable{
         System.exit(0);
     }
 
-    public void ClickOnChooseFile (ActionEvent event) throws IOException {
+    public void ClickOnChoosFile (ActionEvent event) throws IOException, SQLException {
         try {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Choose an image file");
-            File selectedFile = fileChooser.showOpenDialog(Main.stg);
-            if (selectedFile != null) {
+            selectedFile = fileChooser.showOpenDialog(Main.stg);
+            PreparedStatement psCheckUsernameExists3 = null;
+            ResultSet resultSet3 = null;
+            psCheckUsernameExists3 = Main.connection.prepareStatement("SELECT * FROM usersdata WHERE photoName = ?");
+            psCheckUsernameExists3.setString(1,selectedFile.getName());
+            resultSet3 = psCheckUsernameExists3.executeQuery();
+            if (selectedFile != null && ! resultSet3.isBeforeFirst()) {
                 Path sourcePath = selectedFile.toPath();
                 Path destinationPath = Paths.get("D:\\programming projects\\OnlineExchange\\src\\image\\"+selectedFile.getName());
                 Files.copy(sourcePath, destinationPath);
@@ -224,9 +312,14 @@ public class SignUp implements Initializable{
                 fileMessage.setVisible(false);
                 photoFlag = true;
             }
+            else if (selectedFile!=null && resultSet3.isBeforeFirst()){
+                fileMessage.setText("This file already exist");
+                fileMessage.setVisible(true);
+                photoFlag = false;
+            }
             else{
                 croppedImage = null;
-                fileMessage.setText("please choose a photo");
+                fileMessage.setText("Please choose a photo");
                 fileMessage.setVisible(true);
                 photoFlag = false;
             }
