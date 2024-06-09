@@ -9,9 +9,15 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class Main extends Application {
+    public static String username = null;
     public static Stage stg;
+    public static Connection connection = null;
 
     @Override
     public void start(Stage PrimaryStage) throws IOException {
@@ -32,12 +38,33 @@ public class Main extends Application {
         stg.show();
 
     }
+    void createConnection () throws Exception{
+        final String URL = "jdbc:mysql://localhost:3307/users_personal_data";
+        final String USER = "root";
+        final String PASSWORD = "13832220";
+        try {
+            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("Connected to the database");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
-        User.user[0]=new User();
-        User.user[0].setUsername("mP.1");
-        User.user[0].setPassword("1Mp@2222");
-        User.user[0].setEmail("miti1383@gmail.com");
+        Main m = new Main();
+        try {
+            m.createConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+//        User.user[0]=new User();
+//        User.user[0].setUsername("mP.1");
+//        User.user[0].setPassword("1Mp@2222");
+//        User.user[0].setEmail("miti1383@gmail.com");
+
 
         launch(args);
 
