@@ -58,14 +58,6 @@ public class Main extends Application {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-
-//        User.user[0]=new User();
-//        User.user[0].setUsername("mP.1");
-//        User.user[0].setPassword("1Mp@2222");
-//        User.user[0].setEmail("miti1383@gmail.com");
-
-
         launch(args);
 
     }
