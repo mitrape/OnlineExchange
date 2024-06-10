@@ -178,14 +178,26 @@ public class Profile implements Initializable {
     }
     public void ClickOnDoneButton (ActionEvent event) throws IOException, SQLException {
 
+        String Name = nameTextBox.getText();
+        String lastname = lastnameTextBox.getText();
+        String Password = passwordTextBox.getText();
+        String PhoneNumber = phoneNumberTextBox.getText();
+        String Email = emailTextBox.getText();
+
+
+        boolean nameFill = Name.isEmpty();
+        boolean lastNameFill = lastname.isEmpty();
+        boolean passwordFill = Password.isEmpty();
+        boolean phoneNumberFill = PhoneNumber.isEmpty();
+        boolean emailFill = Email.isEmpty();
+
         User user = new User();
         boolean[] inputCheker = new boolean[5];
         for (int i = 0; i < 5; i++) {
             inputCheker[i] = true;
         }
 
-        if(nameTextBox.getText()!= null){
-            System.out.println("1");
+        if(!nameFill){
             user.setFirstname(nameTextBox.getText());
             if(user.correctInfo[3]){
                 String sql = "UPDATE usersdata SET firstName = ? WHERE username = ?";
@@ -212,8 +224,7 @@ public class Profile implements Initializable {
         }
 
 
-        if(lastnameTextBox.getText()!= null){
-            System.out.println("2");
+        if(!lastNameFill){
             user.setLastname(lastnameTextBox.getText());
             if(user.correctInfo[4]){
                 String sql = "UPDATE usersdata SET lastName = ? WHERE username = ?";
@@ -236,13 +247,11 @@ public class Profile implements Initializable {
             }
         }
         else{
-            System.out.println("3");
             lastNameMessage.setVisible(false);
         }
 
 
-        if(passwordTextBox.getText()!= null){
-            System.out.println("4");
+        if(!passwordFill){
             user.setPassword(passwordTextBox.getText());
             if(user.correctInfo[1]){
                 String sql = "UPDATE usersdata SET password = ? WHERE username = ?";
@@ -259,7 +268,6 @@ public class Profile implements Initializable {
                 inputCheker[2] = true;
             }
             else{
-                System.out.println("password is : *"+passwordTextBox.getText()+"*");
                 passwordMessage.setText("weak password");
                 passwordMessage.setVisible(true);
                 inputCheker[2] = false;
@@ -270,8 +278,7 @@ public class Profile implements Initializable {
         }
 
 
-        if(phoneNumberTextBox.getText()!= null){
-            System.out.println("5");
+        if(!phoneNumberFill){
             PreparedStatement psCheckUsernameExists = null;
             ResultSet resultSet = null;
             psCheckUsernameExists = Main.connection.prepareStatement("SELECT * FROM usersdata WHERE phoneNumber = ?");
@@ -310,8 +317,7 @@ public class Profile implements Initializable {
         }
 
 
-        if(emailTextBox.getText()!= null){
-            System.out.println("6");
+        if(!emailFill){
             PreparedStatement psCheckUsernameExists = null;
             ResultSet resultSet = null;
             psCheckUsernameExists = Main.connection.prepareStatement("SELECT * FROM usersdata WHERE email = ?");
@@ -356,7 +362,6 @@ public class Profile implements Initializable {
             }
         }
         if(checkFlag) {
-            System.out.println("7");
             PreparedStatement findUser = null;
             ResultSet resultSet = null;
             String email = null;
