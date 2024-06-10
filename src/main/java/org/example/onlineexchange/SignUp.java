@@ -91,7 +91,6 @@ public class SignUp implements Initializable{
     public void ClickOnSignUp (ActionEvent event) throws IOException, SQLException {
        User user = new User(username.getText(),password.getText(),firstName.getText(),lastName.getText(),email.getText(),phoneNumber.getText(),croppedImage);
         PreparedStatement psInsert = null ;
-
         PreparedStatement psCheckUsernameExists1 = null;
         ResultSet resultSet1 = null;
         psCheckUsernameExists1 = Main.connection.prepareStatement("SELECT * FROM usersdata WHERE username = ?");

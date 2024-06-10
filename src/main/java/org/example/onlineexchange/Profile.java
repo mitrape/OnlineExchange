@@ -144,7 +144,7 @@ public class Profile implements Initializable {
                 pstmt.executeUpdate();
 
                 Path sourcePath = selectedFile.toPath();
-                Path destinationPath = Paths.get("D:\\programming projects\\OnlineExchange\\src\\image\\"+selectedFile.getName());
+                Path destinationPath = Paths.get("/Users/melikadehestani/Desktop/uni/FOP advanced/final proj/OnlineExchange/src/image"+selectedFile.getName());
                 Files.copy(sourcePath, destinationPath);
                 Image image = new Image(sourcePath.toUri().toString());
                 int cropWidth = 484;

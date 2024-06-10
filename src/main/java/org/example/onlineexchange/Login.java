@@ -13,6 +13,9 @@ import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -41,6 +44,8 @@ public class Login implements Initializable {
     private Label PasswordMessage;
     @FXML
     private Label CodeMessage;
+    @FXML
+    private Label incorrectPassOrUsername;
 
     public static String[] Captchaa = {"33189","42553","23085","08652","86291","46639"};
     public static String CAPTCHA ;
@@ -58,7 +63,7 @@ public class Login implements Initializable {
         setCaptcha();
     }
 
-    public void ClickOnLogin (ActionEvent event) throws IOException {
+    public void ClickOnLogin (ActionEvent event) throws IOException, SQLException {
         String Username = username.getText();
         String Password = password.getText();
         String Code = code.getText();
@@ -70,16 +75,22 @@ public class Login implements Initializable {
         boolean swUsername = false;
         boolean swPassword = false;
         boolean swCode = false;
-        int numberOfUser=0 ;
+
+        PreparedStatement preStatement = null;
+        ResultSet resultSet = null;
+
+        preStatement = Main.connection.prepareStatement("SELECT password FROM  userdata WHERE username = ?");
+        preStatement.setString(1,Username);
+        resultSet = preStatement.executeQuery();
 
         if(!userFill){
             UsernameMessage.setVisible(false);
-            for (int i = 0 ; i<User.user.length && User.user[i] != null ; i++){
-                if(User.user[i].getUsername().equals(Username)){
-                    swUsername = true;
-                    numberOfUser = i;
-                    break;
-                }
+            if(resultSet.isBeforeFirst()){
+                loginMessage.setVisible(false);
+                swUsername=true;
+            }
+            else {
+                loginMessage.setVisible(true);
             }
         }
         else{
@@ -87,8 +98,18 @@ public class Login implements Initializable {
         }
         if(!passFill){
             PasswordMessage.setVisible(false);
-            if(!userFill && Password.equals(User.user[numberOfUser].getPassword())){
-                swPassword = true;
+            if(swUsername){
+                while (resultSet.next()){
+                    String retrievedPass = resultSet.getString("password");
+                    if(retrievedPass.equals(Password)){
+                        swPassword = true;
+                        loginMessage.setVisible(false);
+                        break;
+                    }
+                }
+                if(!swPassword){
+                    loginMessage.setVisible(true);
+                }
             }
         }
         else {
@@ -103,19 +124,48 @@ public class Login implements Initializable {
         else {
             CodeMessage.setVisible(true);
         }
-        if(swUsername && swPassword && swCode){
-            Main m = new Main();
-            m.changeScene("homePage");
-            loginMessage.setVisible(false);
-            UsernameMessage.setVisible(false);
-            PasswordMessage.setVisible(false);
-            CodeMessage.setVisible(false);
-            loginMessage.setVisible(false);
-            setCaptcha();
+        try {
+            if (swUsername && swPassword && swCode) {
+                Main m = new Main();
+                Main.username = Username;
+                m.changeScene("homePage");
+                loginMessage.setVisible(false);
+                UsernameMessage.setVisible(false);
+                PasswordMessage.setVisible(false);
+                CodeMessage.setVisible(false);
+                loginMessage.setVisible(false);
+            } else {
+                setCaptcha();
+            }
         }
-        else{
-            loginMessage.setVisible(true);
-            setCaptcha();
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            if(resultSet != null){
+                try {
+                    resultSet.close();
+                }
+                catch (SQLException e1){
+                    e1.printStackTrace();
+                }
+            }
+            if(preStatement != null){
+                try {
+                    preStatement.close();
+                }
+                catch (SQLException e2){
+                    e2.printStackTrace();
+                }
+            }
+            if(Main.connection != null){
+                try{
+                    Main.connection.close();
+                }
+                catch (SQLException e3){
+                    e3.printStackTrace();
+                }
+            }
         }
     }
 

@@ -8,6 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class User {
+    public static User[] user = new User[100];
     public static int countUser;
     private String username;//0
     private String password;//1
