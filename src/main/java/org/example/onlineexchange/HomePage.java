@@ -24,4 +24,8 @@ public class HomePage {
     public void ClickOnPound (ActionEvent event){
 
     }
+    public void ClickOnProfile (ActionEvent event) throws IOException {
+        Main m = new Main();
+        m.changeScene("profile");
+    }
 }
