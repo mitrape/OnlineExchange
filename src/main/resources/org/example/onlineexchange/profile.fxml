@@ -7,6 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="586.0" prefWidth="413.0" style="-fx-background-color: #1EF1B1;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.onlineexchange.Profile">
    <children>
@@ -35,14 +36,14 @@
             <Font name="Book Antiqua Bold" size="18.0" />
          </font>
       </Label>
-      <Label alignment="TOP_CENTER" layoutX="186.0" layoutY="88.0" prefHeight="23.0" prefWidth="142.0" style="-fx-background-color: white; -fx-background-radius: 4;" text="username" textAlignment="CENTER" textFill="#071739">
+      <Label fx:id="usernameLabel" alignment="TOP_CENTER" layoutX="186.0" layoutY="88.0" prefHeight="23.0" prefWidth="142.0" style="-fx-background-color: white; -fx-background-radius: 4;" text="username" textAlignment="CENTER" textFill="#071739">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="nameTextBox" alignment="TOP_CENTER" layoutX="183.0" layoutY="138.0" promptText="name" visible="false" />
-      <TextField fx:id="lastnameTextBox" alignment="TOP_CENTER" layoutX="184.0" layoutY="192.0" promptText="last name" visible="false" />
-      <TextField fx:id="passwordTextBox" alignment="TOP_CENTER" layoutX="184.0" layoutY="244.0" promptText="password" visible="false" />
+      <TextField fx:id="nameTextBox" alignment="TOP_CENTER" layoutX="183.0" layoutY="138.0" visible="false" />
+      <TextField fx:id="lastnameTextBox" alignment="TOP_CENTER" layoutX="184.0" layoutY="192.0" visible="false" />
+      <TextField fx:id="passwordTextBox" alignment="TOP_CENTER" layoutX="184.0" layoutY="244.0" visible="false" />
       <Label layoutX="17.0" layoutY="301.0" text="Profile Photo" textFill="#071739">
          <font>
             <Font name="Book Antiqua Bold" size="18.0" />
@@ -69,8 +70,8 @@
             <Font name="Book Antiqua Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="phoneNumberTextBox" alignment="TOP_CENTER" layoutX="184.0" layoutY="355.0" promptText="phone number" visible="false" />
-      <TextField fx:id="emailTextBox" alignment="TOP_CENTER" layoutX="184.0" layoutY="408.0" promptText="email" visible="false" />
+      <TextField fx:id="phoneNumberTextBox" alignment="TOP_CENTER" layoutX="184.0" layoutY="355.0" visible="false" />
+      <TextField fx:id="emailTextBox" alignment="TOP_CENTER" layoutX="184.0" layoutY="408.0" visible="false" />
       <Button fx:id="walletButton" layoutX="38.0" layoutY="464.0" mnemonicParsing="false" onAction="#ClickOnWalletButton" prefHeight="26.0" prefWidth="158.0" style="-fx-background-color: #944af7;" text="Wallet" textFill="WHITE">
          <font>
             <Font name="Book Antiqua Bold" size="13.0" />
@@ -126,5 +127,30 @@
             <Font name="Book Antiqua Bold" size="13.0" />
          </font>
       </Button>
+      <Text fx:id="lastNameMessage" fill="RED" layoutX="163.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" visible="false" wrappingWidth="188.00001220703132">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <Text fx:id="nameMessage" fill="RED" layoutX="164.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" visible="false" wrappingWidth="188.00001220703132">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <Text fx:id="passwordMessage" fill="RED" layoutX="164.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" visible="false" wrappingWidth="188.00001220703132">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <Text fx:id="phoneNumberMessage" fill="RED" layoutX="163.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" visible="false" wrappingWidth="188.00001220703132">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <Text fx:id="emailMessage" fill="RED" layoutX="166.0" layoutY="401.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" visible="false" wrappingWidth="188.00001220703132">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

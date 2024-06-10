@@ -7,10 +7,21 @@ import javafx.scene.control.Button;
 import java.io.IOException;
 
 public class HomePage {
-        @FXML
-        private Button profileButton;
-        public void ClickOnProfileButton(ActionEvent event) throws IOException {
-            Main m2 = new Main();
-            m2.changeScene("profile");
-        }
+    @FXML
+    private Button username ;
+    public void ClickOnToman (ActionEvent event){
+
+    }
+    public void ClickOnDollar (ActionEvent event){
+
+    }
+    public void ClickOnYen (ActionEvent event){
+
+    }
+    public void ClickOnEuro (ActionEvent event){
+
+    }
+    public void ClickOnPound (ActionEvent event){
+
+    }
 }
