@@ -8,6 +8,9 @@ import javafx.scene.control.TextField;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Properties;
 import java.util.Random;
 
@@ -107,18 +110,38 @@ public class ForgetPassword {
             WrongCodeMessage.setVisible(true);
         }
     }
-    public void ClickOnSubmitButton (ActionEvent event) throws IOException {
-        String email = EnterEmail.getText();
+    public void ClickOnSubmitButton (ActionEvent event) throws IOException, SQLException {
+        String Email = EnterEmail.getText();
+        String Username = null;
         boolean flagEmail = false;
-        for (int i = 0; i < User.user.length && User.user[i] != null ; i++) {
-            if(User.user[i].getEmail().equals(email)){
-                flagEmail = true;
-                break;
+
+        PreparedStatement psCheckEmailExists = null;
+        ResultSet resultSet = null;
+        psCheckEmailExists = Main.connection.prepareStatement("SELECT * FROM usersdata WHERE email = ?");
+        psCheckEmailExists.setString(1,Email);
+        resultSet = psCheckEmailExists.executeQuery();
+
+        if (resultSet.isBeforeFirst()){
+            flagEmail = true;
+
+            PreparedStatement psCheckEmailExists1 = null;
+            ResultSet resultSet1 = null;
+            psCheckEmailExists1 = Main.connection.prepareStatement("SELECT username FROM usersdata WHERE email = ?");
+            psCheckEmailExists1.setString(1,Email);
+            resultSet1 = psCheckEmailExists1.executeQuery();
+            while (resultSet1.next()){
+                Username = resultSet1.getString("username");
+                Main.username = Username;
             }
+
         }
+        else{
+            flagEmail = false;
+        }
+
         if(flagEmail){
             WrongEmailMessage.setVisible(false);
-            sendEmail(email);
+            sendEmail(Email);
             SubmitButton.setVisible(false);
             LoginButton.setVisible(true);
             EmailLabel.setVisible(false);
