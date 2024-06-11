@@ -79,10 +79,9 @@ public class Login implements Initializable {
         PreparedStatement preStatement = null;
         ResultSet resultSet = null;
 
-        preStatement = Main.connection.prepareStatement("SELECT password FROM  userdata WHERE username = ?");
+        preStatement = Main.connection.prepareStatement("SELECT password FROM  usersdata WHERE username = ?");
         preStatement.setString(1,Username);
         resultSet = preStatement.executeQuery();
-
         if(!userFill){
             UsernameMessage.setVisible(false);
             if(resultSet.isBeforeFirst()){
@@ -119,6 +118,10 @@ public class Login implements Initializable {
             CodeMessage.setVisible(false);
             if(Code.equals(CAPTCHA)){
                 swCode=true;
+                loginMessage.setVisible(false);
+            }
+            else{
+                loginMessage.setVisible(true);
             }
         }
         else {
@@ -158,14 +161,6 @@ public class Login implements Initializable {
                     e2.printStackTrace();
                 }
             }
-            if(Main.connection != null){
-                try{
-                    Main.connection.close();
-                }
-                catch (SQLException e3){
-                    e3.printStackTrace();
-                }
-            }
         }
     }
 
@@ -182,5 +177,3 @@ public class Login implements Initializable {
     }
 
 }
-
-
