@@ -12,16 +12,16 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #071739;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.onlineexchange.Login">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="666.0" style="-fx-background-color: #071739;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.onlineexchange.Login">
    <left>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #071739;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="406.0" prefWidth="218.0" style="-fx-background-color: #071739;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="211.0" fitWidth="221.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="229.0" fitWidth="240.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@NameAndLogo.jpg" />
                </image>
             </ImageView>
-            <Button fx:id="exit" layoutX="8.0" layoutY="365.0" mnemonicParsing="false" onAction="#ClickOnExit" prefHeight="27.0" prefWidth="45.0" style="-fx-background-color: #D2042D; -fx-background-radius: 10;" text="Exit" textFill="WHITE">
+            <Button fx:id="exit" layoutX="14.0" layoutY="445.0" mnemonicParsing="false" onAction="#ClickOnExit" prefHeight="27.0" prefWidth="45.0" style="-fx-background-color: #D2042D; -fx-background-radius: 10;" text="Exit" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -29,30 +29,30 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label fx:id="loginMessage" layoutX="24.0" layoutY="36.0" prefHeight="43.0" prefWidth="162.0" text="incorrect username or password or code" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true" />
+            <Label fx:id="loginMessage" layoutX="30.0" layoutY="34.0" prefHeight="43.0" prefWidth="184.0" text="incorrect username or password" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true" />
          </children>
       </AnchorPane>
    </left>
    <right>
-      <AnchorPane prefHeight="400.0" prefWidth="362.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="487.0" prefWidth="426.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="159.0" layoutY="30.0" text="Login" textFill="WHITE">
+            <Label layoutX="216.0" layoutY="24.0" text="Login" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="21.0" />
                </font>
             </Label>
-            <Line endX="100.0" layoutX="189.0" layoutY="72.0" opacity="0.66" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
-            <Label layoutX="19.0" layoutY="119.0" text="Username" textFill="WHITE">
+            <Line endX="100.0" layoutX="244.0" layoutY="74.0" opacity="0.66" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+            <Label layoutX="16.0" layoutY="119.0" text="Username" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="10.0" layoutY="345.0" text=" Not a member?" textFill="WHITE">
+            <Label layoutX="7.0" layoutY="440.0" text=" Not a member?" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Button fx:id="signUp" layoutX="122.0" layoutY="341.0" mnemonicParsing="false" onAction="#ClickOnSignUp" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 10;" text="Sign up" textFill="WHITE">
+            <Button fx:id="signUp" layoutX="130.0" layoutY="432.0" mnemonicParsing="false" onAction="#ClickOnSignUp" prefHeight="30.0" prefWidth="113.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 10;" text="Sign up" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -60,32 +60,32 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label layoutX="19.0" layoutY="178.0" text="Password" textFill="WHITE">
+            <Label layoutX="16.0" layoutY="194.0" text="Password" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="username" layoutX="103.0" layoutY="117.0" prefHeight="24.0" prefWidth="191.0" promptText="username">
+            <TextField fx:id="username" layoutX="153.0" layoutY="119.0" prefHeight="31.0" prefWidth="191.0" promptText="username">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></TextField>
-            <PasswordField fx:id="password" layoutX="105.0" layoutY="176.0" prefHeight="27.0" prefWidth="190.0" promptText="password">
+            <PasswordField fx:id="password" layoutX="154.0" layoutY="194.0" prefHeight="31.0" prefWidth="191.0" promptText="password">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></PasswordField>
-            <Button fx:id="forgetPassword" layoutX="233.0" layoutY="341.0" mnemonicParsing="false" onAction="#ClickOnForgetPassword" prefHeight="26.0" prefWidth="88.0" style="-fx-background-color: #7C51FA; -fx-background-radius: 10;" text="Forget Password" textFill="WHITE">
+            <Button fx:id="forgetPassword" layoutX="271.0" layoutY="432.0" mnemonicParsing="false" onAction="#ClickOnForgetPassword" prefHeight="30.0" prefWidth="114.0" style="-fx-background-color: #7C51FA; -fx-background-radius: 10;" text="Forget Password" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="9.0" />
+                  <Font name="System Bold" size="11.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TextField fx:id="code" layoutX="154.0" layoutY="257.0" prefHeight="26.0" prefWidth="84.0" promptText="CAPTCHA">
+            <TextField fx:id="code" layoutX="213.0" layoutY="311.0" prefHeight="26.0" prefWidth="84.0" promptText="CAPTCHA">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></TextField>
-            <Button fx:id="login" layoutX="134.0" layoutY="289.0" mnemonicParsing="false" onAction="#ClickOnLogin" prefHeight="29.0" prefWidth="124.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 10;" text="Login" textFill="WHITE">
+            <Button fx:id="login" layoutX="190.0" layoutY="355.0" mnemonicParsing="false" onAction="#ClickOnLogin" prefHeight="36.0" prefWidth="127.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 10;" text="Login" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -94,12 +94,13 @@
                </cursor>
             </Button>
             <Label fx:id="UsernameMessage" layoutX="167.0" layoutY="96.0" text="fill this box" textFill="RED" visible="false" />
-            <Label fx:id="PasswordMessage" layoutX="167.0" layoutY="156.0" text="fill this box" textFill="RED" visible="false" />
-            <Label fx:id="CodeMessage" layoutX="93.0" layoutY="253.0" text="fill this box" textFill="RED" visible="false" />
-            <ImageView fx:id="captcha" fitHeight="39.0" fitWidth="144.0" layoutX="117.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
+            <Label fx:id="PasswordMessage" layoutX="167.0" layoutY="169.0" prefHeight="18.0" prefWidth="59.0" text="fill this box" textFill="RED" visible="false" />
+            <Label fx:id="CodeMessage" layoutX="125.0" layoutY="315.0" text="fill this box" textFill="RED" visible="false" />
+            <ImageView fx:id="captcha" fitHeight="39.0" fitWidth="144.0" layoutX="178.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../image/captcha1.jpg" />
                </image></ImageView>
+            <Label fx:id="incorrectCode" layoutX="105.0" layoutY="315.0" text="incorrect code" textFill="RED" visible="false" />
          </children>
       </AnchorPane>
    </right>

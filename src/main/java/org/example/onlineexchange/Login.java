@@ -45,7 +45,7 @@ public class Login implements Initializable {
     @FXML
     private Label CodeMessage;
     @FXML
-    private Label incorrectPassOrUsername;
+    private Label incorrectCode ;
 
     public static String[] Captchaa = {"33189","42553","23085","08652","86291","46639"};
     public static String CAPTCHA ;
@@ -82,6 +82,8 @@ public class Login implements Initializable {
         preStatement = Main.connection.prepareStatement("SELECT password FROM  usersdata WHERE username = ?");
         preStatement.setString(1,Username);
         resultSet = preStatement.executeQuery();
+
+
         if(!userFill){
             UsernameMessage.setVisible(false);
             if(resultSet.isBeforeFirst()){
@@ -118,10 +120,10 @@ public class Login implements Initializable {
             CodeMessage.setVisible(false);
             if(Code.equals(CAPTCHA)){
                 swCode=true;
-                loginMessage.setVisible(false);
+                incorrectCode.setVisible(false);
             }
             else{
-                loginMessage.setVisible(true);
+                incorrectCode.setVisible(true);
             }
         }
         else {
