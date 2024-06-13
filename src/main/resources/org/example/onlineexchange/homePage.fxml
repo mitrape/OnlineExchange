@@ -8,240 +8,233 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="710.0" style="-fx-background-color: #071739;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.onlineexchange.HomePage">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="713.0" prefWidth="931.0" style="-fx-background-color: #071739;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.onlineexchange.HomePage">
    <children>
-      <BorderPane layoutX="144.0" layoutY="-1.0" prefHeight="30.0" prefWidth="360.0" style="-fx-background-color: white;">
-         <left>
-            <MenuBar accessibleRole="BUTTON" prefHeight="26.0" prefWidth="450.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
-              <menus>
-                <Menu mnemonicParsing="false" text="منو">
-                  <items>
-                    <MenuItem mnemonicParsing="false" onAction="#ClickOnProfile" text="Profile" />
-                        <MenuItem mnemonicParsing="false" text="Exchange" />
-                        <MenuItem mnemonicParsing="false" text="Home Page" />
-                        <MenuItem mnemonicParsing="false" text="Sign Up" />
-                        <MenuItem mnemonicParsing="false" text="Login" />
-                        <MenuItem mnemonicParsing="false" text="Swap" />
-                        <MenuItem mnemonicParsing="false" text="Transfer" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
-         </left>
-      </BorderPane>
-      <ImageView fitHeight="43.0" fitWidth="48.0" layoutX="88.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="43.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../image/profile.png" />
+            <Image url="@profile.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="username" layoutX="1.0" layoutY="5.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: transparent;" text="username" textFill="WHITE">
+      <Button fx:id="username" layoutX="52.0" layoutY="6.0" mnemonicParsing="false" onAction="#ClickOnProfile" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: transparent;" text="username" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="14.0" />
          </font></Button>
-      <Label layoutX="606.0" layoutY="5.0" prefHeight="30.0" prefWidth="94.0" text="Online Exchange" textFill="WHITE">
+      <Label layoutX="683.0" layoutY="17.0" prefHeight="30.0" prefWidth="155.0" text="Online Exchange" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="19.0" />
          </font>
       </Label>
-      <ImageView fitHeight="37.0" fitWidth="54.0" layoutX="549.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="74.0" fitWidth="94.0" layoutX="837.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../image/logo.jpg" />
+            <Image url="@logo.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="timeLabel" alignment="CENTER" layoutX="297.0" layoutY="4.0" prefHeight="18.0" prefWidth="75.0" text="time">
+      <Label fx:id="timeLabel" alignment="CENTER" layoutX="76.0" layoutY="679.0" prefHeight="20.0" prefWidth="144.0" text="time" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="currentPageLabel" alignment="CENTER" layoutX="456.0" layoutY="-1.0" prefHeight="30.0" prefWidth="94.0" style="-fx-background-color: #1EF1B1;" text="current page">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Line endX="598.0000610351562" endY="7.62939453125E-6" layoutX="112.0" layoutY="166.0" startX="-112.00001525878906" startY="7.62939453125E-6" stroke="WHITE" strokeWidth="2.0" />
-      <ImageView fitHeight="76.0" fitWidth="75.0" layoutX="621.0" layoutY="272.0" onMouseClicked="#ClickOnEuro" pickOnBounds="true" preserveRatio="true">
+      <Line endX="627.378662109375" layoutX="112.0" layoutY="226.0" startX="-112.00001525878906" startY="7.62939453125E-6" stroke="WHITE" strokeWidth="2.0" />
+      <ImageView fx:id="img2" fitHeight="76.0" fitWidth="75.0" layoutX="801.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../image/EUR.png" />
+            <Image url="@EUR.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="76.0" fitWidth="75.0" layoutX="622.0" layoutY="361.0" onMouseClicked="#ClickOnPound" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img3" fitHeight="76.0" fitWidth="75.0" layoutX="801.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../image/GBP.png" />
+            <Image url="@GBP.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="76.0" fitWidth="82.0" layoutX="621.0" layoutY="176.0" onMouseClicked="#ClickOnDollar" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img1" fitHeight="76.0" fitWidth="82.0" layoutX="800.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../image/USD.png" />
+            <Image url="@USD.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="76.0" fitWidth="86.0" layoutX="619.0" layoutY="455.0" onMouseClicked="#ClickOnYen" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img4" fitHeight="76.0" fitWidth="86.0" layoutX="796.0" layoutY="592.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../image/YEN.png" />
+            <Image url="@YEN.jpg" />
          </image>
       </ImageView>
-      <Line endX="598.0000610351562" endY="7.62939453125E-6" layoutX="113.0" layoutY="262.0" startX="-112.00001525878906" startY="7.62939453125E-6" stroke="WHITE" strokeWidth="2.0" />
-      <Line endX="598.0000610351562" endY="7.62939453125E-6" layoutX="113.0" layoutY="445.0" startX="-112.00001525878906" startY="7.62939453125E-6" stroke="WHITE" strokeWidth="2.0" />
-      <Line endX="598.0000610351562" endY="7.62939453125E-6" layoutX="112.0" layoutY="77.0" startX="-112.00001525878906" startY="7.62939453125E-6" stroke="WHITE" strokeWidth="5.0" />
-      <Line endX="598.0000610351562" endY="7.62939453125E-6" layoutX="112.0" layoutY="351.0" startX="-112.00001525878906" startY="7.62939453125E-6" stroke="WHITE" strokeWidth="2.0" />
-      <ImageView fitHeight="73.0" fitWidth="75.0" layoutX="622.0" layoutY="88.0" onMouseClicked="#ClickOnToman" pickOnBounds="true" preserveRatio="true">
+      <Line endX="626.378662109375" layoutX="112.0" layoutY="336.0" startX="-112.00001525878906" startY="7.62939453125E-6" stroke="WHITE" strokeWidth="2.0" />
+      <Line endX="626.378662109375" endY="3.0517578125E-5" layoutX="112.0" layoutY="573.0" startX="-112.00001525878906" startY="7.62939453125E-6" stroke="WHITE" strokeWidth="2.0" />
+      <Line endX="819.0" endY="7.62939453125E-6" layoutX="112.0" layoutY="95.0" startX="-112.00001525878906" startY="7.62939453125E-6" stroke="WHITE" strokeWidth="5.0" />
+      <Line endX="627.378662109375" layoutX="112.0" layoutY="453.0" startX="-112.00001525878906" startY="7.62939453125E-6" stroke="WHITE" strokeWidth="2.0" />
+      <ImageView fx:id="img0" fitHeight="73.0" fitWidth="75.0" layoutX="800.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../image/Toman.png" />
+            <Image url="@Toman.jpg" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" graphicTextGap="8.0" layoutX="500.0" layoutY="59.0" prefHeight="18.0" prefWidth="82.0" style="-fx-background-color: white;" text="بازار">
+      <Label alignment="CENTER" graphicTextGap="8.0" layoutX="600.0" layoutY="66.0" onMouseClicked="#ClickOnCurrency" prefHeight="18.0" prefWidth="82.0" text="Currency" textFill="WHITE">
          <font>
             <Font name="Tahoma Bold" size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" graphicTextGap="8.0" layoutX="383.0" layoutY="59.0" prefHeight="18.0" prefWidth="82.0" style="-fx-background-color: white;" text="قیمت">
+      <Label alignment="CENTER" graphicTextGap="8.0" layoutX="480.0" layoutY="66.0" onMouseClicked="#ClickOnPrice" prefHeight="18.0" prefWidth="82.0" text="Price" textFill="WHITE">
          <font>
             <Font name="Tahoma Bold" size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" graphicTextGap="8.0" layoutX="290.0" layoutY="59.0" prefHeight="18.0" prefWidth="82.0" style="-fx-background-color: white;" text="تغییرات">
+      <Label alignment="CENTER" graphicTextGap="8.0" layoutX="348.0" layoutY="67.0" onMouseClicked="#ClickOnChanges" prefHeight="18.0" prefWidth="82.0" text="Changes" textFill="WHITE">
          <font>
             <Font name="Tahoma Bold" size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" graphicTextGap="8.0" layoutX="159.0" layoutY="59.0" prefHeight="18.0" prefWidth="120.0" style="-fx-background-color: white;" text="بیشترین قیمت">
+      <Label alignment="CENTER" graphicTextGap="8.0" layoutX="179.0" layoutY="68.0" onMouseClicked="#ClickOnMaxPrice" prefHeight="18.0" prefWidth="120.0" text="Max price" textFill="WHITE">
          <font>
             <Font name="Tahoma Bold" size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" graphicTextGap="8.0" layoutX="28.0" layoutY="59.0" prefHeight="18.0" prefWidth="120.0" style="-fx-background-color: white;" text="کمترین قیمت">
+      <Label alignment="CENTER" graphicTextGap="8.0" layoutX="31.0" layoutY="67.0" onMouseClicked="#ClickOnMinPrice" prefHeight="18.0" prefWidth="120.0" text="Min price" textFill="WHITE">
          <font>
             <Font name="Tahoma Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="526.0" layoutY="104.0" text="تومان" textFill="#1ef1b1">
+      <Label fx:id="pos00" layoutX="626.0" layoutY="157.0" text="Toman" textFill="#1ef1b1">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="531.0" layoutY="204.0" text="دلار" textFill="#1ef1b1">
+      <Label fx:id="pos01" layoutX="628.0" layoutY="269.0" text="USD" textFill="#1ef1b1">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="530.0" layoutY="296.0" text="یورو" textFill="#1ef1b1">
+      <Label fx:id="pos02" layoutX="628.0" layoutY="383.0" text="EUR" textFill="#1ef1b1">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="530.0" layoutY="387.0" text="پوند" textFill="#1ef1b1">
+      <Label fx:id="pos03" layoutX="628.0" layoutY="500.0" text="GBP" textFill="#1ef1b1">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="530.0" layoutY="483.0" text="ین" textFill="#1ef1b1">
+      <Label fx:id="pos04" layoutX="628.0" layoutY="620.0" text="YEN" textFill="#1ef1b1">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Line endX="162.49993896484375" endY="318.0" layoutX="443.0" layoutY="223.0" startX="162.49993896484375" startY="-145.5" stroke="WHITE" strokeWidth="3.0" />
-      <Label fx:id="TomanPriceLabel" alignment="CENTER" layoutX="381.0" layoutY="112.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
+      <Line endX="162.5" endY="471.0" layoutX="579.0" layoutY="242.0" startX="162.49993896484375" startY="-145.5" stroke="WHITE" strokeWidth="3.0" />
+      <Label fx:id="pos10" alignment="CENTER" layoutX="478.0" layoutY="159.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="changeToman" alignment="CENTER" layoutX="288.0" layoutY="112.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
+      <Label fx:id="pos20" alignment="CENTER" layoutX="346.0" layoutY="159.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="DollarPriceLabel" alignment="CENTER" layoutX="381.0" layoutY="205.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
+      <Label fx:id="pos11" alignment="CENTER" layoutX="478.0" layoutY="270.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="TomanMax" alignment="CENTER" layoutX="176.0" layoutY="112.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
+      <Label fx:id="pos30" alignment="CENTER" layoutX="196.0" layoutY="159.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="TomanMin" alignment="CENTER" layoutX="44.0" layoutY="112.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
+      <Label fx:id="pos40" alignment="CENTER" layoutX="45.0" layoutY="159.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="EuroMin" alignment="CENTER" layoutX="44.0" layoutY="300.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
+      <Label fx:id="pos42" alignment="CENTER" layoutX="52.0" layoutY="383.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="EuroMax" alignment="CENTER" layoutX="176.0" layoutY="300.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
+      <Label fx:id="pos32" alignment="CENTER" layoutX="194.0" layoutY="383.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="changeEuro" alignment="CENTER" layoutX="288.0" layoutY="300.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
+      <Label fx:id="pos22" alignment="CENTER" layoutX="346.0" layoutY="383.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="EuroPriceLabel" alignment="CENTER" layoutX="381.0" layoutY="300.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
+      <Label fx:id="pos12" alignment="CENTER" layoutX="475.0" layoutY="383.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="changeDollar" alignment="CENTER" layoutX="288.0" layoutY="205.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
+      <Label fx:id="pos21" alignment="CENTER" layoutX="346.0" layoutY="270.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="DollarMax" alignment="CENTER" layoutX="176.0" layoutY="205.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
+      <Label fx:id="pos31" alignment="CENTER" layoutX="196.0" layoutY="270.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="DollarMin" alignment="CENTER" layoutX="44.0" layoutY="205.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
+      <Label fx:id="pos41" alignment="CENTER" layoutX="48.0" layoutY="270.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="PoundMin" alignment="CENTER" layoutX="44.0" layoutY="386.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
+      <Label fx:id="pos43" alignment="CENTER" layoutX="48.0" layoutY="501.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="PoundMax" alignment="CENTER" layoutX="176.0" layoutY="386.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
+      <Label fx:id="pos33" alignment="CENTER" layoutX="194.0" layoutY="500.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="changePound" alignment="CENTER" layoutX="288.0" layoutY="386.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
+      <Label fx:id="pos23" alignment="CENTER" layoutX="346.0" layoutY="501.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="PoundPriceLabel" alignment="CENTER" layoutX="381.0" layoutY="386.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
+      <Label fx:id="pos13" alignment="CENTER" layoutX="478.0" layoutY="501.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="YenMin" alignment="CENTER" layoutX="44.0" layoutY="485.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
+      <Label fx:id="pos44" alignment="CENTER" layoutX="52.0" layoutY="620.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="YenMax" alignment="CENTER" layoutX="176.0" layoutY="485.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
+      <Label fx:id="pos34" alignment="CENTER" layoutX="196.0" layoutY="620.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="changeYen" alignment="CENTER" layoutX="288.0" layoutY="485.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
+      <Label fx:id="pos24" alignment="CENTER" layoutX="346.0" layoutY="620.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="YenPriceLabel" alignment="CENTER" layoutX="381.0" layoutY="485.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
+      <Label fx:id="pos14" alignment="CENTER" layoutX="478.0" layoutY="620.0" prefHeight="18.0" prefWidth="86.0" text="23,65656,65" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
+      <MenuBar accessibleRole="MENU" layoutX="160.0" layoutY="9.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="63.0" style="-fx-background-color: white;">
+        <menus>
+          <Menu mnemonicParsing="false" text="Menu">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#ClickOnProfile" text="Profile" />
+                  <MenuItem mnemonicParsing="false" onAction="#ClickOnExchange" text="Exchange" />
+                  <MenuItem mnemonicParsing="false" onAction="#ClickOnSignUp" text="Sign Up" />
+                  <MenuItem mnemonicParsing="false" onAction="#ClickOnLogin" text="Login" />
+                  <MenuItem mnemonicParsing="false" onAction="#ClickOnSwap" text="Swap" />
+                  <MenuItem mnemonicParsing="false" onAction="#ClickOnTransfer" text="Transfer" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Button layoutX="14.0" layoutY="676.0" mnemonicParsing="false" onAction="#ClickOnExit" prefHeight="26.0" prefWidth="54.0" style="-fx-background-color: Red; -fx-background-radius: 6;" text="Exit" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
    </children>
 </AnchorPane>
