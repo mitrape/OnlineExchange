@@ -24,8 +24,9 @@ import javafx.animation.Timeline;
 import javafx.util.Duration;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Timer;
-import java.util.TimerTask;
+
+import javafx.scene.input.MouseEvent;
+
 
 public class HomePage implements Initializable {
 
@@ -123,8 +124,6 @@ public class HomePage implements Initializable {
     public String[] YENinfo = new String[7];
     public String[] GBPinfo = new String[7];
 
-
-
     public String [] name = new String[5];
     public Double [] prices = new Double[5];
     public Double [] changes = new Double[5];
@@ -135,6 +134,7 @@ public class HomePage implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         showTime();
 
 //        Reminder(60);
@@ -453,7 +453,7 @@ public class HomePage implements Initializable {
 // }
 
 
-    public void ClickOnPrice (ActionEvent event){
+    public void ClickOnPrice (ActionEvent event) throws IOException{
         name [0] = "TOMAN";
         name [1] = "USD";
         name [2] = "YEN";
@@ -949,6 +949,127 @@ public class HomePage implements Initializable {
             }
         }
     }
+    public void ClickOn0(MouseEvent event) throws IOException {
+       String currencyName = pos00.getText();
+       if(currencyName.equals("TOMAN")){
+           Main m = new Main();
+           m.changeScene("toman");
+       }
+       else if(currencyName.equals("USD")){
+           Main m = new Main();
+           m.changeScene("usd");
+       }
+       else if (currencyName.equals("GBP")) {
+           Main m = new Main();
+           m.changeScene("gbp");
+       }
+       else if (currencyName.equals("YEN")) {
+           Main m = new Main();
+           m.changeScene("yen");
+       }
+       else{
+           //EUR
+           Main m = new Main();
+           m.changeScene("eur");
+       }
+    }
+    public void ClickOn1 (MouseEvent event) throws IOException{
+        String currencyName = pos01.getText();
+        if(currencyName.equals("TOMAN")){
+            Main m = new Main();
+            m.changeScene("toman");
+        }
+        else if(currencyName.equals("USD")){
+            Main m = new Main();
+            m.changeScene("usd");
+        }
+        else if (currencyName.equals("GBP")) {
+            Main m = new Main();
+            m.changeScene("gbp");
+        }
+        else if (currencyName.equals("YEN")) {
+            Main m = new Main();
+            m.changeScene("yen");
+        }
+        else{
+            //EUR
+            Main m = new Main();
+            m.changeScene("eur");
+        }
+    }
+    public void ClickOn2 (MouseEvent event) throws IOException{
+        String currencyName = pos02.getText();
+        if(currencyName.equals("TOMAN")){
+            Main m = new Main();
+            m.changeScene("toman");
+        }
+        else if(currencyName.equals("USD")){
+            Main m = new Main();
+            m.changeScene("usd");
+        }
+        else if (currencyName.equals("GBP")) {
+            Main m = new Main();
+            m.changeScene("gbp");
+        }
+        else if (currencyName.equals("YEN")) {
+            Main m = new Main();
+            m.changeScene("yen");
+        }
+        else{
+            //EUR
+            Main m = new Main();
+            m.changeScene("eur");
+        }
+    }
+    public void ClickOn3 (MouseEvent event) throws IOException{
+        String currencyName = pos03.getText();
+        if(currencyName.equals("TOMAN")){
+            Main m = new Main();
+            m.changeScene("toman");
+        }
+        else if(currencyName.equals("USD")){
+            Main m = new Main();
+            m.changeScene("usd");
+        }
+        else if (currencyName.equals("GBP")) {
+            Main m = new Main();
+            m.changeScene("gbp");
+        }
+        else if (currencyName.equals("YEN")) {
+            Main m = new Main();
+            m.changeScene("yen");
+        }
+        else{
+            //EUR
+            Main m = new Main();
+            m.changeScene("eur");
+        }
+    }
+    public void ClickOn4 (MouseEvent event) throws IOException{
+        String currencyName = pos04.getText();
+        if(currencyName.equals("TOMAN")){
+            Main m = new Main();
+            m.changeScene("toman");
+        }
+        else if(currencyName.equals("USD")){
+            Main m = new Main();
+            m.changeScene("usd");
+        }
+        else if (currencyName.equals("GBP")) {
+            Main m = new Main();
+            m.changeScene("gbp");
+        }
+        else if (currencyName.equals("YEN")) {
+            Main m = new Main();
+            m.changeScene("yen");
+        }
+        else{
+            //EUR
+            Main m = new Main();
+            m.changeScene("eur");
+        }
+    }
+
 
 
 

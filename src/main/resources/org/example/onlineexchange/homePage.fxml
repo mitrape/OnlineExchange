@@ -92,27 +92,27 @@
             <Font name="Tahoma Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="pos00" layoutX="626.0" layoutY="157.0" text="Toman" textFill="#1ef1b1">
+      <Label fx:id="pos00" layoutX="626.0" layoutY="157.0" onMouseClicked="#ClickOn0" text="Toman" textFill="#1ef1b1">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="pos01" layoutX="628.0" layoutY="269.0" text="USD" textFill="#1ef1b1">
+      <Label fx:id="pos01" layoutX="628.0" layoutY="269.0" onMouseClicked="#ClickOn1" text="USD" textFill="#1ef1b1">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="pos02" layoutX="628.0" layoutY="383.0" text="EUR" textFill="#1ef1b1">
+      <Label fx:id="pos02" layoutX="628.0" layoutY="383.0" onMouseClicked="#ClickOn2" text="EUR" textFill="#1ef1b1">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="pos03" layoutX="628.0" layoutY="500.0" text="GBP" textFill="#1ef1b1">
+      <Label fx:id="pos03" layoutX="628.0" layoutY="500.0" onMouseClicked="#ClickOn3" text="GBP" textFill="#1ef1b1">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="pos04" layoutX="628.0" layoutY="620.0" text="YEN" textFill="#1ef1b1">
+      <Label fx:id="pos04" layoutX="628.0" layoutY="620.0" onMouseClicked="#ClickOn4" text="YEN" textFill="#1ef1b1">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
