@@ -453,7 +453,7 @@ public class HomePage implements Initializable {
 // }
 
 
-    public void ClickOnPrice (ActionEvent event){
+    public void ClickOnPrice (ActionEvent event) throws IOException{
         name [0] = "TOMAN";
         name [1] = "USD";
         name [2] = "YEN";
