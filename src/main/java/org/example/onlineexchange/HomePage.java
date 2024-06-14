@@ -1,3 +1,4 @@
+
 package org.example.onlineexchange;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,6 +28,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class HomePage implements Initializable {
+
+    public boolean orderPrices = false; // which means that it is getting bigger at the end
+    public boolean orderChanges = false;
+    public boolean orderMaxPrice = false;
+    public boolean orderMinPrice = false;
 
     public String[] data;
     public String[] time;
@@ -110,17 +116,29 @@ public class HomePage implements Initializable {
 
 
 
-    //  0->photo path   1->currency name   2->price   3->last price   4->max price   5->min price  6->position
+    // 0->photo path 1->currency name 2->price 3->last price 4->max price 5->min price 6->position
     public String[] USDinfo = new String[7];
     public String[] EURinfo = new String[7];
     public String[] TOMANinfo = new String[7];
     public String[] YENinfo = new String[7];
     public String[] GBPinfo = new String[7];
 
+
+
+    public String [] name = new String[5];
+    public Double [] prices = new Double[5];
+    public Double [] changes = new Double[5];
+    public Double [] maxPrice = new Double[5];
+    public Double [] minPrice = new Double[5];
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         showTime();
-        Reminder(60);
+
+//        Reminder(60);
+
         username.setText(Main.username);
 
 
@@ -158,7 +176,11 @@ public class HomePage implements Initializable {
 
         GBPinfo [1] = "GBP";
 
-
+        USDinfo[6] = "0";
+        EURinfo[6] = "1";
+        TOMANinfo[6] = "2";
+        YENinfo[6] ="3";
+        GBPinfo[6] = "4";
 
         readCVS();
         setLabelsFirst();
@@ -176,7 +198,7 @@ public class HomePage implements Initializable {
         m.changeScene("transfer");
     }
     public void ClickOnExchange (ActionEvent event)throws IOException{
-        Main m =  new Main();
+        Main m = new Main();
         m.changeScene("exchange");
     }
     public void ClickOnSwap (ActionEvent event) throws IOException{
@@ -278,11 +300,11 @@ public class HomePage implements Initializable {
         YENinfo[3] = String.valueOf(YEN[dataLength-1]);
         GBPinfo[3] = String.valueOf(GBP[dataLength-1]);
 
-        pos20.setText(String.format("%.2f",(Double.parseDouble(USDinfo[2]) - Double.parseDouble(USDinfo[3]))  /  (Double.parseDouble(USDinfo[3]))  *  100 ) +"%");
-        pos21.setText(String.format("%.2f",(Double.parseDouble(EURinfo[2]) - Double.parseDouble(EURinfo[3]))  /  (Double.parseDouble(EURinfo[3]))  * 100 ) +"%");
-        pos22.setText(String.format("%.2f",(Double.parseDouble(TOMANinfo[2]) - Double.parseDouble(TOMANinfo[3]))  /  (Double.parseDouble(TOMANinfo[3]))  * 100 ) +"%");
-        pos23.setText(String.format("%.2f",(Double.parseDouble(YENinfo[2]) - Double.parseDouble(YENinfo[3]))  /  (Double.parseDouble(YENinfo[3]))  * 100 ) +"%");
-        pos24.setText(String.format("%.2f",(Double.parseDouble(GBPinfo[2]) - Double.parseDouble(GBPinfo[3]))  /  (Double.parseDouble(GBPinfo[3]))  * 100 ) +"%");
+        pos20.setText(String.format("%.2f",(Double.parseDouble(USDinfo[2]) - Double.parseDouble(USDinfo[3])) / (Double.parseDouble(USDinfo[3])) * 100 ) +"%");
+        pos21.setText(String.format("%.2f",(Double.parseDouble(EURinfo[2]) - Double.parseDouble(EURinfo[3])) / (Double.parseDouble(EURinfo[3])) * 100 ) +"%");
+        pos22.setText(String.format("%.2f",(Double.parseDouble(TOMANinfo[2]) - Double.parseDouble(TOMANinfo[3])) / (Double.parseDouble(TOMANinfo[3])) * 100 ) +"%");
+        pos23.setText(String.format("%.2f",(Double.parseDouble(YENinfo[2]) - Double.parseDouble(YENinfo[3])) / (Double.parseDouble(YENinfo[3])) * 100 ) +"%");
+        pos24.setText(String.format("%.2f",(Double.parseDouble(GBPinfo[2]) - Double.parseDouble(GBPinfo[3])) / (Double.parseDouble(GBPinfo[3])) * 100 ) +"%");
 
         Double maxUSD = USD[0];
         Double minUSD = USD[0];
@@ -371,62 +393,563 @@ public class HomePage implements Initializable {
         GBPinfo[5] = String.valueOf(minGBP);
         pos44.setText(GBPinfo[5]);
     }
-    Timer timer;
+//    Timer timer;
 
-    public void Reminder(int seconds) {
-        timer = new Timer();
-        timer.schedule(new RemindTask(), seconds* 1000L);
-    }
-    public class RemindTask extends TimerTask {
-        public void run() {
-            ChangeLabels();
+//    public void Reminder(int seconds) {
+//        timer = new Timer();
+//        timer.schedule(new RemindTask(), seconds* 1000L);
+//    }
+//    public class RemindTask extends TimerTask {
+//        public void run() {
+//            ChangeLabels();
+//        }
+//    }
+
+// public void ChangeLabels (){
+//
+// USDinfo[3] = USDinfo[2];
+// EURinfo[3] = EURinfo[2];
+// TOMANinfo[3] = TOMANinfo[2];
+// YENinfo[3] = YENinfo[2];
+// GBPinfo[3] = GBPinfo[2];
+//
+// usd.add(Double.parseDouble(USDinfo[2]));
+// eur.add(Double.parseDouble(EURinfo[2]));
+// toman.add(Double.parseDouble(TOMANinfo[2]));
+// yen.add(Double.parseDouble(YENinfo[2]));
+// gbp.add(Double.parseDouble(GBPinfo[2]));
+//
+// USD = usd.toArray(new Double[usd.size()]);
+// EUR = eur.toArray(new Double[eur.size()]);
+// TOMAN = toman.toArray(new Double[toman.size()]);
+// YEN = yen.toArray(new Double[yen.size()]);
+// GBP = gbp.toArray(new Double[gbp.size()]);
+//
+// USDinfo[2] = String.valueOf(linearRegression(USD));
+// pos10.setText(String.format("%.4f",Double.parseDouble(USDinfo[2])));
+// EURinfo[2] = String.valueOf(linearRegression(EUR));
+// pos11.setText(String.format("%.4f",Double.parseDouble(EURinfo[2])));
+// TOMANinfo[2] = String.valueOf(linearRegression(TOMAN));
+// pos12.setText(String.format("%.4f",Double.parseDouble(TOMANinfo[2])));
+// YENinfo[2] = String.valueOf(linearRegression(YEN));
+// pos13.setText(String.format("%.4f",Double.parseDouble(YENinfo[2])));
+// GBPinfo[2] = String.valueOf(linearRegression(GBP));
+// pos14.setText(String.format("%.4f",Double.parseDouble(GBPinfo[2])));
+//
+// pos20.setText(String.format("%.2f",(Double.parseDouble(USDinfo[2]) - Double.parseDouble(USDinfo[3])) / (Double.parseDouble(USDinfo[3])) * 100 ) +"%");
+// pos21.setText(String.format("%.2f",(Double.parseDouble(EURinfo[2]) - Double.parseDouble(EURinfo[3])) / (Double.parseDouble(EURinfo[3])) * 100 ) +"%");
+// pos22.setText(String.format("%.2f",(Double.parseDouble(TOMANinfo[2]) - Double.parseDouble(TOMANinfo[3])) / (Double.parseDouble(TOMANinfo[3])) * 100 ) +"%");
+// pos23.setText(String.format("%.2f",(Double.parseDouble(YENinfo[2]) - Double.parseDouble(YENinfo[3])) / (Double.parseDouble(YENinfo[3])) * 100 ) +"%");
+// pos24.setText(String.format("%.2f",(Double.parseDouble(GBPinfo[2]) - Double.parseDouble(GBPinfo[3])) / (Double.parseDouble(GBPinfo[3])) * 100 ) +"%");
+//
+// if(Double.parseDouble(USDinfo[2]) > Double.parseDouble(USDinfo[4])){
+// USDinfo[4] = USDinfo[2];
+//
+// }
+//
+//
+//
+//
+// }
+
+
+    public void ClickOnPrice (ActionEvent event){
+        name [0] = "TOMAN";
+        name [1] = "USD";
+        name [2] = "YEN";
+        name [3] = "EUR";
+        name [4] = "GBP";
+        prices[0] = Double.parseDouble(TOMANinfo[2]);
+        prices[1] = Double.parseDouble(USDinfo[2]);
+        prices[2] = Double.parseDouble(YENinfo[2]);
+        prices[3] = Double.parseDouble(EURinfo[2]);
+        prices[4] = Double.parseDouble(GBPinfo[2]);
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = i+1; j < 5; j++) {
+                if(prices[j]>prices[i]){
+
+                    String tempStr = name[i];
+                    name[i] = name [j];
+                    name[j] = tempStr;
+
+                    Double tempDbl = prices[i];
+                    prices[i] = prices [j];
+                    prices[j] = tempDbl;
+                }
+            }
+        }
+        if(orderPrices){
+            orderPrices = false;
+            // aval bayad add bozorg bashe
+            if(name[0].equals("TOMAN")){
+                img0.setImage(new Image(TOMANinfo[0]));
+                pos00.setText(TOMANinfo[1]);
+                pos10.setText(TOMANinfo[2]);
+                pos20.setText(String.format("%.2f",(Double.parseDouble(TOMANinfo[2]) - Double.parseDouble(TOMANinfo[3])) / (Double.parseDouble(TOMANinfo[3])) * 100 ) +"%");
+                pos30.setText(TOMANinfo[4]);
+                pos40.setText(TOMANinfo[5]);
+                TOMANinfo[6] = "0";
+            }
+            else if (name[1].equals("TOMAN")) {
+                img1.setImage(new Image(TOMANinfo[0]));
+                pos01.setText(TOMANinfo[1]);
+                pos11.setText(TOMANinfo[2]);
+                pos21.setText(String.format("%.2f",(Double.parseDouble(TOMANinfo[2]) - Double.parseDouble(TOMANinfo[3])) / (Double.parseDouble(TOMANinfo[3])) * 100 ) +"%");
+                pos31.setText(TOMANinfo[4]);
+                pos41.setText(TOMANinfo[5]);
+                TOMANinfo[6] = "1";
+            }
+            else if (name[2].equals("TOMAN")){
+                img2.setImage(new Image(TOMANinfo[0]));
+                pos02.setText(TOMANinfo[1]);
+                pos12.setText(TOMANinfo[2]);
+                pos22.setText(String.format("%.2f",(Double.parseDouble(TOMANinfo[2]) - Double.parseDouble(TOMANinfo[3])) / (Double.parseDouble(TOMANinfo[3])) * 100 ) +"%");
+                pos32.setText(TOMANinfo[4]);
+                pos42.setText(TOMANinfo[5]);
+                TOMANinfo[6]= "2";
+            }
+            else if(name[3].equals("TOMAN")){
+                img3.setImage(new Image(TOMANinfo[0]));
+                pos03.setText(TOMANinfo[1]);
+                pos13.setText(TOMANinfo[2]);
+                pos23.setText(String.format("%.2f",(Double.parseDouble(TOMANinfo[2]) - Double.parseDouble(TOMANinfo[3])) / (Double.parseDouble(TOMANinfo[3])) * 100 ) +"%");
+                pos33.setText(TOMANinfo[4]);
+                pos43.setText(TOMANinfo[5]);
+                TOMANinfo[6]= "3";
+            }
+            else{
+                img3.setImage(new Image(TOMANinfo[0]));
+                pos04.setText(TOMANinfo[1]);
+                pos14.setText(TOMANinfo[2]);
+                pos24.setText(String.format("%.2f",(Double.parseDouble(TOMANinfo[2]) - Double.parseDouble(TOMANinfo[3])) / (Double.parseDouble(TOMANinfo[3])) * 100 ) +"%");
+                pos34.setText(TOMANinfo[4]);
+                pos44.setText(TOMANinfo[5]);
+                TOMANinfo[6]= "4";
+            }
+
+
+            if(name[0].equals("EUR")){
+                img0.setImage(new Image(EURinfo[0]));
+                pos00.setText(EURinfo[1]);
+                pos10.setText(EURinfo[2]);
+                pos20.setText(String.format("%.2f",(Double.parseDouble(EURinfo[2]) - Double.parseDouble(EURinfo[3])) / (Double.parseDouble(EURinfo[3])) * 100 ) +"%");
+                pos30.setText(EURinfo[4]);
+                pos40.setText(EURinfo[5]);
+                EURinfo[6] = "0";
+            }
+            else if (name[1].equals("EUR")) {
+                img1.setImage(new Image(EURinfo[0]));
+                pos01.setText(EURinfo[1]);
+                pos11.setText(EURinfo[2]);
+                pos21.setText(String.format("%.2f",(Double.parseDouble(EURinfo[2]) - Double.parseDouble(EURinfo[3])) / (Double.parseDouble(EURinfo[3])) * 100 ) +"%");
+                pos31.setText(EURinfo[4]);
+                pos41.setText(EURinfo[5]);
+                EURinfo[6] = "1";
+            }
+            else if (name[2].equals("EUR")){
+                img2.setImage(new Image(EURinfo[0]));
+                pos02.setText(EURinfo[1]);
+                pos12.setText(EURinfo[2]);
+                pos22.setText(String.format("%.2f",(Double.parseDouble(EURinfo[2]) - Double.parseDouble(EURinfo[3])) / (Double.parseDouble(EURinfo[3])) * 100 ) +"%");
+                pos32.setText(EURinfo[4]);
+                pos42.setText(EURinfo[5]);
+                EURinfo[6]= "2";
+            }
+            else if(name[3].equals("EUR")){
+                img3.setImage(new Image(EURinfo[0]));
+                pos03.setText(EURinfo[1]);
+                pos13.setText(EURinfo[2]);
+                pos23.setText(String.format("%.2f",(Double.parseDouble(EURinfo[2]) - Double.parseDouble(EURinfo[3])) / (Double.parseDouble(EURinfo[3])) * 100 ) +"%");
+                pos33.setText(EURinfo[4]);
+                pos43.setText(EURinfo[5]);
+                EURinfo[6]= "3";
+            }
+            else{
+                img3.setImage(new Image(EURinfo[0]));
+                pos04.setText(EURinfo[1]);
+                pos14.setText(EURinfo[2]);
+                pos24.setText(String.format("%.2f",(Double.parseDouble(EURinfo[2]) - Double.parseDouble(EURinfo[3])) / (Double.parseDouble(EURinfo[3])) * 100 ) +"%");
+                pos34.setText(EURinfo[4]);
+                pos44.setText(EURinfo[5]);
+                EURinfo[6]= "4";
+            }
+
+            if(name[0].equals("USD")){
+                img0.setImage(new Image(USDinfo[0]));
+                pos00.setText(USDinfo[1]);
+                pos10.setText(USDinfo[2]);
+                pos20.setText(String.format("%.2f",(Double.parseDouble(USDinfo[2]) - Double.parseDouble(USDinfo[3])) / (Double.parseDouble(USDinfo[3])) * 100 ) +"%");
+                pos30.setText(USDinfo[4]);
+                pos40.setText(USDinfo[5]);
+                USDinfo[6] = "0";
+            }
+            else if (name[1].equals("USD")) {
+                img1.setImage(new Image(USDinfo[0]));
+                pos01.setText(USDinfo[1]);
+                pos11.setText(USDinfo[2]);
+                pos21.setText(String.format("%.2f",(Double.parseDouble(USDinfo[2]) - Double.parseDouble(USDinfo[3])) / (Double.parseDouble(USDinfo[3])) * 100 ) +"%");
+                pos31.setText(USDinfo[4]);
+                pos41.setText(USDinfo[5]);
+                USDinfo[6] = "1";
+            }
+            else if (name[2].equals("USD")){
+                img2.setImage(new Image(USDinfo[0]));
+                pos02.setText(USDinfo[1]);
+                pos12.setText(USDinfo[2]);
+                pos22.setText(String.format("%.2f",(Double.parseDouble(USDinfo[2]) - Double.parseDouble(USDinfo[3])) / (Double.parseDouble(USDinfo[3])) * 100 ) +"%");
+                pos32.setText(USDinfo[4]);
+                pos42.setText(USDinfo[5]);
+                USDinfo[6]= "2";
+            }
+            else if(name[3].equals("USD")){
+                img3.setImage(new Image(USDinfo[0]));
+                pos03.setText(USDinfo[1]);
+                pos13.setText(USDinfo[2]);
+                pos23.setText(String.format("%.2f",(Double.parseDouble(USDinfo[2]) - Double.parseDouble(USDinfo[3])) / (Double.parseDouble(USDinfo[3])) * 100 ) +"%");
+                pos33.setText(USDinfo[4]);
+                pos43.setText(USDinfo[5]);
+                USDinfo[6]= "3";
+            }
+            else{
+                img3.setImage(new Image(USDinfo[0]));
+                pos04.setText(USDinfo[1]);
+                pos14.setText(USDinfo[2]);
+                pos24.setText(String.format("%.2f",(Double.parseDouble(USDinfo[2]) - Double.parseDouble(USDinfo[3])) / (Double.parseDouble(USDinfo[3])) * 100 ) +"%");
+                pos34.setText(USDinfo[4]);
+                pos44.setText(USDinfo[5]);
+                USDinfo[6]= "4";
+            }
+
+            if(name[0].equals("YEN")){
+                img0.setImage(new Image(YENinfo[0]));
+                pos00.setText(YENinfo[1]);
+                pos10.setText(YENinfo[2]);
+                pos20.setText(String.format("%.2f",(Double.parseDouble(YENinfo[2]) - Double.parseDouble(YENinfo[3])) / (Double.parseDouble(YENinfo[3])) * 100 ) +"%");
+                pos30.setText(YENinfo[4]);
+                pos40.setText(YENinfo[5]);
+                YENinfo[6] = "0";
+            }
+            else if (name[1].equals("YEN")) {
+                img1.setImage(new Image(YENinfo[0]));
+                pos01.setText(YENinfo[1]);
+                pos11.setText(YENinfo[2]);
+                pos21.setText(String.format("%.2f",(Double.parseDouble(YENinfo[2]) - Double.parseDouble(YENinfo[3])) / (Double.parseDouble(YENinfo[3])) * 100 ) +"%");
+                pos31.setText(YENinfo[4]);
+                pos41.setText(YENinfo[5]);
+                YENinfo[6] = "1";
+            }
+            else if (name[2].equals("YEN")){
+                img2.setImage(new Image(YENinfo[0]));
+                pos02.setText(YENinfo[1]);
+                pos12.setText(YENinfo[2]);
+                pos22.setText(String.format("%.2f",(Double.parseDouble(YENinfo[2]) - Double.parseDouble(YENinfo[3])) / (Double.parseDouble(YENinfo[3])) * 100 ) +"%");
+                pos32.setText(YENinfo[4]);
+                pos42.setText(YENinfo[5]);
+                YENinfo[6]= "2";
+            }
+            else if(name[3].equals("YEN")){
+                img3.setImage(new Image(YENinfo[0]));
+                pos03.setText(YENinfo[1]);
+                pos13.setText(YENinfo[2]);
+                pos23.setText(String.format("%.2f",(Double.parseDouble(YENinfo[2]) - Double.parseDouble(YENinfo[3])) / (Double.parseDouble(YENinfo[3])) * 100 ) +"%");
+                pos33.setText(YENinfo[4]);
+                pos43.setText(YENinfo[5]);
+                YENinfo[6]= "3";
+            }
+            else{
+                img3.setImage(new Image(YENinfo[0]));
+                pos04.setText(YENinfo[1]);
+                pos14.setText(YENinfo[2]);
+                pos24.setText(String.format("%.2f",(Double.parseDouble(YENinfo[2]) - Double.parseDouble(YENinfo[3])) / (Double.parseDouble(YENinfo[3])) * 100 ) +"%");
+                pos34.setText(YENinfo[4]);
+                pos44.setText(YENinfo[5]);
+                YENinfo[6]= "4";
+            }
+
+            if(name[0].equals("GBP")){
+                img0.setImage(new Image(GBPinfo[0]));
+                pos00.setText(GBPinfo[1]);
+                pos10.setText(GBPinfo[2]);
+                pos20.setText(String.format("%.2f",(Double.parseDouble(GBPinfo[2]) - Double.parseDouble(GBPinfo[3])) / (Double.parseDouble(GBPinfo[3])) * 100 ) +"%");
+                pos30.setText(GBPinfo[4]);
+                pos40.setText(GBPinfo[5]);
+                GBPinfo[6] = "0";
+            }
+            else if (name[1].equals("GBP")) {
+                img1.setImage(new Image(GBPinfo[0]));
+                pos01.setText(GBPinfo[1]);
+                pos11.setText(GBPinfo[2]);
+                pos21.setText(String.format("%.2f",(Double.parseDouble(GBPinfo[2]) - Double.parseDouble(GBPinfo[3])) / (Double.parseDouble(GBPinfo[3])) * 100 ) +"%");
+                pos31.setText(GBPinfo[4]);
+                pos41.setText(GBPinfo[5]);
+                GBPinfo[6] = "1";
+            }
+            else if (name[2].equals("GBP")){
+                img2.setImage(new Image(GBPinfo[0]));
+                pos02.setText(GBPinfo[1]);
+                pos12.setText(GBPinfo[2]);
+                pos22.setText(String.format("%.2f",(Double.parseDouble(GBPinfo[2]) - Double.parseDouble(GBPinfo[3])) / (Double.parseDouble(GBPinfo[3])) * 100 ) +"%");
+                pos32.setText(GBPinfo[4]);
+                pos42.setText(GBPinfo[5]);
+                GBPinfo[6]= "2";
+            }
+            else if(name[3].equals("GBP")){
+                img3.setImage(new Image(GBPinfo[0]));
+                pos03.setText(GBPinfo[1]);
+                pos13.setText(GBPinfo[2]);
+                pos23.setText(String.format("%.2f",(Double.parseDouble(GBPinfo[2]) - Double.parseDouble(GBPinfo[3])) / (Double.parseDouble(GBPinfo[3])) * 100 ) +"%");
+                pos33.setText(GBPinfo[4]);
+                pos43.setText(GBPinfo[5]);
+                GBPinfo[6]= "3";
+            }
+            else{
+                img3.setImage(new Image(GBPinfo[0]));
+                pos04.setText(GBPinfo[1]);
+                pos14.setText(GBPinfo[2]);
+                pos24.setText(String.format("%.2f",(Double.parseDouble(GBPinfo[2]) - Double.parseDouble(GBPinfo[3])) / (Double.parseDouble(GBPinfo[3])) * 100 ) +"%");
+                pos34.setText(GBPinfo[4]);
+                pos44.setText(GBPinfo[5]);
+                GBPinfo[6]= "4";
+            }
+
+
+        }
+        else {
+            orderPrices = true;
+            if(name[0].equals("TOMAN")){
+                img4.setImage(new Image(TOMANinfo[0]));
+                pos04.setText(TOMANinfo[1]);
+                pos14.setText(TOMANinfo[2]);
+                pos24.setText(String.format("%.2f",(Double.parseDouble(TOMANinfo[2]) - Double.parseDouble(TOMANinfo[3])) / (Double.parseDouble(TOMANinfo[3])) * 100 ) +"%");
+                pos34.setText(TOMANinfo[4]);
+                pos44.setText(TOMANinfo[5]);
+                TOMANinfo[6] = "4";
+            }
+            else if (name[1].equals("TOMAN")) {
+                img3.setImage(new Image(TOMANinfo[0]));
+                pos03.setText(TOMANinfo[1]);
+                pos13.setText(TOMANinfo[2]);
+                pos23.setText(String.format("%.2f",(Double.parseDouble(TOMANinfo[2]) - Double.parseDouble(TOMANinfo[3])) / (Double.parseDouble(TOMANinfo[3])) * 100 ) +"%");
+                pos33.setText(TOMANinfo[4]);
+                pos43.setText(TOMANinfo[5]);
+                TOMANinfo[6] = "3";
+            }
+            else if (name[2].equals("TOMAN")){
+                img2.setImage(new Image(TOMANinfo[0]));
+                pos02.setText(TOMANinfo[1]);
+                pos12.setText(TOMANinfo[2]);
+                pos22.setText(String.format("%.2f",(Double.parseDouble(TOMANinfo[2]) - Double.parseDouble(TOMANinfo[3])) / (Double.parseDouble(TOMANinfo[3])) * 100 ) +"%");
+                pos32.setText(TOMANinfo[4]);
+                pos42.setText(TOMANinfo[5]);
+                TOMANinfo[6]= "2";
+            }
+            else if(name[3].equals("TOMAN")){
+                img1.setImage(new Image(TOMANinfo[0]));
+                pos01.setText(TOMANinfo[1]);
+                pos11.setText(TOMANinfo[2]);
+                pos21.setText(String.format("%.2f",(Double.parseDouble(TOMANinfo[2]) - Double.parseDouble(TOMANinfo[3])) / (Double.parseDouble(TOMANinfo[3])) * 100 ) +"%");
+                pos31.setText(TOMANinfo[4]);
+                pos41.setText(TOMANinfo[5]);
+                TOMANinfo[6]= "1";
+            }
+            else{
+                img0.setImage(new Image(TOMANinfo[0]));
+                pos00.setText(TOMANinfo[1]);
+                pos10.setText(TOMANinfo[2]);
+                pos20.setText(String.format("%.2f",(Double.parseDouble(TOMANinfo[2]) - Double.parseDouble(TOMANinfo[3])) / (Double.parseDouble(TOMANinfo[3])) * 100 ) +"%");
+                pos30.setText(TOMANinfo[4]);
+                pos40.setText(TOMANinfo[5]);
+                TOMANinfo[6]= "0";
+            }
+
+
+            if(name[0].equals("EUR")){
+                img4.setImage(new Image(EURinfo[0]));
+                pos04.setText(EURinfo[1]);
+                pos14.setText(EURinfo[2]);
+                pos24.setText(String.format("%.2f",(Double.parseDouble(EURinfo[2]) - Double.parseDouble(EURinfo[3])) / (Double.parseDouble(EURinfo[3])) * 100 ) +"%");
+                pos34.setText(EURinfo[4]);
+                pos44.setText(EURinfo[5]);
+                EURinfo[6] = "4";
+            }
+            else if (name[1].equals("EUR")) {
+                img3.setImage(new Image(EURinfo[0]));
+                pos03.setText(EURinfo[1]);
+                pos13.setText(EURinfo[2]);
+                pos23.setText(String.format("%.2f",(Double.parseDouble(EURinfo[2]) - Double.parseDouble(EURinfo[3])) / (Double.parseDouble(EURinfo[3])) * 100 ) +"%");
+                pos33.setText(EURinfo[4]);
+                pos43.setText(EURinfo[5]);
+                EURinfo[6] = "3";
+            }
+            else if (name[2].equals("EUR")){
+                img2.setImage(new Image(EURinfo[0]));
+                pos02.setText(EURinfo[1]);
+                pos12.setText(EURinfo[2]);
+                pos22.setText(String.format("%.2f",(Double.parseDouble(EURinfo[2]) - Double.parseDouble(EURinfo[3])) / (Double.parseDouble(EURinfo[3])) * 100 ) +"%");
+                pos32.setText(EURinfo[4]);
+                pos42.setText(EURinfo[5]);
+                EURinfo[6]= "2";
+            }
+            else if(name[3].equals("EUR")){
+                img1.setImage(new Image(EURinfo[0]));
+                pos01.setText(EURinfo[1]);
+                pos11.setText(EURinfo[2]);
+                pos21.setText(String.format("%.2f",(Double.parseDouble(EURinfo[2]) - Double.parseDouble(EURinfo[3])) / (Double.parseDouble(EURinfo[3])) * 100 ) +"%");
+                pos31.setText(EURinfo[4]);
+                pos41.setText(EURinfo[5]);
+                EURinfo[6]= "1";
+            }
+            else{
+                img0.setImage(new Image(EURinfo[0]));
+                pos00.setText(EURinfo[1]);
+                pos10.setText(EURinfo[2]);
+                pos20.setText(String.format("%.2f",(Double.parseDouble(EURinfo[2]) - Double.parseDouble(EURinfo[3])) / (Double.parseDouble(EURinfo[3])) * 100 ) +"%");
+                pos30.setText(EURinfo[4]);
+                pos40.setText(EURinfo[5]);
+                EURinfo[6]= "0";
+            }
+
+            if(name[0].equals("USD")){
+                img4.setImage(new Image(USDinfo[0]));
+                pos04.setText(USDinfo[1]);
+                pos14.setText(USDinfo[2]);
+                pos24.setText(String.format("%.2f",(Double.parseDouble(USDinfo[2]) - Double.parseDouble(USDinfo[3])) / (Double.parseDouble(USDinfo[3])) * 100 ) +"%");
+                pos34.setText(USDinfo[4]);
+                pos44.setText(USDinfo[5]);
+                USDinfo[6] = "4";
+            }
+            else if (name[1].equals("USD")) {
+                img3.setImage(new Image(USDinfo[0]));
+                pos03.setText(USDinfo[1]);
+                pos13.setText(USDinfo[2]);
+                pos23.setText(String.format("%.2f",(Double.parseDouble(USDinfo[2]) - Double.parseDouble(USDinfo[3])) / (Double.parseDouble(USDinfo[3])) * 100 ) +"%");
+                pos33.setText(USDinfo[4]);
+                pos43.setText(USDinfo[5]);
+                USDinfo[6] = "3";
+            }
+            else if (name[2].equals("USD")){
+                img2.setImage(new Image(USDinfo[0]));
+                pos02.setText(USDinfo[1]);
+                pos12.setText(USDinfo[2]);
+                pos22.setText(String.format("%.2f",(Double.parseDouble(USDinfo[2]) - Double.parseDouble(USDinfo[3])) / (Double.parseDouble(USDinfo[3])) * 100 ) +"%");
+                pos32.setText(USDinfo[4]);
+                pos42.setText(USDinfo[5]);
+                USDinfo[6]= "2";
+            }
+            else if(name[3].equals("USD")){
+                img1.setImage(new Image(USDinfo[0]));
+                pos01.setText(USDinfo[1]);
+                pos11.setText(USDinfo[2]);
+                pos21.setText(String.format("%.2f",(Double.parseDouble(USDinfo[2]) - Double.parseDouble(USDinfo[3])) / (Double.parseDouble(USDinfo[3])) * 100 ) +"%");
+                pos31.setText(USDinfo[4]);
+                pos41.setText(USDinfo[5]);
+                USDinfo[6]= "1";
+            }
+            else{
+                img0.setImage(new Image(USDinfo[0]));
+                pos00.setText(USDinfo[1]);
+                pos10.setText(USDinfo[2]);
+                pos20.setText(String.format("%.2f",(Double.parseDouble(USDinfo[2]) - Double.parseDouble(USDinfo[3])) / (Double.parseDouble(USDinfo[3])) * 100 ) +"%");
+                pos30.setText(USDinfo[4]);
+                pos40.setText(USDinfo[5]);
+                USDinfo[6]= "0";
+            }
+
+            if(name[0].equals("YEN")){
+                img4.setImage(new Image(YENinfo[0]));
+                pos04.setText(YENinfo[1]);
+                pos14.setText(YENinfo[2]);
+                pos24.setText(String.format("%.2f",(Double.parseDouble(YENinfo[2]) - Double.parseDouble(YENinfo[3])) / (Double.parseDouble(YENinfo[3])) * 100 ) +"%");
+                pos34.setText(YENinfo[4]);
+                pos44.setText(YENinfo[5]);
+                YENinfo[6] = "4";
+            }
+            else if (name[1].equals("YEN")) {
+                img3.setImage(new Image(YENinfo[0]));
+                pos03.setText(YENinfo[1]);
+                pos13.setText(YENinfo[2]);
+                pos23.setText(String.format("%.2f",(Double.parseDouble(YENinfo[2]) - Double.parseDouble(YENinfo[3])) / (Double.parseDouble(YENinfo[3])) * 100 ) +"%");
+                pos33.setText(YENinfo[4]);
+                pos43.setText(YENinfo[5]);
+                YENinfo[6] = "3";
+            }
+            else if (name[2].equals("YEN")){
+                img2.setImage(new Image(YENinfo[0]));
+                pos02.setText(YENinfo[1]);
+                pos12.setText(YENinfo[2]);
+                pos22.setText(String.format("%.2f",(Double.parseDouble(YENinfo[2]) - Double.parseDouble(YENinfo[3])) / (Double.parseDouble(YENinfo[3])) * 100 ) +"%");
+                pos32.setText(YENinfo[4]);
+                pos42.setText(YENinfo[5]);
+                YENinfo[6]= "2";
+            }
+            else if(name[3].equals("YEN")){
+                img1.setImage(new Image(YENinfo[0]));
+                pos01.setText(YENinfo[1]);
+                pos11.setText(YENinfo[2]);
+                pos21.setText(String.format("%.2f",(Double.parseDouble(YENinfo[2]) - Double.parseDouble(YENinfo[3])) / (Double.parseDouble(YENinfo[3])) * 100 ) +"%");
+                pos31.setText(YENinfo[4]);
+                pos41.setText(YENinfo[5]);
+                YENinfo[6]= "1";
+            }
+            else{
+                img0.setImage(new Image(YENinfo[0]));
+                pos00.setText(YENinfo[1]);
+                pos10.setText(YENinfo[2]);
+                pos20.setText(String.format("%.2f",(Double.parseDouble(YENinfo[2]) - Double.parseDouble(YENinfo[3])) / (Double.parseDouble(YENinfo[3])) * 100 ) +"%");
+                pos30.setText(YENinfo[4]);
+                pos40.setText(YENinfo[5]);
+                YENinfo[6]= "0";
+            }
+
+            if(name[0].equals("GBP")){
+                img4.setImage(new Image(GBPinfo[0]));
+                pos04.setText(GBPinfo[1]);
+                pos14.setText(GBPinfo[2]);
+                pos24.setText(String.format("%.2f",(Double.parseDouble(GBPinfo[2]) - Double.parseDouble(GBPinfo[3])) / (Double.parseDouble(GBPinfo[3])) * 100 ) +"%");
+                pos34.setText(GBPinfo[4]);
+                pos44.setText(GBPinfo[5]);
+                GBPinfo[6] = "4";
+            }
+            else if (name[1].equals("GBP")) {
+                img3.setImage(new Image(GBPinfo[0]));
+                pos03.setText(GBPinfo[1]);
+                pos13.setText(GBPinfo[2]);
+                pos23.setText(String.format("%.2f",(Double.parseDouble(GBPinfo[2]) - Double.parseDouble(GBPinfo[3])) / (Double.parseDouble(GBPinfo[3])) * 100 ) +"%");
+                pos33.setText(GBPinfo[4]);
+                pos43.setText(GBPinfo[5]);
+                GBPinfo[6] = "3";
+            }
+            else if (name[2].equals("GBP")){
+                img2.setImage(new Image(GBPinfo[0]));
+                pos02.setText(GBPinfo[1]);
+                pos12.setText(GBPinfo[2]);
+                pos22.setText(String.format("%.2f",(Double.parseDouble(GBPinfo[2]) - Double.parseDouble(GBPinfo[3])) / (Double.parseDouble(GBPinfo[3])) * 100 ) +"%");
+                pos32.setText(GBPinfo[4]);
+                pos42.setText(GBPinfo[5]);
+                GBPinfo[6]= "2";
+            }
+            else if(name[3].equals("GBP")){
+                img1.setImage(new Image(GBPinfo[0]));
+                pos01.setText(GBPinfo[1]);
+                pos11.setText(GBPinfo[2]);
+                pos21.setText(String.format("%.2f",(Double.parseDouble(GBPinfo[2]) - Double.parseDouble(GBPinfo[3])) / (Double.parseDouble(GBPinfo[3])) * 100 ) +"%");
+                pos31.setText(GBPinfo[4]);
+                pos41.setText(GBPinfo[5]);
+                GBPinfo[6]= "1";
+            }
+            else{
+                img0.setImage(new Image(GBPinfo[0]));
+                pos00.setText(GBPinfo[1]);
+                pos10.setText(GBPinfo[2]);
+                pos20.setText(String.format("%.2f",(Double.parseDouble(GBPinfo[2]) - Double.parseDouble(GBPinfo[3])) / (Double.parseDouble(GBPinfo[3])) * 100 ) +"%");
+                pos30.setText(GBPinfo[4]);
+                pos40.setText(GBPinfo[5]);
+                GBPinfo[6]= "0";
+            }
         }
     }
 
-    public void ChangeLabels (){
-
-        USDinfo[3] = USDinfo[2];
-        EURinfo[3] = EURinfo[2];
-        TOMANinfo[3] = TOMANinfo[2];
-        YENinfo[3] = YENinfo[2];
-        GBPinfo[3] = GBPinfo[2];
-
-        usd.add(Double.parseDouble(USDinfo[2]));
-        eur.add(Double.parseDouble(EURinfo[2]));
-        toman.add(Double.parseDouble(TOMANinfo[2]));
-        yen.add(Double.parseDouble(YENinfo[2]));
-        gbp.add(Double.parseDouble(GBPinfo[2]));
-
-        USD = usd.toArray(new Double[usd.size()]);
-        EUR = eur.toArray(new Double[eur.size()]);
-        TOMAN = toman.toArray(new Double[toman.size()]);
-        YEN = yen.toArray(new Double[yen.size()]);
-        GBP = gbp.toArray(new Double[gbp.size()]);
-
-        USDinfo[2] = String.valueOf(linearRegression(USD));
-        pos10.setText(String.format("%.4f",Double.parseDouble(USDinfo[2])));
-        EURinfo[2] = String.valueOf(linearRegression(EUR));
-        pos11.setText(String.format("%.4f",Double.parseDouble(EURinfo[2])));
-        TOMANinfo[2] = String.valueOf(linearRegression(TOMAN));
-        pos12.setText(String.format("%.4f",Double.parseDouble(TOMANinfo[2])));
-        YENinfo[2] = String.valueOf(linearRegression(YEN));
-        pos13.setText(String.format("%.4f",Double.parseDouble(YENinfo[2])));
-        GBPinfo[2] = String.valueOf(linearRegression(GBP));
-        pos14.setText(String.format("%.4f",Double.parseDouble(GBPinfo[2])));
-
-        pos20.setText(String.format("%.2f",(Double.parseDouble(USDinfo[2]) - Double.parseDouble(USDinfo[3]))  /  (Double.parseDouble(USDinfo[3]))  *  100 ) +"%");
-        pos21.setText(String.format("%.2f",(Double.parseDouble(EURinfo[2]) - Double.parseDouble(EURinfo[3]))  /  (Double.parseDouble(EURinfo[3]))  * 100 ) +"%");
-        pos22.setText(String.format("%.2f",(Double.parseDouble(TOMANinfo[2]) - Double.parseDouble(TOMANinfo[3]))  /  (Double.parseDouble(TOMANinfo[3]))  * 100 ) +"%");
-        pos23.setText(String.format("%.2f",(Double.parseDouble(YENinfo[2]) - Double.parseDouble(YENinfo[3]))  /  (Double.parseDouble(YENinfo[3]))  * 100 ) +"%");
-        pos24.setText(String.format("%.2f",(Double.parseDouble(GBPinfo[2]) - Double.parseDouble(GBPinfo[3]))  /  (Double.parseDouble(GBPinfo[3]))  * 100 ) +"%");
-
-        if(Double.parseDouble(USDinfo[2]) > Double.parseDouble(USDinfo[4])){
-            USDinfo[4] = USDinfo[2];
-
-        }
 
 
-
-
-    }
 }

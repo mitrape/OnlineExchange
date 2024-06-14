@@ -67,7 +67,7 @@
             <Image url="@Toman.jpg" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" graphicTextGap="8.0" layoutX="600.0" layoutY="66.0" onMouseClicked="#ClickOnCurrency" prefHeight="18.0" prefWidth="82.0" text="Currency" textFill="WHITE">
+      <Label alignment="CENTER" graphicTextGap="8.0" layoutX="600.0" layoutY="66.0" prefHeight="18.0" prefWidth="82.0" text="Currency" textFill="WHITE">
          <font>
             <Font name="Tahoma Bold" size="14.0" />
          </font>
@@ -77,17 +77,17 @@
             <Font name="Tahoma Bold" size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" graphicTextGap="8.0" layoutX="348.0" layoutY="67.0" onMouseClicked="#ClickOnChanges" prefHeight="18.0" prefWidth="82.0" text="Changes" textFill="WHITE">
+      <Label alignment="CENTER" graphicTextGap="8.0" layoutX="348.0" layoutY="67.0" prefHeight="18.0" prefWidth="82.0" text="Changes" textFill="WHITE">
          <font>
             <Font name="Tahoma Bold" size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" graphicTextGap="8.0" layoutX="179.0" layoutY="68.0" onMouseClicked="#ClickOnMaxPrice" prefHeight="18.0" prefWidth="120.0" text="Max price" textFill="WHITE">
+      <Label alignment="CENTER" graphicTextGap="8.0" layoutX="179.0" layoutY="68.0" prefHeight="18.0" prefWidth="120.0" text="Max price" textFill="WHITE">
          <font>
             <Font name="Tahoma Bold" size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" graphicTextGap="8.0" layoutX="31.0" layoutY="67.0" onMouseClicked="#ClickOnMinPrice" prefHeight="18.0" prefWidth="120.0" text="Min price" textFill="WHITE">
+      <Label alignment="CENTER" graphicTextGap="8.0" layoutX="31.0" layoutY="67.0" prefHeight="18.0" prefWidth="120.0" text="Min price" textFill="WHITE">
          <font>
             <Font name="Tahoma Bold" size="14.0" />
          </font>
