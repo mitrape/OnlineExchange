@@ -221,17 +221,17 @@
             <Font name="Tahoma Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="350.0" layoutY="62.0" mnemonicParsing="false" onAction="#ClickOnPrice" style="-fx-background-color: transparent;" text="changes" textFill="WHITE">
+      <Button layoutX="350.0" layoutY="62.0" mnemonicParsing="false" onAction="#ClickOnChanges" style="-fx-background-color: transparent;" text="changes" textFill="WHITE">
          <font>
             <Font name="Tahoma Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="200.0" layoutY="62.0" mnemonicParsing="false" onAction="#ClickOnPrice" style="-fx-background-color: transparent;" text="Max price" textFill="WHITE">
+      <Button layoutX="200.0" layoutY="62.0" mnemonicParsing="false" onAction="#ClickOnMaxPrice" style="-fx-background-color: transparent;" text="Max price" textFill="WHITE">
          <font>
             <Font name="Tahoma Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="44.0" layoutY="62.0" mnemonicParsing="false" onAction="#ClickOnPrice" style="-fx-background-color: transparent;" text="Min price" textFill="WHITE">
+      <Button layoutX="44.0" layoutY="62.0" mnemonicParsing="false" onAction="#ClickOnMinPrice" style="-fx-background-color: transparent;" text="Min price" textFill="WHITE">
          <font>
             <Font name="Tahoma Bold" size="14.0" />
          </font>
