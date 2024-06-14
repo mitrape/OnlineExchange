@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import org.apache.commons.math3.stat.regression.SimpleRegression;
 
 import javafx.animation.Animation;
@@ -22,6 +23,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 
 import javafx.util.Duration;
+
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Timer;
@@ -2394,6 +2396,121 @@ public class HomePage implements Initializable {
                 pos40.setText(GBPinfo[5]);
                 GBPinfo[6]= "0";
             }
+        }
+    }
+    public void ClickOn0 (MouseEvent event) throws IOException {
+        String name = pos00.getText();
+        if(name.equals("TOMAN")){
+            Main m = new Main();
+            m.changeScene("toman");
+        }
+        else if (name.equals("USD")){
+            Main m = new Main();
+            m.changeScene("usd");
+        }
+        else if (name.equals("GBP")){
+            Main m = new Main();
+            m.changeScene("gbp");
+        }
+        else if (name.equals("YEN")){
+            Main m = new Main();
+            m.changeScene("yen");
+        }
+        else {
+            Main m = new Main();
+            m.changeScene("eur");
+        }
+    }
+    public void ClickOn1 (MouseEvent event) throws IOException {
+        String name = pos01.getText();
+        if(name.equals("TOMAN")){
+            Main m = new Main();
+            m.changeScene("toman");
+        }
+        else if (name.equals("USD")){
+            Main m = new Main();
+            m.changeScene("usd");
+        }
+        else if (name.equals("GBP")){
+            Main m = new Main();
+            m.changeScene("gbp");
+        }
+        else if (name.equals("YEN")){
+            Main m = new Main();
+            m.changeScene("yen");
+        }
+        else {
+            Main m = new Main();
+            m.changeScene("eur");
+        }
+    }
+    public void ClickOn2 (MouseEvent event) throws IOException {
+        String name = pos02.getText();
+        if(name.equals("TOMAN")){
+            Main m = new Main();
+            m.changeScene("toman");
+        }
+        else if (name.equals("USD")){
+            Main m = new Main();
+            m.changeScene("usd");
+        }
+        else if (name.equals("GBP")){
+            Main m = new Main();
+            m.changeScene("gbp");
+        }
+        else if (name.equals("YEN")){
+            Main m = new Main();
+            m.changeScene("yen");
+        }
+        else {
+            Main m = new Main();
+            m.changeScene("eur");
+        }
+    }
+    public void ClickOn3 (MouseEvent event) throws IOException {
+        String name = pos03.getText();
+        if(name.equals("TOMAN")){
+            Main m = new Main();
+            m.changeScene("toman");
+        }
+        else if (name.equals("USD")){
+            Main m = new Main();
+            m.changeScene("usd");
+        }
+        else if (name.equals("GBP")){
+            Main m = new Main();
+            m.changeScene("gbp");
+        }
+        else if (name.equals("YEN")){
+            Main m = new Main();
+            m.changeScene("yen");
+        }
+        else {
+            Main m = new Main();
+            m.changeScene("eur");
+        }
+    }
+    public void ClickOn4 (MouseEvent event) throws IOException {
+        String name = pos04.getText();
+        if(name.equals("TOMAN")){
+            Main m = new Main();
+            m.changeScene("toman");
+        }
+        else if (name.equals("USD")){
+            Main m = new Main();
+            m.changeScene("usd");
+        }
+        else if (name.equals("GBP")){
+            Main m = new Main();
+            m.changeScene("gbp");
+        }
+        else if (name.equals("YEN")){
+            Main m = new Main();
+            m.changeScene("yen");
+        }
+        else {
+            Main m = new Main();
+            m.changeScene("eur");
         }
     }
 }
