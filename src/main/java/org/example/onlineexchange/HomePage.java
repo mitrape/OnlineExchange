@@ -139,8 +139,6 @@ public class HomePage implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         showTime();
 
-        Reminder(60);
-
         username.setText(Main.username);
 
 
@@ -186,6 +184,7 @@ public class HomePage implements Initializable {
 
         readCVS();
         setLabelsFirst();
+        Reminder(60);
 
     }
     public void ClickOnProfile (ActionEvent event) throws IOException {
@@ -407,52 +406,278 @@ public class HomePage implements Initializable {
         }
     }
 
- public void ChangeLabels (){
+    public void ChangeLabels () {
 
- USDinfo[3] = USDinfo[2];
- EURinfo[3] = EURinfo[2];
- TOMANinfo[3] = TOMANinfo[2];
- YENinfo[3] = YENinfo[2];
- GBPinfo[3] = GBPinfo[2];
+        USDinfo[3] = USDinfo[2];
+        EURinfo[3] = EURinfo[2];
+        TOMANinfo[3] = TOMANinfo[2];
+        YENinfo[3] = YENinfo[2];
+        GBPinfo[3] = GBPinfo[2];
 
- usd.add(Double.parseDouble(USDinfo[2]));
- eur.add(Double.parseDouble(EURinfo[2]));
- toman.add(Double.parseDouble(TOMANinfo[2]));
- yen.add(Double.parseDouble(YENinfo[2]));
- gbp.add(Double.parseDouble(GBPinfo[2]));
+        usd.add(Double.parseDouble(USDinfo[2]));
+        eur.add(Double.parseDouble(EURinfo[2]));
+        toman.add(Double.parseDouble(TOMANinfo[2]));
+        yen.add(Double.parseDouble(YENinfo[2]));
+        gbp.add(Double.parseDouble(GBPinfo[2]));
 
- USD = usd.toArray(new Double[usd.size()]);
- EUR = eur.toArray(new Double[eur.size()]);
- TOMAN = toman.toArray(new Double[toman.size()]);
- YEN = yen.toArray(new Double[yen.size()]);
- GBP = gbp.toArray(new Double[gbp.size()]);
+        USD = usd.toArray(new Double[usd.size()]);
+        EUR = eur.toArray(new Double[eur.size()]);
+        TOMAN = toman.toArray(new Double[toman.size()]);
+        YEN = yen.toArray(new Double[yen.size()]);
+        GBP = gbp.toArray(new Double[gbp.size()]);
 
- USDinfo[2] = String.valueOf(linearRegression(USD));
- pos10.setText(String.format("%.4f",Double.parseDouble(USDinfo[2])));
- EURinfo[2] = String.valueOf(linearRegression(EUR));
- pos11.setText(String.format("%.4f",Double.parseDouble(EURinfo[2])));
- TOMANinfo[2] = String.valueOf(linearRegression(TOMAN));
- pos12.setText(String.format("%.4f",Double.parseDouble(TOMANinfo[2])));
- YENinfo[2] = String.valueOf(linearRegression(YEN));
- pos13.setText(String.format("%.4f",Double.parseDouble(YENinfo[2])));
- GBPinfo[2] = String.valueOf(linearRegression(GBP));
- pos14.setText(String.format("%.4f",Double.parseDouble(GBPinfo[2])));
+        USDinfo[2] = String.valueOf(linearRegression(USD));
+        EURinfo[2] = String.valueOf(linearRegression(EUR));
+        TOMANinfo[2] = String.valueOf(linearRegression(TOMAN));
+        YENinfo[2] = String.valueOf(linearRegression(YEN));
+        GBPinfo[2] = String.valueOf(linearRegression(GBP));
 
- pos20.setText(String.format("%.2f",(Double.parseDouble(USDinfo[2]) - Double.parseDouble(USDinfo[3])) / (Double.parseDouble(USDinfo[3])) * 100 ) +"%");
- pos21.setText(String.format("%.2f",(Double.parseDouble(EURinfo[2]) - Double.parseDouble(EURinfo[3])) / (Double.parseDouble(EURinfo[3])) * 100 ) +"%");
- pos22.setText(String.format("%.2f",(Double.parseDouble(TOMANinfo[2]) - Double.parseDouble(TOMANinfo[3])) / (Double.parseDouble(TOMANinfo[3])) * 100 ) +"%");
- pos23.setText(String.format("%.2f",(Double.parseDouble(YENinfo[2]) - Double.parseDouble(YENinfo[3])) / (Double.parseDouble(YENinfo[3])) * 100 ) +"%");
- pos24.setText(String.format("%.2f",(Double.parseDouble(GBPinfo[2]) - Double.parseDouble(GBPinfo[3])) / (Double.parseDouble(GBPinfo[3])) * 100 ) +"%");
+        Double maxUSD = USD[0];
+        Double minUSD = USD[0];
+        for (int i = 0; i < USD.length; i++) {
+            if(USD[i] > maxUSD){
+                maxUSD = USD[i];
+            }
+            if(USD[i] < minUSD){
+                minUSD = USD[i];
+            }
+        }
 
- if(Double.parseDouble(USDinfo[2]) > Double.parseDouble(USDinfo[4])){
- USDinfo[4] = USDinfo[2];
+        Double maxEUR = EUR[0];
+        Double minEUR = EUR[0];
+        for (int i = 0; i < EUR.length; i++) {
+            if(EUR[i] > maxEUR){
+                maxEUR = EUR[i];
+            }
+            if(EUR[i] < minEUR){
+                minEUR = EUR[i];
+            }
+        }
 
- }
+        Double maxTOMAN = TOMAN[0];
+        Double minTOMAN = TOMAN[0];
+        for (int i = 0; i < TOMAN.length; i++) {
+            if(TOMAN[i] > maxTOMAN){
+                maxTOMAN = TOMAN[i];
+            }
+            if(TOMAN[i] < minTOMAN){
+                minTOMAN = TOMAN[i];
+            }
+        }
+
+        Double maxYEN = YEN[0];
+        Double minYEN = YEN[0];
+        for (int i = 0; i < YEN.length; i++) {
+            if(YEN[i] > maxYEN){
+                maxYEN = YEN[i];
+            }
+            if(YEN[i] < minYEN){
+                minYEN = YEN[i];
+            }
+        }
+
+        Double maxGBP = GBP[0];
+        Double minGBP = GBP[0];
+        for (int i = 0; i < GBP.length; i++) {
+            if(GBP[i] > maxGBP){
+                maxGBP = GBP[i];
+            }
+            if(GBP[i] < minGBP){
+                minGBP = GBP[i];
+            }
+        }
+
+        USDinfo[4] = String.valueOf(maxUSD);
+        EURinfo[4] = String.valueOf(maxEUR);
+        TOMANinfo[4] = String.valueOf(maxTOMAN);
+        YENinfo[4] = String.valueOf(maxYEN);
+        GBPinfo[4] = String.valueOf(maxGBP);
+        USDinfo[5] = String.valueOf(minUSD);
+        EURinfo[5] = String.valueOf(minEUR);
+        TOMANinfo[5] = String.valueOf(minTOMAN);
+        YENinfo[5] = String.valueOf(minYEN);
+        GBPinfo[5] = String.valueOf(minGBP);
+
+        if(pos00.getText().equals("TOMAN")){
+            pos10.setText(TOMANinfo[2]);
+            pos20.setText(String.format("%.2f",(Double.parseDouble(TOMANinfo[2]) - Double.parseDouble(TOMANinfo[3])) / (Double.parseDouble(TOMANinfo[3])) * 100 ) +"%");
+            pos30.setText(TOMANinfo[4]);
+            pos40.setText(TOMANinfo[5]);
+            TOMANinfo[6] = "0";
+        }
+        else if (pos01.getText().equals("TOMAN")) {
+            pos11.setText(TOMANinfo[2]);
+            pos21.setText(String.format("%.2f",(Double.parseDouble(TOMANinfo[2]) - Double.parseDouble(TOMANinfo[3])) / (Double.parseDouble(TOMANinfo[3])) * 100 ) +"%");
+            pos31.setText(TOMANinfo[4]);
+            pos41.setText(TOMANinfo[5]);
+            TOMANinfo[6] = "1";
+        }
+        else if (pos02.getText().equals("TOMAN")){
+            pos12.setText(TOMANinfo[2]);
+            pos22.setText(String.format("%.2f",(Double.parseDouble(TOMANinfo[2]) - Double.parseDouble(TOMANinfo[3])) / (Double.parseDouble(TOMANinfo[3])) * 100 ) +"%");
+            pos32.setText(TOMANinfo[4]);
+            pos42.setText(TOMANinfo[5]);
+            TOMANinfo[6]= "2";
+        }
+        else if(pos03.getText().equals("TOMAN")){
+            pos13.setText(TOMANinfo[2]);
+            pos23.setText(String.format("%.2f",(Double.parseDouble(TOMANinfo[2]) - Double.parseDouble(TOMANinfo[3])) / (Double.parseDouble(TOMANinfo[3])) * 100 ) +"%");
+            pos33.setText(TOMANinfo[4]);
+            pos43.setText(TOMANinfo[5]);
+            TOMANinfo[6]= "3";
+        }
+        else{
+            pos14.setText(TOMANinfo[2]);
+            pos24.setText(String.format("%.2f",(Double.parseDouble(TOMANinfo[2]) - Double.parseDouble(TOMANinfo[3])) / (Double.parseDouble(TOMANinfo[3])) * 100 ) +"%");
+            pos34.setText(TOMANinfo[4]);
+            pos44.setText(TOMANinfo[5]);
+            TOMANinfo[6]= "4";
+        }
 
 
+        if(pos00.getText().equals("EUR")){
+            pos10.setText(EURinfo[2]);
+            pos20.setText(String.format("%.2f",(Double.parseDouble(EURinfo[2]) - Double.parseDouble(EURinfo[3])) / (Double.parseDouble(EURinfo[3])) * 100 ) +"%");
+            pos30.setText(EURinfo[4]);
+            pos40.setText(EURinfo[5]);
+            EURinfo[6] = "0";
+        }
+        else if (pos01.getText().equals("EUR")) {
+            pos11.setText(EURinfo[2]);
+            pos21.setText(String.format("%.2f",(Double.parseDouble(EURinfo[2]) - Double.parseDouble(EURinfo[3])) / (Double.parseDouble(EURinfo[3])) * 100 ) +"%");
+            pos31.setText(EURinfo[4]);
+            pos41.setText(EURinfo[5]);
+            EURinfo[6] = "1";
+        }
+        else if (pos02.getText().equals("EUR")){
+            pos12.setText(EURinfo[2]);
+            pos22.setText(String.format("%.2f",(Double.parseDouble(EURinfo[2]) - Double.parseDouble(EURinfo[3])) / (Double.parseDouble(EURinfo[3])) * 100 ) +"%");
+            pos32.setText(EURinfo[4]);
+            pos42.setText(EURinfo[5]);
+            EURinfo[6]= "2";
+        }
+        else if(pos03.getText().equals("EUR")){
+            pos13.setText(EURinfo[2]);
+            pos23.setText(String.format("%.2f",(Double.parseDouble(EURinfo[2]) - Double.parseDouble(EURinfo[3])) / (Double.parseDouble(EURinfo[3])) * 100 ) +"%");
+            pos33.setText(EURinfo[4]);
+            pos43.setText(EURinfo[5]);
+            EURinfo[6]= "3";
+        }
+        else{
+            pos14.setText(EURinfo[2]);
+            pos24.setText(String.format("%.2f",(Double.parseDouble(EURinfo[2]) - Double.parseDouble(EURinfo[3])) / (Double.parseDouble(EURinfo[3])) * 100 ) +"%");
+            pos34.setText(EURinfo[4]);
+            pos44.setText(EURinfo[5]);
+            EURinfo[6]= "4";
+        }
 
+        if(pos00.getText().equals("USD")){
+            pos10.setText(USDinfo[2]);
+            pos20.setText(String.format("%.2f",(Double.parseDouble(USDinfo[2]) - Double.parseDouble(USDinfo[3])) / (Double.parseDouble(USDinfo[3])) * 100 ) +"%");
+            pos30.setText(USDinfo[4]);
+            pos40.setText(USDinfo[5]);
+            USDinfo[6] = "0";
+        }
+        else if (pos01.getText().equals("USD")) {
+            pos11.setText(USDinfo[2]);
+            pos21.setText(String.format("%.2f",(Double.parseDouble(USDinfo[2]) - Double.parseDouble(USDinfo[3])) / (Double.parseDouble(USDinfo[3])) * 100 ) +"%");
+            pos31.setText(USDinfo[4]);
+            pos41.setText(USDinfo[5]);
+            USDinfo[6] = "1";
+        }
+        else if (pos02.getText().equals("USD")){
+            pos12.setText(USDinfo[2]);
+            pos22.setText(String.format("%.2f",(Double.parseDouble(USDinfo[2]) - Double.parseDouble(USDinfo[3])) / (Double.parseDouble(USDinfo[3])) * 100 ) +"%");
+            pos32.setText(USDinfo[4]);
+            pos42.setText(USDinfo[5]);
+            USDinfo[6]= "2";
+        }
+        else if(pos03.getText().equals("USD")){
+            pos13.setText(USDinfo[2]);
+            pos23.setText(String.format("%.2f",(Double.parseDouble(USDinfo[2]) - Double.parseDouble(USDinfo[3])) / (Double.parseDouble(USDinfo[3])) * 100 ) +"%");
+            pos33.setText(USDinfo[4]);
+            pos43.setText(USDinfo[5]);
+            USDinfo[6]= "3";
+        }
+        else{
+            pos14.setText(USDinfo[2]);
+            pos24.setText(String.format("%.2f",(Double.parseDouble(USDinfo[2]) - Double.parseDouble(USDinfo[3])) / (Double.parseDouble(USDinfo[3])) * 100 ) +"%");
+            pos34.setText(USDinfo[4]);
+            pos44.setText(USDinfo[5]);
+            USDinfo[6]= "4";
+        }
 
- }
+        if(pos00.getText().equals("YEN")){
+            pos10.setText(YENinfo[2]);
+            pos20.setText(String.format("%.2f",(Double.parseDouble(YENinfo[2]) - Double.parseDouble(YENinfo[3])) / (Double.parseDouble(YENinfo[3])) * 100 ) +"%");
+            pos30.setText(YENinfo[4]);
+            pos40.setText(YENinfo[5]);
+            YENinfo[6] = "0";
+        }
+        else if (pos01.getText().equals("YEN")) {
+            pos11.setText(YENinfo[2]);
+            pos21.setText(String.format("%.2f",(Double.parseDouble(YENinfo[2]) - Double.parseDouble(YENinfo[3])) / (Double.parseDouble(YENinfo[3])) * 100 ) +"%");
+            pos31.setText(YENinfo[4]);
+            pos41.setText(YENinfo[5]);
+            YENinfo[6] = "1";
+        }
+        else if (pos02.getText().equals("YEN")){
+            pos12.setText(YENinfo[2]);
+            pos22.setText(String.format("%.2f",(Double.parseDouble(YENinfo[2]) - Double.parseDouble(YENinfo[3])) / (Double.parseDouble(YENinfo[3])) * 100 ) +"%");
+            pos32.setText(YENinfo[4]);
+            pos42.setText(YENinfo[5]);
+            YENinfo[6]= "2";
+        }
+        else if(pos03.getText().equals("YEN")){
+            pos13.setText(YENinfo[2]);
+            pos23.setText(String.format("%.2f",(Double.parseDouble(YENinfo[2]) - Double.parseDouble(YENinfo[3])) / (Double.parseDouble(YENinfo[3])) * 100 ) +"%");
+            pos33.setText(YENinfo[4]);
+            pos43.setText(YENinfo[5]);
+            YENinfo[6]= "3";
+        }
+        else{
+            pos14.setText(YENinfo[2]);
+            pos24.setText(String.format("%.2f",(Double.parseDouble(YENinfo[2]) - Double.parseDouble(YENinfo[3])) / (Double.parseDouble(YENinfo[3])) * 100 ) +"%");
+            pos34.setText(YENinfo[4]);
+            pos44.setText(YENinfo[5]);
+            YENinfo[6]= "4";
+        }
+
+        if(pos00.getText().equals("GBP")){
+            pos10.setText(GBPinfo[2]);
+            pos20.setText(String.format("%.2f",(Double.parseDouble(GBPinfo[2]) - Double.parseDouble(GBPinfo[3])) / (Double.parseDouble(GBPinfo[3])) * 100 ) +"%");
+            pos30.setText(GBPinfo[4]);
+            pos40.setText(GBPinfo[5]);
+            GBPinfo[6] = "0";
+        }
+        else if (pos01.getText().equals("GBP")) {
+            pos11.setText(GBPinfo[2]);
+            pos21.setText(String.format("%.2f",(Double.parseDouble(GBPinfo[2]) - Double.parseDouble(GBPinfo[3])) / (Double.parseDouble(GBPinfo[3])) * 100 ) +"%");
+            pos31.setText(GBPinfo[4]);
+            pos41.setText(GBPinfo[5]);
+            GBPinfo[6] = "1";
+        }
+        else if (pos02.getText().equals("GBP")){
+            pos12.setText(GBPinfo[2]);
+            pos22.setText(String.format("%.2f",(Double.parseDouble(GBPinfo[2]) - Double.parseDouble(GBPinfo[3])) / (Double.parseDouble(GBPinfo[3])) * 100 ) +"%");
+            pos32.setText(GBPinfo[4]);
+            pos42.setText(GBPinfo[5]);
+            GBPinfo[6]= "2";
+        }
+        else if(pos03.equals("GBP")){
+            pos23.setText(String.format("%.2f",(Double.parseDouble(GBPinfo[2]) - Double.parseDouble(GBPinfo[3])) / (Double.parseDouble(GBPinfo[3])) * 100 ) +"%");
+            pos33.setText(GBPinfo[4]);
+            pos43.setText(GBPinfo[5]);
+            GBPinfo[6]= "3";
+        }
+        else{
+            pos14.setText(GBPinfo[2]);
+            pos24.setText(String.format("%.2f",(Double.parseDouble(GBPinfo[2]) - Double.parseDouble(GBPinfo[3])) / (Double.parseDouble(GBPinfo[3])) * 100 ) +"%");
+            pos34.setText(GBPinfo[4]);
+            pos44.setText(GBPinfo[5]);
+            GBPinfo[6]= "4";
+        }
+    }
 
 
     public void ClickOnPrice (ActionEvent event) throws IOException{
