@@ -1,5 +1,7 @@
 
 package org.example.onlineexchange;
+import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,8 +12,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,10 +28,9 @@ import javafx.util.Duration;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Timer;
-import java.util.TimerTask;
 
-public class HomePage implements Initializable {
+
+public class HomePage implements Initializable{
 
     public boolean orderPrices = false; // which means that it is getting bigger at the end
     public boolean orderChanges = false;
@@ -184,7 +185,7 @@ public class HomePage implements Initializable {
 
         readCVS();
         setLabelsFirst();
-        Reminder(60);
+        showTime1();
 
     }
     public void ClickOnProfile (ActionEvent event) throws IOException {
@@ -394,17 +395,36 @@ public class HomePage implements Initializable {
         GBPinfo[5] = String.valueOf(minGBP);
         pos44.setText(GBPinfo[5]);
     }
-    Timer timer;
+    int lastMinute = -1;
+    private volatile boolean stop = false;
+public void showTime1(){
+    Thread thread = new Thread(() -> {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss a");
+        while (!stop){
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            final Date[] now = {new Date()};
+            final String timenow = simpleDateFormat.format(now[0]);
 
-    public void Reminder(int seconds) {
-        timer = new Timer();
-        timer.schedule(new RemindTask(), seconds* 1000L);
-    }
-    public class RemindTask extends TimerTask {
-        public void run() {
-            ChangeLabels();
+            Platform.runLater(() -> {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(now[0]);
+                int currentMinute = calendar.get(Calendar.MINUTE);
+                if (currentMinute != lastMinute) {
+                    // A new minute has passed, call your update function here
+
+                    ChangeLabels();
+                    lastMinute = currentMinute;
+                }
+            });
         }
-    }
+    });
+    thread.start();
+}
+
 
     public void ChangeLabels () {
 
@@ -425,12 +445,11 @@ public class HomePage implements Initializable {
         TOMAN = toman.toArray(new Double[toman.size()]);
         YEN = yen.toArray(new Double[yen.size()]);
         GBP = gbp.toArray(new Double[gbp.size()]);
-
-        USDinfo[2] = String.valueOf(linearRegression(USD));
-        EURinfo[2] = String.valueOf(linearRegression(EUR));
-        TOMANinfo[2] = String.valueOf(linearRegression(TOMAN));
-        YENinfo[2] = String.valueOf(linearRegression(YEN));
-        GBPinfo[2] = String.valueOf(linearRegression(GBP));
+        USDinfo[2] = String.format("%.4f",linearRegression(USD));
+        EURinfo[2] = String.format("%.4f",linearRegression(EUR));
+        TOMANinfo[2] = String.format("%.4f",linearRegression(TOMAN));
+        YENinfo[2] = String.format("%.4f",linearRegression(YEN));
+        GBPinfo[2] = String.format("%.4f",linearRegression(GBP));
 
         Double maxUSD = USD[0];
         Double minUSD = USD[0];
