@@ -17,7 +17,7 @@
             <Font name="System Bold Italic" size="39.0" />
          </font>
       </Label>
-      <Label fx:id="ChangeLabel" alignment="CENTER" layoutX="136.0" layoutY="42.0" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 8;" text="2.5%">
+      <Label fx:id="changeLabel" alignment="CENTER" layoutX="136.0" layoutY="42.0" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 8;" text="2.5%">
          <font>
             <Font size="15.0" />
          </font>
@@ -27,7 +27,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="40.0" layoutY="178.0" prefHeight="22.0" prefWidth="78.0" text="2.6556" textFill="WHITE">
+      <Label fx:id="priceLabel" layoutX="40.0" layoutY="178.0" prefHeight="22.0" prefWidth="78.0" text="2.6556" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
@@ -42,7 +42,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <TableView fx:id="TransactionTable" layoutX="478.0" layoutY="130.0" prefHeight="269.0" prefWidth="122.0">
+      <TableView fx:id="TransactionTable" layoutX="512.0" layoutY="129.0" prefHeight="269.0" prefWidth="122.0">
         <columns>
           <TableColumn fx:id="TransactionColumn" prefWidth="119.20001220703125" text="Last Transaction" />
         </columns>
@@ -67,7 +67,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <LineChart layoutX="10.0" layoutY="295.0" prefHeight="335.0" prefWidth="448.0">
+      <LineChart fx:id="lineChartYear" layoutX="10.0" layoutY="295.0" prefHeight="335.0" prefWidth="448.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -81,5 +81,45 @@
       <Button layoutX="253.0" layoutY="261.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="47.0" style="-fx-background-radius: 5; -fx-background-color: #1EF1B1;" text="1 W" />
       <Button layoutX="310.0" layoutY="261.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="47.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 5;" text="1 M" />
       <Button layoutX="367.0" layoutY="261.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="47.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 5;" text="1 Y" />
+      <LineChart fx:id="lineChartMonth" layoutX="10.0" layoutY="295.0" prefHeight="335.0" prefWidth="448.0">
+         <xAxis>
+            <CategoryAxis side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis side="LEFT" />
+         </yAxis>
+      </LineChart>
+      <LineChart fx:id="lineChartWeek" layoutX="10.0" layoutY="295.0" prefHeight="335.0" prefWidth="448.0">
+         <xAxis>
+            <CategoryAxis side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis side="LEFT" />
+         </yAxis>
+      </LineChart>
+      <LineChart fx:id="lineChartDay" layoutX="10.0" layoutY="295.0" prefHeight="335.0" prefWidth="448.0">
+         <xAxis>
+            <CategoryAxis side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis side="LEFT" />
+         </yAxis>
+      </LineChart>
+      <LineChart fx:id="lineChartHour" layoutX="10.0" layoutY="295.0" prefHeight="335.0" prefWidth="448.0">
+         <xAxis>
+            <CategoryAxis side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis side="LEFT" />
+         </yAxis>
+      </LineChart>
+      <LineChart fx:id="lineChartMinute" layoutX="10.0" layoutY="295.0" prefHeight="335.0" prefWidth="448.0">
+         <xAxis>
+            <CategoryAxis side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis side="LEFT" />
+         </yAxis>
+      </LineChart>
    </children>
 </AnchorPane>
