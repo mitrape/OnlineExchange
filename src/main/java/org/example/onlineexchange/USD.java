@@ -88,6 +88,8 @@ public class USD implements Initializable {
                     int currentMinute = calendar.get(Calendar.MINUTE);
                     if (currentMinute != lastMinute) {
                         // A new minute has passed, call your update function here
+                        TransactionList.clear();
+                        OpenRequestsList.clear();
                         setTable();
                         setChangeAndSetPrice();
                         lastMinute = currentMinute;
@@ -121,9 +123,9 @@ public class USD implements Initializable {
         OpenRequestsColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue()));
         try {
             Statement statement1 = Main.connection.createStatement();
-            ResultSet resultSet1 = statement1.executeQuery("SELECT usdTransaction FROM usd");
+            ResultSet resultSet1 = statement1.executeQuery("SELECT Transaction FROM usdtransaction");
             while (resultSet1.next()){
-                Double usdTransaction = resultSet1.getDouble("usdTransaction");
+                Double usdTransaction = resultSet1.getDouble("Transaction");
                 TransactionList.add(usdTransaction);
             }
             TransactionTable.setItems(TransactionList);
@@ -133,7 +135,7 @@ public class USD implements Initializable {
         }
         try {
             Statement statement1 = Main.connection.createStatement();
-            ResultSet resultSet1 = statement1.executeQuery("SELECT usdOpenRequests FROM usd");
+            ResultSet resultSet1 = statement1.executeQuery("SELECT usdOpenRequests FROM usdopenrequests");
             while (resultSet1.next()){
                 Double usdOpenRequests = resultSet1.getDouble("usdOpenRequests");
                 OpenRequestsList.add(usdOpenRequests);
