@@ -58,7 +58,8 @@ public class USD implements Initializable {
     private LineChart lineChartMonth;
     @FXML
     private LineChart lineChartYear;
-
+    int lastMinute = -1;
+    private volatile boolean stop = false;
     ObservableList <Double> TransactionList = FXCollections.observableArrayList();
     ObservableList <Double> OpenRequestsList = FXCollections.observableArrayList();
     @Override
@@ -66,8 +67,36 @@ public class USD implements Initializable {
         showTime();
         setTable();
         setChangeAndSetPrice();
+        showTime1();
     }
 
+    public void showTime1(){
+        Thread thread = new Thread(() -> {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss a");
+            while (!stop){
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                final Date[] now = {new Date()};
+                final String timenow = simpleDateFormat.format(now[0]);
+
+                Platform.runLater(() -> {
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(now[0]);
+                    int currentMinute = calendar.get(Calendar.MINUTE);
+                    if (currentMinute != lastMinute) {
+                        // A new minute has passed, call your update function here
+                        setTable();
+                        setChangeAndSetPrice();
+                        lastMinute = currentMinute;
+                    }
+                });
+            }
+        });
+        thread.start();
+    }
 
     public void ClickOnBack (ActionEvent event) throws IOException {
         Main m = new Main() ;

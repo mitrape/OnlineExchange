@@ -120,11 +120,11 @@ public class HomePage implements Initializable{
 
 
     // 0->photo path 1->currency name 2->price 3->last price 4->max price 5->min price 6->position
-    public String[] USDinfo = new String[7];
-    public String[] EURinfo = new String[7];
-    public String[] TOMANinfo = new String[7];
-    public String[] YENinfo = new String[7];
-    public String[] GBPinfo = new String[7];
+    public static String[] USDinfo = new String[7];
+    public static String[] EURinfo = new String[7];
+    public static String[] TOMANinfo = new String[7];
+    public static String[] YENinfo = new String[7];
+    public static String[] GBPinfo = new String[7];
 
 
 
@@ -2646,115 +2646,115 @@ public void showTime1(){
         String name = pos00.getText();
         if(name.equals("TOMAN")){
             Main m = new Main();
-            m.changeScene("toman");
+            m.openNewWindow("TOMAN","toman");
         }
         else if (name.equals("USD")){
             Main m = new Main();
-            m.changeScene("usd");
+            m.openNewWindow("USD","usd");
         }
         else if (name.equals("GBP")){
             Main m = new Main();
-            m.changeScene("gbp");
+            m.openNewWindow("GBP","gbp");
         }
         else if (name.equals("YEN")){
             Main m = new Main();
-            m.changeScene("yen");
+            m.openNewWindow("YEN","yen");
         }
         else {
             Main m = new Main();
-            m.changeScene("eur");
+            m.openNewWindow("EUR","eur");
         }
     }
     public void ClickOn1 (MouseEvent event) throws IOException {
         String name = pos01.getText();
         if(name.equals("TOMAN")){
             Main m = new Main();
-            m.changeScene("toman");
+            m.openNewWindow("TOMAN","toman");
         }
         else if (name.equals("USD")){
             Main m = new Main();
-            m.changeScene("usd");
+            m.openNewWindow("USD","usd");
         }
         else if (name.equals("GBP")){
             Main m = new Main();
-            m.changeScene("gbp");
+            m.openNewWindow("GBP","gbp");
         }
         else if (name.equals("YEN")){
             Main m = new Main();
-            m.changeScene("yen");
+            m.openNewWindow("YEN","yen");
         }
         else {
             Main m = new Main();
-            m.changeScene("eur");
+            m.openNewWindow("EUR","eur");
         }
     }
     public void ClickOn2 (MouseEvent event) throws IOException {
         String name = pos02.getText();
         if(name.equals("TOMAN")){
             Main m = new Main();
-            m.changeScene("toman");
+            m.openNewWindow("TOMAN","toman");
         }
         else if (name.equals("USD")){
             Main m = new Main();
-            m.changeScene("usd");
+            m.openNewWindow("USD","usd");
         }
         else if (name.equals("GBP")){
             Main m = new Main();
-            m.changeScene("gbp");
+            m.openNewWindow("GBP","gbp");
         }
         else if (name.equals("YEN")){
             Main m = new Main();
-            m.changeScene("yen");
+            m.openNewWindow("YEN","yen");
         }
         else {
             Main m = new Main();
-            m.changeScene("eur");
+            m.openNewWindow("EUR","eur");
         }
     }
     public void ClickOn3 (MouseEvent event) throws IOException {
         String name = pos03.getText();
         if(name.equals("TOMAN")){
             Main m = new Main();
-            m.changeScene("toman");
+            m.openNewWindow("TOMAN","toman");
         }
         else if (name.equals("USD")){
             Main m = new Main();
-            m.changeScene("usd");
+            m.openNewWindow("USD","usd");
         }
         else if (name.equals("GBP")){
             Main m = new Main();
-            m.changeScene("gbp");
+            m.openNewWindow("GBP","gbp");
         }
         else if (name.equals("YEN")){
             Main m = new Main();
-            m.changeScene("yen");
+            m.openNewWindow("YEN","yen");
         }
         else {
             Main m = new Main();
-            m.changeScene("eur");
+            m.openNewWindow("EUR","eur");
         }
     }
     public void ClickOn4 (MouseEvent event) throws IOException {
         String name = pos04.getText();
         if(name.equals("TOMAN")){
             Main m = new Main();
-            m.changeScene("toman");
+            m.openNewWindow("TOMAN","toman");
         }
         else if (name.equals("USD")){
             Main m = new Main();
-            m.changeScene("usd");
+            m.openNewWindow("USD","usd");
         }
         else if (name.equals("GBP")){
             Main m = new Main();
-            m.changeScene("gbp");
+            m.openNewWindow("GBP","gbp");
         }
         else if (name.equals("YEN")){
             Main m = new Main();
-            m.changeScene("yen");
+            m.openNewWindow("YEN","yen");
         }
         else {
             Main m = new Main();
-            m.changeScene("eur");
+            m.openNewWindow("EUR","eur");
         }
     }
 }
