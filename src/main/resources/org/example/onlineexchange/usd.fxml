@@ -7,57 +7,54 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="673.0" prefWidth="862.0" style="-fx-background-color: #071739;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.onlineexchange.USD">
+<AnchorPane prefHeight="673.0" prefWidth="926.0" style="-fx-background-color: #071739;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.onlineexchange.USD">
    <children>
-      <Label layoutX="33.0" layoutY="24.0" prefHeight="56.0" prefWidth="98.0" text="USD" textFill="WHITE">
+      <Label layoutX="46.0" layoutY="24.0" prefHeight="56.0" prefWidth="98.0" text="USD" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="39.0" />
          </font>
       </Label>
-      <Label fx:id="changeLabel" alignment="CENTER" layoutX="136.0" layoutY="42.0" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 8;" text="2.5%">
+      <Label fx:id="changeLabel" alignment="CENTER" layoutX="158.0" layoutY="39.0" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 8;" text="2.5%">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="40.0" layoutY="131.0" text="Price :" textFill="WHITE">
+      <Label layoutX="71.0" layoutY="131.0" text="Price :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="priceLabel" layoutX="40.0" layoutY="178.0" prefHeight="22.0" prefWidth="78.0" text="2.6556" textFill="WHITE">
+      <Label fx:id="priceLabel" layoutX="71.0" layoutY="178.0" prefHeight="22.0" prefWidth="78.0" text="2.6556" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="245.0" layoutY="131.0" text="Turnover :" textFill="WHITE">
+      <Label layoutX="281.0" layoutY="131.0" text="Turnover :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="245.0" layoutY="178.0" prefHeight="22.0" prefWidth="78.0" text="2.6556B" textFill="WHITE">
+      <Label layoutX="285.0" layoutY="178.0" prefHeight="22.0" prefWidth="78.0" text="2.6556B" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TableView fx:id="TransactionTable" layoutX="512.0" layoutY="129.0" prefHeight="269.0" prefWidth="122.0">
+      <TableView fx:id="TransactionTable" layoutX="551.0" layoutY="305.0" prefHeight="302.0" prefWidth="122.0">
         <columns>
           <TableColumn fx:id="TransactionColumn" prefWidth="119.20001220703125" text="Last Transaction" />
         </columns>
       </TableView>
-      <Label fx:id="timeLabel" alignment="CENTER" layoutX="729.0" layoutY="640.0" prefHeight="22.0" prefWidth="122.0" text="Time" textFill="WHITE">
+      <Label fx:id="timeLabel" alignment="CENTER" layoutX="784.0" layoutY="640.0" prefHeight="22.0" prefWidth="122.0" text="Time" textFill="WHITE">
          <font>
             <Font name="System Bold" size="11.0" />
          </font>
       </Label>
-      <Button layoutX="800.0" layoutY="14.0" mnemonicParsing="false" onAction="#ClickOnBack" style="-fx-background-color: transparent;" text="Back" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Button>
-      <TableView fx:id="OpenRequestsTable" layoutX="668.0" layoutY="129.0" prefHeight="270.0" prefWidth="122.0">
+      <TableView fx:id="OpenRequestsTable" layoutX="720.0" layoutY="305.0" prefHeight="302.0" prefWidth="122.0">
         <columns>
           <TableColumn fx:id="OpenRequestsColumn" prefWidth="121.60001220703126" text="Open Requests" />
         </columns>
@@ -75,12 +72,12 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </LineChart>
-      <Button layoutX="80.0" layoutY="261.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="47.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 5;" text="60 S" />
-      <Button layoutX="137.0" layoutY="261.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="47.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 5;" text="1 H" />
-      <Button layoutX="195.0" layoutY="261.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="47.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 5;" text="1 D" />
-      <Button layoutX="253.0" layoutY="261.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="47.0" style="-fx-background-radius: 5; -fx-background-color: #1EF1B1;" text="1 W" />
-      <Button layoutX="310.0" layoutY="261.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="47.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 5;" text="1 M" />
-      <Button layoutX="367.0" layoutY="261.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="47.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 5;" text="1 Y" />
+      <Button fx:id="Minute" layoutX="80.0" layoutY="261.0" mnemonicParsing="false" onAction="#ClickOnMinute" prefHeight="26.0" prefWidth="47.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 5;" text="60 S" />
+      <Button fx:id="Hour" layoutX="137.0" layoutY="261.0" mnemonicParsing="false" onAction="#ClickOnHour" prefHeight="26.0" prefWidth="47.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 5;" text="1 H" />
+      <Button fx:id="Day" layoutX="195.0" layoutY="261.0" mnemonicParsing="false" onAction="#ClickOnDay" prefHeight="26.0" prefWidth="47.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 5;" text="1 D" />
+      <Button fx:id="Week" layoutX="253.0" layoutY="261.0" mnemonicParsing="false" onAction="#ClickOnWeek" prefHeight="26.0" prefWidth="47.0" style="-fx-background-radius: 5; -fx-background-color: #1EF1B1;" text="1 W" />
+      <Button fx:id="Month" layoutX="310.0" layoutY="261.0" mnemonicParsing="false" onAction="#ClickOnMonth" prefHeight="26.0" prefWidth="47.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 5;" text="1 M" />
+      <Button fx:id="Year" layoutX="367.0" layoutY="261.0" mnemonicParsing="false" onAction="#ClickOnYear" prefHeight="26.0" prefWidth="47.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 5;" text="1 Y" />
       <LineChart fx:id="lineChartMonth" layoutX="10.0" layoutY="295.0" prefHeight="335.0" prefWidth="448.0">
          <xAxis>
             <CategoryAxis side="BOTTOM" />
@@ -121,5 +118,10 @@
             <NumberAxis side="LEFT" />
          </yAxis>
       </LineChart>
+      <ImageView fitHeight="151.0" fitWidth="283.0" layoutX="552.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@2024-06-15%20(2).png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

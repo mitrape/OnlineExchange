@@ -1,4 +1,4 @@
-package org.example.onlineexchange;
+ package org.example.onlineexchange;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -38,6 +39,7 @@ public class USD implements Initializable {
     @FXML
     private Label changeLabel ;
 
+    public double lastUSDprice ;
 
 
     @FXML
@@ -50,6 +52,8 @@ public class USD implements Initializable {
     private TableColumn <Double,Double> OpenRequestsColumn ;
     @FXML
     private LineChart lineChartMinute;
+    @FXML
+    private LineChart lineChartHour;
     @FXML
     private LineChart lineChartDay;
     @FXML
@@ -68,6 +72,17 @@ public class USD implements Initializable {
         setTable();
         setChangeAndSetPrice();
         showTime1();
+        lastUSDprice = Double.parseDouble(HomePage.USDinfo[2]);
+        lineChartMinute.setVisible(false);
+        lineChartHour.setVisible(true);
+        lineChartDay.setVisible(false);
+        lineChartWeek.setVisible(false);
+        lineChartMonth.setVisible(false);
+        lineChartYear.setVisible(false);
+
+        setLineChartYear();
+        setLineChartMinute();
+        setLineChartHour();
     }
 
     public void showTime1(){
@@ -88,10 +103,17 @@ public class USD implements Initializable {
                     int currentMinute = calendar.get(Calendar.MINUTE);
                     if (currentMinute != lastMinute) {
                         // A new minute has passed, call your update function here
-                        TransactionList.clear();
-                        OpenRequestsList.clear();
-                        setTable();
+//                        TransactionList.clear();
+//                        OpenRequestsList.clear();
                         setChangeAndSetPrice();
+                        setTable();
+                        //lineChartMinute
+                        // باید کلیز کنخم
+
+                        setLineChartMinute();
+                        setLineChartHour();
+
+
                         lastMinute = currentMinute;
                     }
                 });
@@ -100,10 +122,6 @@ public class USD implements Initializable {
         thread.start();
     }
 
-    public void ClickOnBack (ActionEvent event) throws IOException {
-        Main m = new Main() ;
-        m.changeScene("homePage");
-    }
     public void ClickOnExit (ActionEvent event) throws IOException {
         System.exit(0);
     }
@@ -123,9 +141,9 @@ public class USD implements Initializable {
         OpenRequestsColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue()));
         try {
             Statement statement1 = Main.connection.createStatement();
-            ResultSet resultSet1 = statement1.executeQuery("SELECT Transaction FROM usdtransaction");
+            ResultSet resultSet1 = statement1.executeQuery("SELECT usdTransaction FROM usd");
             while (resultSet1.next()){
-                Double usdTransaction = resultSet1.getDouble("Transaction");
+                Double usdTransaction = resultSet1.getDouble("usdTransaction");
                 TransactionList.add(usdTransaction);
             }
             TransactionTable.setItems(TransactionList);
@@ -135,7 +153,7 @@ public class USD implements Initializable {
         }
         try {
             Statement statement1 = Main.connection.createStatement();
-            ResultSet resultSet1 = statement1.executeQuery("SELECT usdOpenRequests FROM usdopenrequests");
+            ResultSet resultSet1 = statement1.executeQuery("SELECT usdOpenRequests FROM usd");
             while (resultSet1.next()){
                 Double usdOpenRequests = resultSet1.getDouble("usdOpenRequests");
                 OpenRequestsList.add(usdOpenRequests);
@@ -151,5 +169,176 @@ public class USD implements Initializable {
         changeLabel.setText(String.format("%.2f",(Double.parseDouble(HomePage.USDinfo[2]) - Double.parseDouble(HomePage.USDinfo[3])) / (Double.parseDouble(HomePage.USDinfo[3])) * 100 ) +"%");
     }
 
+    public void setLineChartYear (){
+        XYChart.Series<String, Number> regressionLine = new XYChart.Series<>();
+
+        regressionLine.getData().add(new XYChart.Data<>("2021",  lastUSDprice + HomePage.slopeUSD*(-3 * 365 * 24 * 60)));
+        regressionLine.getData().add(new XYChart.Data<>("2022", lastUSDprice + HomePage.slopeUSD*(-2 * 365 * 24 * 60)));
+        regressionLine.getData().add(new XYChart.Data<>("2023", lastUSDprice + HomePage.slopeUSD*(-365 * 24 * 60)));
+        regressionLine.getData().add(new XYChart.Data<>("2024",lastUSDprice ));
+
+        lineChartYear.getData().add(regressionLine);
+    }
+
+    public void setLineChartMinute (){
+
+        Calendar cal = Calendar.getInstance();
+        int hour = cal.get(Calendar.HOUR_OF_DAY);
+        int minute = cal.get(Calendar.MINUTE);
+
+        String time5;
+        String time4;
+        String time3;
+        String time2;
+        String time1;
+
+        XYChart.Series<String, Number> regressionLine = new XYChart.Series<>();
+        if(minute<5){
+            time5 = (hour-1)+":"+(60+minute-5);
+        }
+        else{
+            time5 = hour+":"+(minute-5);
+        }
+        if(minute<4){
+            time4 = (hour-1)+":"+(60+minute-4);
+        }
+        else{
+            time4 = hour+":"+(minute-4);
+        }
+        if(minute<3){
+            time3 = (hour-1)+":"+(60+minute-3);
+        }
+        else{
+            time3 = hour+":"+(minute-3);
+        }
+        if(minute<2){
+            time2 = (hour-1)+":"+(60+minute-2);
+        }
+        else{
+            time2 = hour+":"+(minute-2);
+        }
+        if(minute<1){
+            time1 = (hour-1)+":"+(60+minute-1);
+        }
+        else{
+            time1 = hour+":"+(minute-1);
+        }
+        String time0 = hour+":"+minute;
+
+        regressionLine.getData().add(new XYChart.Data<>(time5, HomePage.USD[HomePage.USD.length-6]));
+        regressionLine.getData().add(new XYChart.Data<>(time4, HomePage.USD[HomePage.USD.length-5]));
+        regressionLine.getData().add(new XYChart.Data<>(time3, HomePage.USD[HomePage.USD.length-4]));
+        regressionLine.getData().add(new XYChart.Data<>(time2, HomePage.USD[HomePage.USD.length-3]));
+        regressionLine.getData().add(new XYChart.Data<>(time1, HomePage.USD[HomePage.USD.length-2]));
+        regressionLine.getData().add(new XYChart.Data<>(time0, HomePage.USD[HomePage.USD.length-1]));
+
+        lineChartMinute.getData().add(regressionLine);
+    }
+    public void ClickOnMinute (ActionEvent event) throws IOException {
+        lineChartMinute.setVisible(true);
+        lineChartHour.setVisible(false);
+        lineChartDay.setVisible(false);
+        lineChartWeek.setVisible(false);
+        lineChartMonth.setVisible(false);
+        lineChartYear.setVisible(false);
+    }
+    public void ClickOnHour (ActionEvent event) throws IOException {
+        lineChartMinute.setVisible(false);
+        lineChartHour.setVisible(true);
+        lineChartDay.setVisible(false);
+        lineChartWeek.setVisible(false);
+        lineChartMonth.setVisible(false);
+        lineChartYear.setVisible(false);
+    }
+    public void ClickOnDay (ActionEvent event) throws IOException {
+        lineChartMinute.setVisible(false);
+        lineChartHour.setVisible(false);
+        lineChartDay.setVisible(true);
+        lineChartWeek.setVisible(false);
+        lineChartMonth.setVisible(false);
+        lineChartYear.setVisible(false);
+    }
+    public void ClickOnWeek (ActionEvent event) throws IOException {
+        lineChartMinute.setVisible(false);
+        lineChartHour.setVisible(false);
+        lineChartDay.setVisible(false);
+        lineChartWeek.setVisible(true);
+        lineChartMonth.setVisible(false);
+        lineChartYear.setVisible(false);
+    }
+    public void ClickOnMonth (ActionEvent event) throws IOException {
+        lineChartMinute.setVisible(false);
+        lineChartHour.setVisible(false);
+        lineChartDay.setVisible(false);
+        lineChartWeek.setVisible(false);
+        lineChartMonth.setVisible(true);
+        lineChartYear.setVisible(false);
+    }
+    public void ClickOnYear (ActionEvent event) throws IOException {
+        lineChartMinute.setVisible(false);
+        lineChartHour.setVisible(false);
+        lineChartDay.setVisible(false);
+        lineChartWeek.setVisible(false);
+        lineChartMonth.setVisible(false);
+        lineChartYear.setVisible(true);
+    }
+
+    public void setLineChartHour (){
+
+        Calendar cal = Calendar.getInstance();
+        int hour = cal.get(Calendar.HOUR_OF_DAY);
+        int minute = cal.get(Calendar.MINUTE);
+
+        String time5;
+        String time4;
+        String time3;
+        String time2;
+        String time1;
+
+        XYChart.Series<String, Number> regressionLine = new XYChart.Series<>();
+        if(hour<5){
+            time5 = (hour+12-5)+":"+minute;
+        }
+        else{
+            time5 = (hour-5)+":"+minute;
+        }
+        if(hour<4){
+            time4 = (hour+12-4)+":"+minute;
+        }
+        else{
+            time4 = (hour-4)+":"+minute;
+        }
+        if(hour<3){
+            time3 = (hour+12-3)+":"+minute;
+        }
+        else{
+            time3 = (hour-3)+":"+minute;
+        }
+        if(hour<2){
+            time2 = (hour+12-2)+":"+minute;
+        }
+        else{
+            time2 = (hour-2)+":"+minute;
+        }
+        if(hour<1){
+            time1 = (hour+12-1)+":"+minute;
+        }
+        else{
+            time1 = (hour-1)+":"+minute;
+        }
+        String time0 = hour+":"+minute;
+
+        regressionLine.getData().add(new XYChart.Data<>(time5, HomePage.USD[HomePage.USD.length-5*60]));
+        regressionLine.getData().add(new XYChart.Data<>(time4, HomePage.USD[HomePage.USD.length-4*60]));
+        regressionLine.getData().add(new XYChart.Data<>(time3, HomePage.USD[HomePage.USD.length-3*60]));
+        regressionLine.getData().add(new XYChart.Data<>(time2, HomePage.USD[HomePage.USD.length-2*60]));
+        regressionLine.getData().add(new XYChart.Data<>(time1, HomePage.USD[HomePage.USD.length-1*60]));
+        regressionLine.getData().add(new XYChart.Data<>(time0, HomePage.USD[HomePage.USD.length-1]));
+
+        lineChartHour.getData().add(regressionLine);
+    }
+
+
 
 }
+
