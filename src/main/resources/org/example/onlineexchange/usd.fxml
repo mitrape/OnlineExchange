@@ -120,7 +120,7 @@
       </LineChart>
       <ImageView fitHeight="151.0" fitWidth="283.0" layoutX="552.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@2024-06-15%20(2).png" />
+            <Image url="@pie%20chart.png" />
          </image>
       </ImageView>
    </children>
