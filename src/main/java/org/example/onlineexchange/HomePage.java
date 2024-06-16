@@ -37,13 +37,28 @@ public class HomePage implements Initializable{
     public boolean orderMaxPrice = false;
     public boolean orderMinPrice = false;
 
+    public static double slopeUSD ;
+    public static double interceptUSD ;
+    public static double slopeEUR ;
+    public static double interceptEUR ;
+    public static double slopeYEN ;
+    public static double interceptYEN ;
+    public static double slopeGBP ;
+    public static double interceptGBP ;
+    public static double slopeTOMAN ;
+    public static double interceptTOMAN ;
+    public static double[] dataUSD5Minute = new double[5];
+
+
+
+
     public String[] data;
     public String[] time;
-    public Double[] USD;
-    public Double[] EUR;
-    public Double[] TOMAN;
-    public Double[] YEN;
-    public Double[] GBP;
+    public static Double[] USD;
+    public static Double[] EUR;
+    public static Double[] TOMAN;
+    public static Double[] YEN;
+    public static Double[] GBP;
 
     @FXML
     private Button username ;
@@ -187,6 +202,28 @@ public class HomePage implements Initializable{
         setLabelsFirst();
         showTime1();
 
+        Double[] slopeANDinterceptUSD = linearRegressionData(USD);
+        slopeUSD = slopeANDinterceptUSD[0];
+        interceptUSD = slopeANDinterceptUSD[1];
+
+        Double[] slopeANDinterceptEUR = linearRegressionData(EUR);
+        slopeEUR = slopeANDinterceptEUR[0];
+        interceptEUR = slopeANDinterceptEUR[1];
+
+        Double[] slopeANDinterceptYEN = linearRegressionData(YEN);
+        slopeYEN = slopeANDinterceptYEN[0];
+        interceptYEN = slopeANDinterceptYEN[1];
+
+        Double[] slopeANDinterceptGBP = linearRegressionData(GBP);
+        slopeGBP = slopeANDinterceptGBP[0];
+        interceptGBP = slopeANDinterceptGBP[1];
+
+        Double[] slopeANDinterceptTOMAN = linearRegressionData(TOMAN);
+        slopeTOMAN = slopeANDinterceptTOMAN[0];
+        interceptTOMAN = slopeANDinterceptTOMAN[1];
+
+
+
     }
     public void ClickOnProfile (ActionEvent event) throws IOException {
         Main m = new Main();
@@ -273,7 +310,19 @@ public class HomePage implements Initializable{
         }
         double nextX = currency.length + 1;
         Double predictedY = regression.predict(nextX);
+
         return predictedY;
+    }
+    public Double[] linearRegressionData (Double[] currency){
+        SimpleRegression regression = new SimpleRegression();
+
+        for (int i = 0; i < currency.length; i++) {
+            regression.addData(i + 1, currency[i]);
+        }
+        Double[] slopeANDintercept = new Double[2];
+        slopeANDintercept[0] = regression.getSlope();
+        slopeANDintercept[1] = regression.getIntercept();
+        return slopeANDintercept;
     }
     public void setLabelsFirst(){
         pos00.setText(USDinfo[1]);
