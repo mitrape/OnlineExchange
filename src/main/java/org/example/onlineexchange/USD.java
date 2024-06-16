@@ -26,8 +26,11 @@ import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.ResourceBundle;
+
+import java.time.LocalDate;
 
 public class USD implements Initializable {
 
@@ -40,6 +43,14 @@ public class USD implements Initializable {
     private Label changeLabel ;
 
     public double lastUSDprice ;
+
+    public XYChart.Series<String, Number> regressionLineYear;
+    public XYChart.Series<String, Number> regressionLineMinute;
+    public XYChart.Series<String, Number> regressionLineHour;
+    public XYChart.Series<String, Number> regressionLineDay;
+    public XYChart.Series<String, Number> regressionLineWeek;
+    public XYChart.Series<String, Number> regressionLineMonth;
+
 
 
     @FXML
@@ -83,6 +94,9 @@ public class USD implements Initializable {
         setLineChartYear();
         setLineChartMinute();
         setLineChartHour();
+        setLineChartDay();
+        setLineChartWeek();
+        setLineChartMonth();
     }
 
     public void showTime1(){
@@ -90,7 +104,7 @@ public class USD implements Initializable {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss a");
             while (!stop){
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(1000+1000);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
@@ -103,16 +117,24 @@ public class USD implements Initializable {
                     int currentMinute = calendar.get(Calendar.MINUTE);
                     if (currentMinute != lastMinute) {
                         // A new minute has passed, call your update function here
-//                        TransactionList.clear();
-//                        OpenRequestsList.clear();
+                        TransactionList.clear();
+                        OpenRequestsList.clear();
+
                         setChangeAndSetPrice();
                         setTable();
-                        //lineChartMinute
-                        // باید کلیز کنخم
+
+                        regressionLineHour.getData().removeAll(Collections.singleton(lineChartHour.getData().setAll()));
+                        regressionLineMinute.getData().removeAll(Collections.singleton(lineChartMinute.getData().setAll()));
+                        regressionLineDay.getData().removeAll(Collections.singleton(lineChartDay.getData().setAll()));
+                        regressionLineWeek.getData().removeAll(Collections.singleton(lineChartWeek.getData().setAll()));
+                        regressionLineMonth.getData().removeAll(Collections.singleton(lineChartMonth.getData().setAll()));
+
 
                         setLineChartMinute();
                         setLineChartHour();
-
+                        setLineChartDay();
+                        setLineChartWeek();
+                        setLineChartMonth();
 
                         lastMinute = currentMinute;
                     }
@@ -170,14 +192,14 @@ public class USD implements Initializable {
     }
 
     public void setLineChartYear (){
-        XYChart.Series<String, Number> regressionLine = new XYChart.Series<>();
+        regressionLineYear = new XYChart.Series<>();
 
-        regressionLine.getData().add(new XYChart.Data<>("2021",  lastUSDprice + HomePage.slopeUSD*(-3 * 365 * 24 * 60)));
-        regressionLine.getData().add(new XYChart.Data<>("2022", lastUSDprice + HomePage.slopeUSD*(-2 * 365 * 24 * 60)));
-        regressionLine.getData().add(new XYChart.Data<>("2023", lastUSDprice + HomePage.slopeUSD*(-365 * 24 * 60)));
-        regressionLine.getData().add(new XYChart.Data<>("2024",lastUSDprice ));
+        regressionLineYear.getData().add(new XYChart.Data<>("2021",  lastUSDprice + HomePage.slopeUSD*(-3 * 365 * 24 * 60)));
+        regressionLineYear.getData().add(new XYChart.Data<>("2022", lastUSDprice + HomePage.slopeUSD*(-2 * 365 * 24 * 60)));
+        regressionLineYear.getData().add(new XYChart.Data<>("2023", lastUSDprice + HomePage.slopeUSD*(-365 * 24 * 60)));
+        regressionLineYear.getData().add(new XYChart.Data<>("2024",lastUSDprice ));
 
-        lineChartYear.getData().add(regressionLine);
+        lineChartYear.getData().add(regressionLineYear);
     }
 
     public void setLineChartMinute (){
@@ -186,13 +208,15 @@ public class USD implements Initializable {
         int hour = cal.get(Calendar.HOUR_OF_DAY);
         int minute = cal.get(Calendar.MINUTE);
 
+
+
         String time5;
         String time4;
         String time3;
         String time2;
         String time1;
 
-        XYChart.Series<String, Number> regressionLine = new XYChart.Series<>();
+        regressionLineMinute = new XYChart.Series<>();
         if(minute<5){
             time5 = (hour-1)+":"+(60+minute-5);
         }
@@ -225,14 +249,14 @@ public class USD implements Initializable {
         }
         String time0 = hour+":"+minute;
 
-        regressionLine.getData().add(new XYChart.Data<>(time5, HomePage.USD[HomePage.USD.length-6]));
-        regressionLine.getData().add(new XYChart.Data<>(time4, HomePage.USD[HomePage.USD.length-5]));
-        regressionLine.getData().add(new XYChart.Data<>(time3, HomePage.USD[HomePage.USD.length-4]));
-        regressionLine.getData().add(new XYChart.Data<>(time2, HomePage.USD[HomePage.USD.length-3]));
-        regressionLine.getData().add(new XYChart.Data<>(time1, HomePage.USD[HomePage.USD.length-2]));
-        regressionLine.getData().add(new XYChart.Data<>(time0, HomePage.USD[HomePage.USD.length-1]));
+        regressionLineMinute.getData().add(new XYChart.Data<>(time5, HomePage.USD[HomePage.USD.length-5]));
+        regressionLineMinute.getData().add(new XYChart.Data<>(time4, HomePage.USD[HomePage.USD.length-4]));
+        regressionLineMinute.getData().add(new XYChart.Data<>(time3, HomePage.USD[HomePage.USD.length-3]));
+        regressionLineMinute.getData().add(new XYChart.Data<>(time2, HomePage.USD[HomePage.USD.length-2]));
+        regressionLineMinute.getData().add(new XYChart.Data<>(time1, HomePage.USD[HomePage.USD.length-1]));
+        regressionLineMinute.getData().add(new XYChart.Data<>(time0, Double.parseDouble(HomePage.USDinfo[2])));
 
-        lineChartMinute.getData().add(regressionLine);
+        lineChartMinute.getData().add(regressionLineMinute);
     }
     public void ClickOnMinute (ActionEvent event) throws IOException {
         lineChartMinute.setVisible(true);
@@ -295,7 +319,7 @@ public class USD implements Initializable {
         String time2;
         String time1;
 
-        XYChart.Series<String, Number> regressionLine = new XYChart.Series<>();
+        regressionLineHour = new XYChart.Series<>();
         if(hour<5){
             time5 = (hour+12-5)+":"+minute;
         }
@@ -328,16 +352,91 @@ public class USD implements Initializable {
         }
         String time0 = hour+":"+minute;
 
-        regressionLine.getData().add(new XYChart.Data<>(time5, HomePage.USD[HomePage.USD.length-5*60]));
-        regressionLine.getData().add(new XYChart.Data<>(time4, HomePage.USD[HomePage.USD.length-4*60]));
-        regressionLine.getData().add(new XYChart.Data<>(time3, HomePage.USD[HomePage.USD.length-3*60]));
-        regressionLine.getData().add(new XYChart.Data<>(time2, HomePage.USD[HomePage.USD.length-2*60]));
-        regressionLine.getData().add(new XYChart.Data<>(time1, HomePage.USD[HomePage.USD.length-1*60]));
-        regressionLine.getData().add(new XYChart.Data<>(time0, HomePage.USD[HomePage.USD.length-1]));
+        regressionLineHour.getData().add(new XYChart.Data<>(time5, HomePage.USD[HomePage.USD.length-5*60+1]));
+        regressionLineHour.getData().add(new XYChart.Data<>(time4, HomePage.USD[HomePage.USD.length-4*60+1]));
+        regressionLineHour.getData().add(new XYChart.Data<>(time3, HomePage.USD[HomePage.USD.length-3*60+1]));
+        regressionLineHour.getData().add(new XYChart.Data<>(time2, HomePage.USD[HomePage.USD.length-2*60+1]));
+        regressionLineHour.getData().add(new XYChart.Data<>(time1, HomePage.USD[HomePage.USD.length-1*60+1]));
+        regressionLineHour.getData().add(new XYChart.Data<>(time0, Double.parseDouble(HomePage.USDinfo[2])));
 
-        lineChartHour.getData().add(regressionLine);
+        lineChartHour.getData().add(regressionLineHour);
     }
 
+    public void setLineChartDay (){
+
+        Calendar cal = Calendar.getInstance();
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        int month = cal.get(Calendar.MONTH);
+
+        String time4;
+        String time3;
+        String time2;
+        String time1;
+
+        regressionLineDay = new XYChart.Series<>();
+        if(day<4){
+            time4 = (month+1)+"/"+(day+30-4);
+        }
+        else{
+            time4 = (month+1)+"/"+(day-4);
+        }
+        if(day<3){
+            time3 = (month+1)+"/"+(day+30-3);
+        }
+        else{
+            time3 = (month+1)+"/"+(day-3);
+        }
+        if(day<2){
+            time2 = (month+1)+"/"+(day+30-2);
+        }
+        else{
+            time2 = (month+1)+"/"+(day-2);
+        }
+        if(day<1){
+            time1 = (month+1)+"/"+(day+30-1);
+        }
+        else{
+            time1 = (month+1)+"/"+(day-1);
+        }
+
+        String time0 = (month+1)+"/"+day;
+
+        regressionLineDay.getData().add(new XYChart.Data<>(time4, Double.parseDouble(HomePage.USDinfo[2])+HomePage.slopeUSD*(-4*24*60)));
+        regressionLineDay.getData().add(new XYChart.Data<>(time3, Double.parseDouble(HomePage.USDinfo[2])+HomePage.slopeUSD*(-3*24*60)));
+        regressionLineDay.getData().add(new XYChart.Data<>(time2, Double.parseDouble(HomePage.USDinfo[2])+HomePage.slopeUSD*(-2*24*60)));
+        regressionLineDay.getData().add(new XYChart.Data<>(time1, Double.parseDouble(HomePage.USDinfo[2])+HomePage.slopeUSD*(-24*60)));
+        regressionLineDay.getData().add(new XYChart.Data<>(time0, Double.parseDouble(HomePage.USDinfo[2])));
+
+        lineChartDay.getData().add(regressionLineDay);
+    }
+
+    public void setLineChartWeek (){
+
+        regressionLineWeek = new XYChart.Series<>();
+        LocalDate today = LocalDate.now();
+
+        regressionLineWeek.getData().add(new XYChart.Data<>(String.valueOf(today.minusDays(28)), Double.parseDouble(HomePage.USDinfo[2])+HomePage.slopeUSD*(-4*7*24*60)));
+        regressionLineWeek.getData().add(new XYChart.Data<>(String.valueOf(today.minusDays(21)), Double.parseDouble(HomePage.USDinfo[2])+HomePage.slopeUSD*(-3*7*24*60)));
+        regressionLineWeek.getData().add(new XYChart.Data<>(String.valueOf(today.minusDays(14)), Double.parseDouble(HomePage.USDinfo[2])+HomePage.slopeUSD*(-2*7*24*60)));
+        regressionLineWeek.getData().add(new XYChart.Data<>(String.valueOf(today.minusDays(7)), Double.parseDouble(HomePage.USDinfo[2])+HomePage.slopeUSD*(-7*24*60)));
+        regressionLineWeek.getData().add(new XYChart.Data<>(String.valueOf(today), Double.parseDouble(HomePage.USDinfo[2])));
+
+        lineChartWeek.getData().add(regressionLineWeek);
+    }
+
+    public void setLineChartMonth (){
+
+        regressionLineMonth = new XYChart.Series<>();
+        LocalDate today = LocalDate.now();
+
+        regressionLineMonth.getData().add(new XYChart.Data<>(String.valueOf(today.minusMonths(4)), Double.parseDouble(HomePage.USDinfo[2])+HomePage.slopeUSD*(-4*30*24*60)));
+        regressionLineMonth.getData().add(new XYChart.Data<>(String.valueOf(today.minusMonths(3)), Double.parseDouble(HomePage.USDinfo[2])+HomePage.slopeUSD*(-3*30*24*60)));
+        regressionLineMonth.getData().add(new XYChart.Data<>(String.valueOf(today.minusMonths(2)), Double.parseDouble(HomePage.USDinfo[2])+HomePage.slopeUSD*(-2*30*24*60)));
+        regressionLineMonth.getData().add(new XYChart.Data<>(String.valueOf(today.minusMonths(1)), Double.parseDouble(HomePage.USDinfo[2])+HomePage.slopeUSD*(-1*30*24*60)));
+        regressionLineMonth.getData().add(new XYChart.Data<>(String.valueOf(today), Double.parseDouble(HomePage.USDinfo[2])));
+
+        lineChartMonth.getData().add(regressionLineMonth);
+    }
 
 
 }
