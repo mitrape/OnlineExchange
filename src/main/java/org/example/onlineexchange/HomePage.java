@@ -47,9 +47,6 @@ public class HomePage implements Initializable{
     public static double interceptGBP ;
     public static double slopeTOMAN ;
     public static double interceptTOMAN ;
-    public static double[] dataUSD5Minute = new double[5];
-
-
 
 
     public String[] data;
