@@ -1,14 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.onlineexchange.YEN"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="673.0" prefWidth="926.0" style="-fx-background-color: #071739;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.onlineexchange.YEN">
+    <children>
+        <Label layoutX="46.0" layoutY="24.0" prefHeight="56.0" prefWidth="98.0" text="YEN" textFill="WHITE">
+            <font>
+                <Font name="System Bold Italic" size="39.0" />
+            </font>
+        </Label>
+        <Label fx:id="changeLabel" alignment="CENTER" layoutX="158.0" layoutY="39.0" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 8;" text="2.5%">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Label layoutX="71.0" layoutY="131.0" text="Price :" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="priceLabel" layoutX="71.0" layoutY="178.0" prefHeight="22.0" prefWidth="78.0" text="2.6556" textFill="WHITE">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Label layoutX="281.0" layoutY="131.0" text="Turnover :" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="285.0" layoutY="178.0" prefHeight="22.0" prefWidth="78.0" text="2.6556B" textFill="WHITE">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <TableView fx:id="TransactionTable" layoutX="551.0" layoutY="305.0" prefHeight="302.0" prefWidth="122.0">
+            <columns>
+                <TableColumn fx:id="TransactionColumn" prefWidth="119.20001220703125" text="Last Transaction" />
+            </columns>
+        </TableView>
+        <Label fx:id="timeLabel" alignment="CENTER" layoutX="784.0" layoutY="640.0" prefHeight="22.0" prefWidth="122.0" text="Time" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="11.0" />
+            </font>
+        </Label>
+        <TableView fx:id="OpenRequestsTable" layoutX="720.0" layoutY="305.0" prefHeight="302.0" prefWidth="122.0">
+            <columns>
+                <TableColumn fx:id="OpenRequestsColumn" prefWidth="121.60001220703126" text="Open Requests" />
+            </columns>
+        </TableView>
+        <Button layoutX="14.0" layoutY="639.0" mnemonicParsing="false" onAction="#ClickOnExit" prefHeight="22.0" prefWidth="47.0" style="-fx-background-color: red; -fx-background-radius: 6;" text="Exit" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+        <LineChart fx:id="lineChartYear" layoutX="10.0" layoutY="295.0" prefHeight="335.0" prefWidth="448.0">
+            <xAxis>
+                <CategoryAxis side="BOTTOM" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis side="LEFT" />
+            </yAxis>
+        </LineChart>
+        <Button fx:id="Minute" layoutX="80.0" layoutY="261.0" mnemonicParsing="false" onAction="#ClickOnMinute" prefHeight="26.0" prefWidth="47.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 5;" text="60 S" />
+        <Button fx:id="Hour" layoutX="137.0" layoutY="261.0" mnemonicParsing="false" onAction="#ClickOnHour" prefHeight="26.0" prefWidth="47.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 5;" text="1 H" />
+        <Button fx:id="Day" layoutX="195.0" layoutY="261.0" mnemonicParsing="false" onAction="#ClickOnDay" prefHeight="26.0" prefWidth="47.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 5;" text="1 D" />
+        <Button fx:id="Week" layoutX="253.0" layoutY="261.0" mnemonicParsing="false" onAction="#ClickOnWeek" prefHeight="26.0" prefWidth="47.0" style="-fx-background-radius: 5; -fx-background-color: #1EF1B1;" text="1 W" />
+        <Button fx:id="Month" layoutX="310.0" layoutY="261.0" mnemonicParsing="false" onAction="#ClickOnMonth" prefHeight="26.0" prefWidth="47.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 5;" text="1 M" />
+        <Button fx:id="Year" layoutX="367.0" layoutY="261.0" mnemonicParsing="false" onAction="#ClickOnYear" prefHeight="26.0" prefWidth="47.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 5;" text="1 Y" />
+        <LineChart fx:id="lineChartMonth" layoutX="10.0" layoutY="295.0" prefHeight="335.0" prefWidth="448.0">
+            <xAxis>
+                <CategoryAxis side="BOTTOM" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis side="LEFT" />
+            </yAxis>
+        </LineChart>
+        <LineChart fx:id="lineChartWeek" layoutX="10.0" layoutY="295.0" prefHeight="335.0" prefWidth="448.0">
+            <xAxis>
+                <CategoryAxis side="BOTTOM" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis side="LEFT" />
+            </yAxis>
+        </LineChart>
+        <LineChart fx:id="lineChartDay" layoutX="10.0" layoutY="295.0" prefHeight="335.0" prefWidth="448.0">
+            <xAxis>
+                <CategoryAxis side="BOTTOM" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis side="LEFT" />
+            </yAxis>
+        </LineChart>
+        <LineChart fx:id="lineChartHour" layoutX="10.0" layoutY="295.0" prefHeight="335.0" prefWidth="448.0">
+            <xAxis>
+                <CategoryAxis side="BOTTOM" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis side="LEFT" />
+            </yAxis>
+        </LineChart>
+        <LineChart fx:id="lineChartMinute" layoutX="10.0" layoutY="295.0" prefHeight="335.0" prefWidth="448.0">
+            <xAxis>
+                <CategoryAxis side="BOTTOM" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis side="LEFT" />
+            </yAxis>
+        </LineChart>
+        <ImageView fitHeight="151.0" fitWidth="283.0" layoutX="552.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@pie%20chart.png" />
+            </image>
+        </ImageView>
+    </children>
 </AnchorPane>
