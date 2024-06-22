@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -13,28 +10,27 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="714.0" prefWidth="529.0" style="-fx-background-color: #071739;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.onlineexchange.Swap">
+<AnchorPane prefHeight="480.0" prefWidth="510.0" style="-fx-background-color: #071739;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.onlineexchange.Swap">
    <children>
-      <VBox layoutX="63.0" prefHeight="702.0" prefWidth="402.0">
+      <VBox layoutX="56.0" prefHeight="480.0" prefWidth="398.0">
          <children>
             <AnchorPane prefHeight="83.0" prefWidth="593.0">
                <children>
-                  <Label layoutX="178.0" layoutY="14.0" text="swap" textFill="WHITE">
+                  <Label layoutX="167.0" layoutY="22.0" text="swap" textFill="WHITE">
                      <font>
                         <Font name="System Bold Italic" size="26.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="270.0" prefWidth="402.0" style="-fx-background-color: #C1C8DA; -fx-background-radius: 20;">
+            <AnchorPane prefHeight="347.0" prefWidth="398.0" style="-fx-background-color: #C1C8DA; -fx-background-radius: 10;">
                <children>
-                  <ImageView fitHeight="112.0" fitWidth="116.0" layoutX="139.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="112.0" fitWidth="116.0" layoutX="147.0" layoutY="106.0" onMouseClicked="#ClickOnSwap" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@swap%20logo.png" />
                      </image>
                   </ImageView>
-                  <SplitMenuButton fx:id="firstCurrencyMenu" layoutX="175.0" layoutY="29.0" mnemonicParsing="false" text="choose currency " textFill="#1d549c">
+                  <SplitMenuButton fx:id="firstCurrencyMenu" layoutX="165.0" layoutY="40.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="172.0" text="choose currency " textFill="#1d549c">
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#ClickOnYenFirst" text="YEN" />
                         <MenuItem mnemonicParsing="false" onAction="#ClickOnEurFirst" text="EUR" />
@@ -46,7 +42,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </SplitMenuButton>
-                  <SplitMenuButton fx:id="secondCurrencyMenu" layoutX="175.0" layoutY="205.0" mnemonicParsing="false" text="choose currency " textFill="#1d549c">
+                  <SplitMenuButton fx:id="secondCurrencyMenu" layoutX="172.0" layoutY="259.0" mnemonicParsing="false" text="choose currency " textFill="#1d549c">
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#ClickOnYenSecond" text="YEN" />
                         <MenuItem mnemonicParsing="false" onAction="#ClickOnEurSecond" text="EUR" />
@@ -58,52 +54,11 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </SplitMenuButton>
-                  <TextField alignment="CENTER" layoutX="84.0" layoutY="29.0" prefHeight="30.0" prefWidth="63.0" promptText="0.00" />
-                  <TextField alignment="CENTER" layoutX="84.0" layoutY="204.0" prefHeight="30.0" prefWidth="63.0" promptText="0.00" />
+                  <TextField alignment="CENTER" layoutX="74.0" layoutY="40.0" prefHeight="30.0" prefWidth="63.0" promptText="0.00" />
+                  <Label fx:id="AmountOfCurrecyLabel" alignment="CENTER" layoutX="88.0" layoutY="260.0" prefHeight="27.0" prefWidth="63.0" style="-fx-background-color: white; -fx-background-radius: 2;" text="0.00" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="48.0" prefWidth="402.0" />
-            <AnchorPane layoutX="10.0" layoutY="388.0" prefHeight="272.0" prefWidth="402.0" style="-fx-background-color: #C1C8DA; -fx-background-radius: 20;">
-               <children>
-                  <RadioButton layoutX="40.0" layoutY="112.0" mnemonicParsing="false" text="BUY" textFill="GREEN">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </RadioButton>
-                  <RadioButton layoutX="39.0" layoutY="66.0" mnemonicParsing="false" text="SELL" textFill="RED">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </RadioButton>
-                  <RadioButton layoutX="156.0" layoutY="32.0" mnemonicParsing="false" text="USD">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </RadioButton>
-                  <RadioButton layoutX="157.0" layoutY="62.0" mnemonicParsing="false" text="EUR">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </RadioButton>
-                  <RadioButton layoutX="157.0" layoutY="94.0" mnemonicParsing="false" text="YEN">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </RadioButton>
-                  <RadioButton layoutX="157.0" layoutY="158.0" mnemonicParsing="false" text="TOMAN">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </RadioButton>
-                  <RadioButton layoutX="157.0" layoutY="126.0" mnemonicParsing="false" text="GBP">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </RadioButton>
-                  <Button layoutX="154.0" layoutY="209.0" mnemonicParsing="false" onAction="#ClickOnDone" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: green; -fx-background-radius: 8;" text="DONE!" textFill="WHITE" />
-                  <Slider layoutX="312.0" layoutY="7.0" majorTickUnit="50000.0" max="1000000.0" minorTickCount="0" orientation="VERTICAL" prefHeight="203.0" prefWidth="14.0" showTickLabels="true" />
-               </children>
-            </AnchorPane>
          </children>
       </VBox>
    </children>
