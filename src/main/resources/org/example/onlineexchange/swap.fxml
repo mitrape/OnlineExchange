@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitMenuButton?>
@@ -9,8 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="480.0" prefWidth="510.0" style="-fx-background-color: #071739;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.onlineexchange.Swap">
+<AnchorPane prefHeight="478.0" prefWidth="535.0" style="-fx-background-color: #071739;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.onlineexchange.Swap">
    <children>
       <VBox layoutX="56.0" prefHeight="480.0" prefWidth="398.0">
          <children>
@@ -23,14 +25,9 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="347.0" prefWidth="398.0" style="-fx-background-color: #C1C8DA; -fx-background-radius: 10;">
+            <AnchorPane prefHeight="349.0" prefWidth="459.0" style="-fx-background-color: #C1C8DA; -fx-background-radius: 8;">
                <children>
-                  <ImageView fitHeight="112.0" fitWidth="116.0" layoutX="147.0" layoutY="106.0" onMouseClicked="#ClickOnSwap" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@swap%20logo.png" />
-                     </image>
-                  </ImageView>
-                  <SplitMenuButton fx:id="firstCurrencyMenu" layoutX="165.0" layoutY="40.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="172.0" text="choose currency " textFill="#1d549c">
+                  <SplitMenuButton fx:id="firstCurrencyMenu" layoutX="185.0" layoutY="40.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="148.0" text="choose currency " textFill="#071739">
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#ClickOnYenFirst" text="YEN" />
                         <MenuItem mnemonicParsing="false" onAction="#ClickOnEurFirst" text="EUR" />
@@ -42,7 +39,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </SplitMenuButton>
-                  <SplitMenuButton fx:id="secondCurrencyMenu" layoutX="172.0" layoutY="259.0" mnemonicParsing="false" text="choose currency " textFill="#1d549c">
+                  <SplitMenuButton fx:id="secondCurrencyMenu" layoutX="185.0" layoutY="246.0" mnemonicParsing="false" text="choose currency " textFill="#071739">
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#ClickOnYenSecond" text="YEN" />
                         <MenuItem mnemonicParsing="false" onAction="#ClickOnEurSecond" text="EUR" />
@@ -54,8 +51,23 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </SplitMenuButton>
-                  <TextField fx:id="inputAmount" alignment="CENTER" layoutX="74.0" layoutY="40.0" prefHeight="30.0" prefWidth="63.0" promptText="0.00" />
-                  <Label fx:id="amountOfCurrecyLabel" alignment="CENTER" layoutX="88.0" layoutY="260.0" prefHeight="27.0" prefWidth="63.0" style="-fx-background-color: white; -fx-background-radius: 2;" text="0.00" />
+                  <TextField fx:id="inputAmount" alignment="CENTER" layoutX="96.0" layoutY="40.0" prefHeight="30.0" prefWidth="63.0" promptText="0.00" />
+                  <Label fx:id="outputAmount" alignment="CENTER" layoutX="96.0" layoutY="246.0" prefHeight="27.0" prefWidth="63.0" style="-fx-background-color: white; -fx-background-radius: 2;" text="0.00" />
+                  <Button layoutX="149.0" layoutY="301.0" mnemonicParsing="false" onAction="#ClickOnSwap" prefHeight="29.0" prefWidth="80.0" style="-fx-background-color: #071739; -fx-background-radius: 8;" text="Swap" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="105.0" fitWidth="125.0" layoutX="126.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@arrow-swap-icon-2048x2048-k1oxo9he.png" />
+                     </image>
+                  </ImageView>
+                  <Text fx:id="messageSameCurrency" fill="#e80a0a" layoutX="333.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Same Currency!" visible="false">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Text>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="48.0" prefWidth="402.0" />

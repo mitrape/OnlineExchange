@@ -239,7 +239,7 @@ public class HomePage implements Initializable{
     }
     public void ClickOnSwap (ActionEvent event) throws IOException{
         Main m = new Main();
-        m.changeScene("swap");
+        m.openNewWindow("Swap","swap");
     }
     public void ClickOnLogin (ActionEvent event) throws IOException{
         Main m = new Main();
