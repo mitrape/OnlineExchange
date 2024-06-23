@@ -1,109 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.gluonhq.charm.glisten.control.ToggleButtonGroup?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="714.0" prefWidth="529.0" style="-fx-background-color: #071739;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.onlineexchange.Swap">
+<AnchorPane prefHeight="713.0" prefWidth="927.0" style="-fx-background-color: #071739;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.onlineexchange.Exchange">
     <children>
-        <VBox layoutX="63.0" prefHeight="702.0" prefWidth="402.0">
-            <children>
-                <AnchorPane prefHeight="83.0" prefWidth="593.0">
-                    <children>
-                        <Label layoutX="178.0" layoutY="14.0" text="swap" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold Italic" size="26.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </AnchorPane>
-                <AnchorPane prefHeight="287.0" prefWidth="402.0" style="-fx-background-color: #C1C8DA; -fx-background-radius: 20;">
-                    <children>
-                        <ImageView fitHeight="112.0" fitWidth="116.0" layoutX="139.0" layoutY="78.0" onMouseClicked="#ClickOnSwap" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@swap%20logo.png" />
-                            </image>
-                        </ImageView>
-                        <SplitMenuButton fx:id="firstCurrencyMenu" layoutX="175.0" layoutY="29.0" mnemonicParsing="false" text="choose currency " textFill="#1d549c">
-                            <items>
-                                <MenuItem mnemonicParsing="false" onAction="#ClickOnYenFirst" text="YEN" />
-                                <MenuItem mnemonicParsing="false" onAction="#ClickOnEurFirst" text="EUR" />
-                                <MenuItem mnemonicParsing="false" onAction="#ClickOnTomanFirst" text="TOMAN" />
-                                <MenuItem mnemonicParsing="false" onAction="#ClickOnGbpFirst" text="GBP" />
-                                <MenuItem mnemonicParsing="false" onAction="#ClickOnUsdFirst" text="USD" />
-                            </items>
-                            <font>
-                                <Font name="System Bold" size="14.0" />
-                            </font>
-                        </SplitMenuButton>
-                        <SplitMenuButton fx:id="secondCurrencyMenu" layoutX="122.0" layoutY="199.0" mnemonicParsing="false" text="choose currency " textFill="#1d549c">
-                            <items>
-                                <MenuItem mnemonicParsing="false" onAction="#ClickOnYenSecond" text="YEN" />
-                                <MenuItem mnemonicParsing="false" onAction="#ClickOnEurSecond" text="EUR" />
-                                <MenuItem mnemonicParsing="false" onAction="#ClickOnTomanSecond" text="TOMAN" />
-                                <MenuItem mnemonicParsing="false" onAction="#ClickOnGbpSecond" text="GBP" />
-                                <MenuItem mnemonicParsing="false" onAction="#ClickOnUsdSecond" text="USD" />
-                            </items>
-                            <font>
-                                <Font name="System Bold" size="14.0" />
-                            </font>
-                        </SplitMenuButton>
-                        <TextField alignment="CENTER" layoutX="84.0" layoutY="29.0" prefHeight="30.0" prefWidth="63.0" promptText="0.00" />
-                        <Label fx:id="AmountOfCurrecyLabel" alignment="CENTER" layoutX="173.0" layoutY="248.0" prefHeight="18.0" prefWidth="56.0" text="0.00" />
-                    </children>
-                </AnchorPane>
-                <AnchorPane prefHeight="48.0" prefWidth="402.0" />
-                <AnchorPane layoutX="10.0" layoutY="388.0" prefHeight="272.0" prefWidth="402.0" style="-fx-background-color: #C1C8DA; -fx-background-radius: 20;">
-                    <children>
-                        <RadioButton layoutX="40.0" layoutY="112.0" mnemonicParsing="false" text="BUY" textFill="GREEN">
-                            <font>
-                                <Font name="System Bold" size="14.0" />
-                            </font>
-                        </RadioButton>
-                        <RadioButton layoutX="39.0" layoutY="66.0" mnemonicParsing="false" text="SELL" textFill="RED">
-                            <font>
-                                <Font name="System Bold" size="14.0" />
-                            </font>
-                        </RadioButton>
-                        <RadioButton layoutX="156.0" layoutY="32.0" mnemonicParsing="false" text="USD">
-                            <font>
-                                <Font name="System Bold" size="13.0" />
-                            </font>
-                        </RadioButton>
-                        <RadioButton layoutX="157.0" layoutY="62.0" mnemonicParsing="false" text="EUR">
-                            <font>
-                                <Font name="System Bold" size="13.0" />
-                            </font>
-                        </RadioButton>
-                        <RadioButton layoutX="157.0" layoutY="94.0" mnemonicParsing="false" text="YEN">
-                            <font>
-                                <Font name="System Bold" size="13.0" />
-                            </font>
-                        </RadioButton>
-                        <RadioButton layoutX="157.0" layoutY="158.0" mnemonicParsing="false" text="TOMAN">
-                            <font>
-                                <Font name="System Bold" size="13.0" />
-                            </font>
-                        </RadioButton>
-                        <RadioButton layoutX="157.0" layoutY="126.0" mnemonicParsing="false" text="GBP">
-                            <font>
-                                <Font name="System Bold" size="13.0" />
-                            </font>
-                        </RadioButton>
-                        <Button layoutX="154.0" layoutY="209.0" mnemonicParsing="false" onAction="#ClickOnDone" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: green; -fx-background-radius: 8;" text="DONE!" textFill="WHITE" />
-                        <Slider layoutX="312.0" layoutY="7.0" majorTickUnit="50000.0" max="1000000.0" minorTickCount="0" orientation="VERTICAL" prefHeight="203.0" prefWidth="14.0" showTickLabels="true" />
-                    </children>
-                </AnchorPane>
-            </children>
-        </VBox>
+            <Label layoutX="405.0" layoutY="20.0" text="Exchange" textFill="#cbd6f2">
+                <font>
+                    <Font name="System Bold Italic" size="26.0" />
+                </font>
+            </Label>
+      <AnchorPane layoutX="47.0" layoutY="134.0" prefHeight="503.0" prefWidth="393.0" style="-fx-background-color: #cbd6f2; -fx-background-radius: 7;">
+         <children>
+                  <Button layoutX="129.0" layoutY="429.0" mnemonicParsing="false" onAction="#ClickOnDone" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: green;" text="DONE!" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <MenuButton fx:id="CurrencyButton" alignment="CENTER" layoutX="210.0" layoutY="148.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="147.0" style="-fx-background-color: transparent; -fx-border-color: #071739;" text="currency" textFill="#071739">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#ClickOnTOMAN" text="TOMAN" />
+                  <MenuItem mnemonicParsing="false" onAction="#ClickOnYEN" text="YEN" />
+                  <MenuItem mnemonicParsing="false" onAction="#ClickOnGBP" text="GBP" />
+                  <MenuItem mnemonicParsing="false" onAction="#ClickOnEUR" text="EUR" />
+                <MenuItem mnemonicParsing="false" onAction="#ClickOnUSD" text="USD" />
+              </items>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MenuButton>
+            <Label layoutX="26.0" layoutY="153.0" text="Choose the currency" textFill="#071739">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <ToggleButtonGroup layoutX="82.0" layoutY="206.0" selectionType="SINGLE" />
+            <Button fx:id="buyButton" layoutX="93.0" layoutY="44.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="74.0" style="-fx-border-color: green; -fx-background-color: transparent;" text="BUY" textFill="#071739">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="sellButton" layoutX="224.0" layoutY="44.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" style="-fx-border-color: red; -fx-background-color: transparent;" text="SELL" textFill="#071739">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label layoutX="63.0" layoutY="242.0" text="Turnover " textFill="#071739">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="187.0" layoutY="51.0" text="OR" textFill="#071739">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="TurnoverTextField" layoutX="210.0" layoutY="236.0" prefHeight="31.0" prefWidth="147.0" promptText="0.00" style="-fx-background-color: transparent; -fx-border-color: #071739;">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <Label layoutX="77.0" layoutY="329.0" text="Price" textFill="#071739">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="PriceTextField" layoutX="210.0" layoutY="323.0" prefHeight="31.0" prefWidth="147.0" promptText="0.00" style="-fx-background-color: transparent; -fx-border-color: #071739;">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+         </children>
+      </AnchorPane>
+      <TableView layoutX="492.0" layoutY="398.0" prefHeight="238.0" prefWidth="402.0" style="-fx-background-color: #cbd6f2; -fx-background-radius: 7;">
+        <columns>
+          <TableColumn fx:id="Price" prefWidth="148.0" text="Price" />
+            <TableColumn fx:id="Turnover" prefWidth="118.4000244140625" text="Turnover" />
+            <TableColumn fx:id="TransactionType" prefWidth="134.39993896484373" text="Sell Or Buy" />
+        </columns>
+      </TableView>
+      <TableView layoutX="491.0" layoutY="134.0" prefHeight="238.0" prefWidth="402.0" style="-fx-background-color: #cbd6f2; -fx-background-radius: 7;">
+        <columns>
+          <TableColumn fx:id="userPrice" prefWidth="188.800048828125" text="Price of user's last transaction" />
+          <TableColumn fx:id="userTurnover" prefWidth="104.00006103515625" text="Turnover" />
+            <TableColumn fx:id="userTransactionType" prefWidth="119.199951171875" text="Sell Or Buy" />
+        </columns>
+      </TableView>
+      <Button layoutX="14.0" layoutY="673.0" mnemonicParsing="false" onAction="#ClickOnExit" prefHeight="20.0" prefWidth="46.0" style="-fx-background-color: red;" text="Exit" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>
