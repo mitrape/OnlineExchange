@@ -14,7 +14,7 @@
 
 <AnchorPane prefHeight="713.0" prefWidth="927.0" style="-fx-background-color: #071739;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.onlineexchange.Exchange">
     <children>
-            <Label layoutX="405.0" layoutY="20.0" text="Exchange" textFill="#cbd6f2">
+            <Label layoutX="405.0" layoutY="32.0" text="Exchange" textFill="#cbd6f2">
                 <font>
                     <Font name="System Bold Italic" size="26.0" />
                 </font>
@@ -46,7 +46,7 @@
                </font>
             </Label>
             <ToggleButtonGroup layoutX="82.0" layoutY="206.0" selectionType="SINGLE" />
-            <Button fx:id="buyButton" layoutX="93.0" layoutY="44.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="74.0" style="-fx-border-color: green; -fx-background-color: transparent;" text="BUY" textFill="#071739">
+            <Button fx:id="buyButton" layoutX="93.0" layoutY="44.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="74.0" style="-fx-border-color: green; -fx-background-color: green;" text="BUY" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -54,7 +54,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="sellButton" layoutX="224.0" layoutY="44.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" style="-fx-border-color: red; -fx-background-color: transparent;" text="SELL" textFill="#071739">
+            <Button fx:id="sellButton" layoutX="224.0" layoutY="44.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" style="-fx-border-color: red; -fx-background-color: red;" text="SELL" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -89,14 +89,14 @@
             </TextField>
          </children>
       </AnchorPane>
-      <TableView layoutX="492.0" layoutY="398.0" prefHeight="238.0" prefWidth="402.0" style="-fx-background-color: #cbd6f2; -fx-background-radius: 7;">
+      <TableView fx:id="marketTable" layoutX="492.0" layoutY="398.0" prefHeight="238.0" prefWidth="402.0" style="-fx-background-color: #cbd6f2; -fx-background-radius: 7;">
         <columns>
           <TableColumn fx:id="Price" prefWidth="148.0" text="Price" />
             <TableColumn fx:id="Turnover" prefWidth="118.4000244140625" text="Turnover" />
             <TableColumn fx:id="TransactionType" prefWidth="134.39993896484373" text="Sell Or Buy" />
         </columns>
       </TableView>
-      <TableView layoutX="491.0" layoutY="134.0" prefHeight="238.0" prefWidth="402.0" style="-fx-background-color: #cbd6f2; -fx-background-radius: 7;">
+      <TableView fx:id="userTable" layoutX="491.0" layoutY="134.0" prefHeight="238.0" prefWidth="402.0" style="-fx-background-color: #cbd6f2; -fx-background-radius: 7;">
         <columns>
           <TableColumn fx:id="userPrice" prefWidth="188.800048828125" text="Price of user's last transaction" />
           <TableColumn fx:id="userTurnover" prefWidth="104.00006103515625" text="Turnover" />
