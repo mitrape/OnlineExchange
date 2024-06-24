@@ -224,7 +224,7 @@ public class HomePage implements Initializable{
     }
     public void ClickOnProfile (ActionEvent event) throws IOException {
         Main m = new Main();
-        m.changeScene("profile");
+        m.openNewWindow("Profile","profile");
     }
     public void ClickOnExit (ActionEvent event) throws IOException{
         System.exit(0);
@@ -235,7 +235,7 @@ public class HomePage implements Initializable{
     }
     public void ClickOnExchange (ActionEvent event)throws IOException{
         Main m = new Main();
-        m.changeScene("exchange");
+        m.openNewWindow("Exchange","exchange");
     }
     public void ClickOnSwap (ActionEvent event) throws IOException{
         Main m = new Main();

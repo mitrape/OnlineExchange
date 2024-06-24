@@ -53,12 +53,12 @@
                   </SplitMenuButton>
                   <TextField fx:id="inputAmount" alignment="CENTER" layoutX="96.0" layoutY="40.0" prefHeight="30.0" prefWidth="63.0" promptText="0.00" />
                   <Label fx:id="outputAmount" alignment="CENTER" layoutX="96.0" layoutY="246.0" prefHeight="27.0" prefWidth="63.0" style="-fx-background-color: white; -fx-background-radius: 2;" text="0.00" />
-                  <Button layoutX="149.0" layoutY="301.0" mnemonicParsing="false" onAction="#ClickOnSwap" prefHeight="29.0" prefWidth="80.0" style="-fx-background-color: #071739; -fx-background-radius: 8;" text="Swap" textFill="WHITE">
+                  <Button layoutX="157.0" layoutY="301.0" mnemonicParsing="false" onAction="#ClickOnSwap" prefHeight="29.0" prefWidth="80.0" style="-fx-background-color: #071739; -fx-background-radius: 8;" text="Swap" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <ImageView fitHeight="105.0" fitWidth="125.0" layoutX="126.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="105.0" fitWidth="125.0" layoutX="132.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@arrow-swap-icon-2048x2048-k1oxo9he.png" />
                      </image>

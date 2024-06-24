@@ -2,17 +2,17 @@ package org.example.onlineexchange;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import javafx.event.ActionEvent;
 
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 
 public class Swap{
     public boolean swYen;
@@ -21,15 +21,14 @@ public class Swap{
     public boolean swGbp;
     public boolean swToman;
     @FXML
-    public Label outputAmount;
+    private Label outputAmount;
     @FXML
-    public TextField inputAmount;
+    private TextField inputAmount;
     @FXML
-    public Text messageSameCurrency;
+    private Text messageSameCurrency;
     public double input;
     public double output;
-//    public void ClickOnYenFirst(javafx.event.ActionEvent event) {
-//    }
+
 
     public void ClickOnYenFirst (ActionEvent e) throws IOException{
         swYen = true;
@@ -224,8 +223,8 @@ public class Swap{
 
         }
     }
-    public void ClickOnSwap (MouseEvent event) throws IOException{
-
+    public void ClickOnSwap (ActionEvent event) throws IOException{
+        System.exit(0);
     }
 
 
