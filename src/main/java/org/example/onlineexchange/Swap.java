@@ -12,6 +12,9 @@ import javafx.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class Swap{
@@ -20,6 +23,12 @@ public class Swap{
     public boolean swEur;
     public boolean swGbp;
     public boolean swToman;
+    public boolean sw2Yen;
+    public boolean sw2Usd;
+    public boolean sw2Eur;
+    public boolean sw2Gbp;
+    public boolean sw2Toman;
+
     @FXML
     private Label outputAmount;
     @FXML
@@ -71,6 +80,11 @@ public class Swap{
 
     }
     public void ClickOnYenSecond (ActionEvent e) throws IOException{
+        sw2Yen = true;
+        sw2Toman = false;
+        sw2Eur = false;
+        sw2Gbp = false;
+        sw2Usd = false;
         input = Double.parseDouble(inputAmount.getText());
         if(swEur){
             output = input * Double.parseDouble(HomePage.YENinfo[2])/Double.parseDouble(HomePage.EURinfo[2]);
@@ -97,6 +111,11 @@ public class Swap{
         }
     }
     public void ClickOnEurSecond (ActionEvent e) throws IOException{
+        sw2Eur = true;
+        sw2Usd = false;
+        sw2Gbp = false;
+        sw2Toman = false;
+        sw2Yen = false;
         input = Double.parseDouble(inputAmount.getText());
         if(swYen){
             output = input * Double.parseDouble(HomePage.EURinfo[2])/Double.parseDouble(HomePage.YENinfo[2]);
@@ -131,6 +150,11 @@ public class Swap{
         }
     }
     public void ClickOnGbpSecond (ActionEvent e) throws IOException{
+        sw2Gbp = true;
+        sw2Yen = false;
+        sw2Toman =false;
+        sw2Eur = false;
+        sw2Usd = false;
         input = Double.parseDouble(inputAmount.getText());
         if(swEur){
             output = input * Double.parseDouble(HomePage.GBPinfo[2])/Double.parseDouble(HomePage.EURinfo[2]);
@@ -162,6 +186,11 @@ public class Swap{
         }
     }
     public void ClickOnUsdSecond (ActionEvent e) throws IOException{
+        sw2Usd = true;
+        sw2Eur = false;
+        sw2Toman = false;
+        sw2Gbp = false;
+        sw2Yen = false;
         input = Double.parseDouble(inputAmount.getText());
         if(swEur){
             output = input * Double.parseDouble(HomePage.USDinfo[2])/Double.parseDouble(HomePage.EURinfo[2]);
@@ -193,6 +222,11 @@ public class Swap{
         }
     }
     public void ClickOnTomanSecond (ActionEvent e) throws IOException{
+        sw2Toman = true;
+        sw2Yen = false;
+        sw2Gbp = false;
+        sw2Eur = false;
+        sw2Usd = false;
         input = Double.parseDouble(inputAmount.getText());
         if(swEur){
             output = input * Double.parseDouble(HomePage.TOMANinfo[2])/Double.parseDouble(HomePage.EURinfo[2]);
@@ -223,11 +257,94 @@ public class Swap{
 
         }
     }
-    public void ClickOnSwap (ActionEvent event) throws IOException{
-        System.exit(0);
+    public void ClickOnSwap (ActionEvent event) throws IOException, SQLException {
+        PreparedStatement findUserStatement = Main.connection.prepareStatement("SELECT * FROM usersdata WHERE username = ?");
+        findUserStatement.setString(1, Main.username);
+        ResultSet resultSet = findUserStatement.executeQuery();
+        PreparedStatement findUserStatementAdmin = Main.connection.prepareStatement("SELECT * FROM usersdata WHERE username = ?");
+        findUserStatementAdmin.setString(1, "admin");
+        ResultSet resultSet2 = findUserStatement.executeQuery();
+        if (resultSet.next() && resultSet2.next()) {
+            // User and admin found, update the money
+            if (swYen && Double.parseDouble(resultSet.getString("amountOfYEN"))>=0) {
+                PreparedStatement updateMoneyStatement = Main.connection.prepareStatement("UPDATE usersdata SET amountOfYEN = amountOfYEN + ? WHERE username = ?");
+                updateMoneyStatement.setDouble(1, -input);
+                updateMoneyStatement.setString(2, Main.username);
+
+                if (sw2Gbp) {
+                    PreparedStatement updateMoneyStatement1 = Main.connection.prepareStatement("UPDATE usersdata SET amountOfGBP = amountOfGBP + ? WHERE username = ?");
+                    updateMoneyStatement1.setDouble(1, output*0.99);
+                    updateMoneyStatement1.setString(2, Main.username);
+                    PreparedStatement updateMoneyStatementAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfYEN = amountOfYEN + ?, amountOfGBP = amountOfGBP + ? WHERE username = ?");
+                    updateMoneyStatementAdmin.setDouble(1, input);
+                    updateMoneyStatementAdmin.setDouble(2, output*0.01);
+                    updateMoneyStatementAdmin.setString(3, "admin");
+
+                } else if (sw2Toman) {
+
+                } else if (sw2Usd) {
+
+                } else if (sw2Eur) {
+
+                }
+            }
+
+            else if (swUsd) {
+                if (sw2Gbp) {
+
+                } else if (sw2Toman) {
+
+                } else if (sw2Yen) {
+
+                } else if (sw2Eur) {
+
+                }
+            }
+
+
+            else if (swEur) {
+                if (sw2Gbp) {
+
+                } else if (sw2Toman) {
+
+                } else if (sw2Usd) {
+
+                } else if (sw2Yen) {
+
+                }
+            }
+
+
+            else if (swGbp) {
+                if (sw2Yen) {
+
+                } else if (sw2Toman) {
+
+                } else if (sw2Usd) {
+
+                } else if (sw2Eur) {
+
+                }
+            }
+
+
+            else if (swToman) {
+                if (sw2Gbp) {
+
+                } else if (sw2Yen) {
+
+                } else if (sw2Usd) {
+
+                } else if (sw2Eur) {
+
+                }
+            }
+
+
+            else {
+                //message not enough currency
+            }
+        }
     }
-
-
-
 }
 
