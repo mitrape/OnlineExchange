@@ -120,22 +120,6 @@ public class Exchange implements Initializable {
     }
     public void ClickOnDone (ActionEvent event) throws SQLException {
         errorText.setVisible(false);
-        //String sql = "UPDATE usersdata SET photoName = ? WHERE username = ?";
-        //                PreparedStatement pstmt = Main.connection.prepareStatement(sql);
-        //                pstmt.setString(1, selectedFile.getName());
-        //                pstmt.setString(2, Main.username);
-        //                pstmt.executeUpdate();
-
-        // Statement statement1 = Main.connection.createStatement();
-        //            ResultSet resultSet1 = statement1.executeQuery("SELECT * FROM tomanopenrequests");
-        //            while (resultSet1.next()) {
-        //                Double OpenRequest = resultSet1.getDouble("tomanOpenRequests");
-        //                Double amount = resultSet1.getDouble("amount");
-        //                String SellOrBuy = resultSet1.getString("SellOrBuy");
-        //                transaction = new Transaction(OpenRequest, amount, SellOrBuy);
-        //                marketTable.getItems().add(transaction);
-        //            }
-
         String price = PriceTextField.getText();
         String turnover = TurnoverTextField.getText();
 
@@ -156,7 +140,7 @@ public class Exchange implements Initializable {
                     }
                     else {
                         // do the transaction
-                        continueTransaction(price,turnover,"buy");
+                        continueTransaction(Double.parseDouble(price),Double.parseDouble(turnover),"buy");
                     }
                 }
             }
@@ -168,7 +152,7 @@ public class Exchange implements Initializable {
             }
             else {
                 // do the transaction
-                continueTransaction(price,turnover,"sell");
+                continueTransaction(Double.parseDouble(price),Double.parseDouble(turnover),"sell");
             }
         }
         else {
@@ -310,15 +294,55 @@ public class Exchange implements Initializable {
         }
 
     }
-    public void continueTransaction (String Price , String Turnover , String SellOrBuy) throws SQLException {
-        PreparedStatement preparedStatement = Main.connection.prepareStatement("SELECT * FROM "+CurrencyButton.getText().toLowerCase()+"openrequests WHERE "
-                +CurrencyButton.getText().toLowerCase()+"OpenRequests = ? AND amount = ? AND SellOrBuy = ?");
+    public void continueTransaction (Double Price , Double Turnover , String SellOrBuy ) throws SQLException {
+        String currency = CurrencyButton.getText();
+        PreparedStatement preparedStatement = Main.connection.prepareStatement("SELECT * FROM "+currency.toLowerCase()+"openrequests WHERE SellOrBuy = ?");
+        boolean swTransaction = false;
         if(SellOrBuy.equals("sell")){
-            preparedStatement.setString(1,Price);
-            preparedStatement.setString(2,Turnover);
-            preparedStatement.setString(3,"buy");
+            preparedStatement.setString(1,"buy");
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()){
+                String price1 = rs.getString(currency.toLowerCase()+"OpenRequests");
+                String amount1 = rs.getString("amount");
+                if(Double.parseDouble(price1)*Double.parseDouble(amount1) <= Price*Turnover){
+                    swTransaction=true;
+                    String Username = rs.getString("username");
+                    PreparedStatement prestm = Main.connection.prepareStatement("SELECT * FROM usersdata WHERE username = ?");
+                    prestm.setString(1,Username);
+                    ResultSet resultSet2 = prestm.executeQuery();
+                    String money = null;
+                    String amount = null ;
+                    while (resultSet2.next()){
+                        money = resultSet2.getString("money");
+                        amount = resultSet2.getString("amountOf"+currency);
+                    }
+                    String sql = "UPDATE usersdata SET amountOf"+currency+" = ? AND money = ? WHERE username = ?";
+                    PreparedStatement preparedStatement1 = Main.connection.prepareStatement(sql);
+                    preparedStatement1.setString(1,String.valueOf(Double.parseDouble(amount)-Double.parseDouble(amount1)));
+                    preparedStatement1.setString(2,String.valueOf(Double.parseDouble(money)+Price*Turnover));
+                    preparedStatement1.setString(3,Username);
+                    preparedStatement1.executeUpdate();
+                    PreparedStatement preparedStatement2 = Main.connection.prepareStatement("SELECT * FROM usersdata WHERE username = ?");
+                    preparedStatement2.setString(1,Main.username);
+                    ResultSet resultSet3 = preparedStatement2.executeQuery();
+                    String moneyUser = null;
+                    String amountUser = null;
+                    while (resultSet3.next()){
+                        moneyUser = resultSet3.getString("money");
+                        amountUser = resultSet3.getString("amountOf"+currency);
+                    }
+                    String sqlll = "UPDATE usersdata SET amountOf"+currency+" = ? AND money = ? WHERE username = ?";
+                    PreparedStatement preparedStatement4 = Main.connection.prepareStatement(sqlll);
+                    preparedStatement4.setString(1,String.valueOf(Double.parseDouble(amount)+Double.parseDouble(amount1)));
+                    preparedStatement4.setString(2,String.valueOf(Double.parseDouble(money)-Price*Turnover));
+                    preparedStatement4.setString(3,Main.username);
+                    preparedStatement4.executeUpdate();
+
+
+                }
+
+            }
+            if (!swTransaction){
 
             }
         }
