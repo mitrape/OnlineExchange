@@ -96,22 +96,22 @@ public class Swap{
         sw2Usd = false;
         input = Double.parseDouble(inputAmount.getText());
         if(swEur){
-            output = input * Double.parseDouble(HomePage.YENinfo[2])/Double.parseDouble(HomePage.EURinfo[2]);
+            output = input /Double.parseDouble(HomePage.YENinfo[2]) * Double.parseDouble(HomePage.EURinfo[2]);
             outputAmount.setText(String.valueOf(output));
             messageSameCurrency.setVisible(false);
         }
         else if(swUsd){
-            output = input * Double.parseDouble(HomePage.YENinfo[2])/Double.parseDouble(HomePage.USDinfo[2]);
+            output = input / Double.parseDouble(HomePage.YENinfo[2]) * Double.parseDouble(HomePage.USDinfo[2]);
             outputAmount.setText(String.valueOf(output));
             messageSameCurrency.setVisible(false);
         }
         else if(swGbp){
-            output = input * Double.parseDouble(HomePage.YENinfo[2])/Double.parseDouble(HomePage.GBPinfo[2]);
+            output = input / Double.parseDouble(HomePage.YENinfo[2])*Double.parseDouble(HomePage.GBPinfo[2]);
             outputAmount.setText(String.valueOf(output));
             messageSameCurrency.setVisible(false);
         }
         else if(swToman){
-            output = input * Double.parseDouble(HomePage.YENinfo[2])/Double.parseDouble(HomePage.TOMANinfo[2]);
+            output = input / Double.parseDouble(HomePage.YENinfo[2])*Double.parseDouble(HomePage.TOMANinfo[2]);
             outputAmount.setText(String.valueOf(output));
             messageSameCurrency.setVisible(false);
         }
@@ -128,27 +128,27 @@ public class Swap{
         sw2Yen = false;
         input = Double.parseDouble(inputAmount.getText());
         if(swYen){
-            output = input * Double.parseDouble(HomePage.EURinfo[2])/Double.parseDouble(HomePage.YENinfo[2]);
+            output = input / Double.parseDouble(HomePage.EURinfo[2])*Double.parseDouble(HomePage.YENinfo[2]);
             outputAmount.setText(String.valueOf(output));
             messageSameCurrency.setVisible(false);
 
         }
         else if(swUsd){
-            output = input * Double.parseDouble(HomePage.EURinfo[2])/Double.parseDouble(HomePage.USDinfo[2]);
+            output = input / Double.parseDouble(HomePage.EURinfo[2])*Double.parseDouble(HomePage.USDinfo[2]);
             outputAmount.setText(String.valueOf(output));
             messageSameCurrency.setVisible(false);
 
 
         }
         else if(swGbp){
-            output = input * Double.parseDouble(HomePage.EURinfo[2])/Double.parseDouble(HomePage.GBPinfo[2]);
+            output = input / Double.parseDouble(HomePage.EURinfo[2])*Double.parseDouble(HomePage.GBPinfo[2]);
             outputAmount.setText(String.valueOf(output));
             messageSameCurrency.setVisible(false);
 
 
         }
         else if(swToman){
-            output = input * Double.parseDouble(HomePage.EURinfo[2])/Double.parseDouble(HomePage.TOMANinfo[2]);
+            output = input / Double.parseDouble(HomePage.EURinfo[2])*Double.parseDouble(HomePage.TOMANinfo[2]);
             outputAmount.setText(String.valueOf(output));
             messageSameCurrency.setVisible(false);
 
@@ -168,26 +168,26 @@ public class Swap{
         sw2Usd = false;
         input = Double.parseDouble(inputAmount.getText());
         if(swEur){
-            output = input * Double.parseDouble(HomePage.GBPinfo[2])/Double.parseDouble(HomePage.EURinfo[2]);
+            output = input / Double.parseDouble(HomePage.GBPinfo[2])*Double.parseDouble(HomePage.EURinfo[2]);
             outputAmount.setText(String.valueOf(output));
             messageSameCurrency.setVisible(false);
 
 
         }
         else if(swUsd){
-            output = input * Double.parseDouble(HomePage.GBPinfo[2])/Double.parseDouble(HomePage.USDinfo[2]);
+            output = input / Double.parseDouble(HomePage.GBPinfo[2])*Double.parseDouble(HomePage.USDinfo[2]);
             outputAmount.setText(String.valueOf(output));
             messageSameCurrency.setVisible(false);
 
         }
         else if(swYen){
-            output = input * Double.parseDouble(HomePage.GBPinfo[2])/Double.parseDouble(HomePage.YENinfo[2]);
+            output = input / Double.parseDouble(HomePage.GBPinfo[2])*Double.parseDouble(HomePage.YENinfo[2]);
             outputAmount.setText(String.valueOf(output));
             messageSameCurrency.setVisible(false);
 
         }
         else if(swToman){
-            output = input * Double.parseDouble(HomePage.GBPinfo[2])/Double.parseDouble(HomePage.TOMANinfo[2]);
+            output = input / Double.parseDouble(HomePage.GBPinfo[2])*Double.parseDouble(HomePage.TOMANinfo[2]);
             outputAmount.setText(String.valueOf(output));
             messageSameCurrency.setVisible(false);
 
@@ -205,25 +205,25 @@ public class Swap{
         sw2Yen = false;
         input = Double.parseDouble(inputAmount.getText());
         if(swEur){
-            output = input * Double.parseDouble(HomePage.USDinfo[2])/Double.parseDouble(HomePage.EURinfo[2]);
+            output = input / Double.parseDouble(HomePage.USDinfo[2])*Double.parseDouble(HomePage.EURinfo[2]);
             outputAmount.setText(String.valueOf(output));
             messageSameCurrency.setVisible(false);
 
         }
         else if(swYen){
-            output = input * Double.parseDouble(HomePage.USDinfo[2])/Double.parseDouble(HomePage.YENinfo[2]);
+            output = input / Double.parseDouble(HomePage.USDinfo[2])*Double.parseDouble(HomePage.YENinfo[2]);
             outputAmount.setText(String.valueOf(output));
             messageSameCurrency.setVisible(false);
 
         }
         else if(swGbp){
-            output = input * Double.parseDouble(HomePage.USDinfo[2])/Double.parseDouble(HomePage.GBPinfo[2]);
+            output = input / Double.parseDouble(HomePage.USDinfo[2])*Double.parseDouble(HomePage.GBPinfo[2]);
             outputAmount.setText(String.valueOf(output));
             messageSameCurrency.setVisible(false);
 
         }
         else if(swToman){
-            output = input * Double.parseDouble(HomePage.USDinfo[2])/Double.parseDouble(HomePage.TOMANinfo[2]);
+            output = input / Double.parseDouble(HomePage.USDinfo[2])*Double.parseDouble(HomePage.TOMANinfo[2]);
             outputAmount.setText(String.valueOf(output));
             messageSameCurrency.setVisible(false);
 
@@ -242,25 +242,25 @@ public class Swap{
         sw2Usd = false;
         input = Double.parseDouble(inputAmount.getText());
         if(swEur){
-            output = input * Double.parseDouble(HomePage.TOMANinfo[2])/Double.parseDouble(HomePage.EURinfo[2]);
+            output = input / Double.parseDouble(HomePage.TOMANinfo[2])*Double.parseDouble(HomePage.EURinfo[2]);
             outputAmount.setText(String.valueOf(output));
             messageSameCurrency.setVisible(false);
 
         }
         else if(swUsd){
-            output = input * Double.parseDouble(HomePage.TOMANinfo[2])/Double.parseDouble(HomePage.USDinfo[2]);
+            output = input / Double.parseDouble(HomePage.TOMANinfo[2])*Double.parseDouble(HomePage.USDinfo[2]);
             outputAmount.setText(String.valueOf(output));
             messageSameCurrency.setVisible(false);
 
         }
         else if(swGbp){
-            output = input * Double.parseDouble(HomePage.TOMANinfo[2])/Double.parseDouble(HomePage.GBPinfo[2]);
+            output = input / Double.parseDouble(HomePage.TOMANinfo[2])*Double.parseDouble(HomePage.GBPinfo[2]);
             outputAmount.setText(String.valueOf(output));
             messageSameCurrency.setVisible(false);
 
         }
         else if(swYen){
-            output = input * Double.parseDouble(HomePage.TOMANinfo[2])/Double.parseDouble(HomePage.YENinfo[2]);
+            output = input / Double.parseDouble(HomePage.TOMANinfo[2])*Double.parseDouble(HomePage.YENinfo[2]);
             outputAmount.setText(String.valueOf(output));
             messageSameCurrency.setVisible(false);
 
