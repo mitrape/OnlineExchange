@@ -283,6 +283,7 @@ public class Swap{
                 PreparedStatement updateMoneyStatement = Main.connection.prepareStatement("UPDATE usersdata SET amountOfYEN = amountOfYEN + ? WHERE username = ?");
                 updateMoneyStatement.setDouble(1, -input);
                 updateMoneyStatement.setString(2, Main.username);
+                updateMoneyStatement.executeUpdate();
 
                 if (sw2Gbp) {
                     setGBP();
@@ -309,6 +310,7 @@ public class Swap{
                 PreparedStatement updateMoneyStatement = Main.connection.prepareStatement("UPDATE usersdata SET amountOfUSD = amountOfUSD + ? WHERE username = ?");
                 updateMoneyStatement.setDouble(1, -input);
                 updateMoneyStatement.setString(2, Main.username);
+                updateMoneyStatement.executeUpdate();
 
                 if (sw2Gbp) {
                     setGBP();
@@ -340,6 +342,7 @@ public class Swap{
                 PreparedStatement updateMoneyStatement = Main.connection.prepareStatement("UPDATE usersdata SET amountOfEUR = amountOfEUR + ? WHERE username = ?");
                 updateMoneyStatement.setDouble(1, -input);
                 updateMoneyStatement.setString(2, Main.username);
+                updateMoneyStatement.executeUpdate();
 
                 if (sw2Gbp) {
                     setGBP();
@@ -372,6 +375,7 @@ public class Swap{
                 PreparedStatement updateMoneyStatement = Main.connection.prepareStatement("UPDATE usersdata SET amountOfGBP = amountOfGBP + ? WHERE username = ?");
                 updateMoneyStatement.setDouble(1, -input);
                 updateMoneyStatement.setString(2, Main.username);
+                updateMoneyStatement.executeUpdate();
 
                 if (sw2Yen) {
                     setYEN();
@@ -404,6 +408,7 @@ public class Swap{
                 PreparedStatement updateMoneyStatement = Main.connection.prepareStatement("UPDATE usersdata SET amountOfTOMAN = amountOfTOMAN + ? WHERE username = ?");
                 updateMoneyStatement.setDouble(1, -input);
                 updateMoneyStatement.setString(2, Main.username);
+                updateMoneyStatement.executeUpdate();
 
                 if (sw2Gbp) {
                     setGBP();
@@ -439,15 +444,15 @@ public class Swap{
     }
 
     private void setEUR() throws SQLException {
-        if (sw2Eur) {
-            PreparedStatement updateMoneyStatement1 = Main.connection.prepareStatement("UPDATE usersdata SET amountOfEUR = amountOfEUR + ? WHERE username = ?");
-            updateMoneyStatement1.setDouble(1, output*0.99);
-            updateMoneyStatement1.setString(2, Main.username);
-            PreparedStatement updateMoneyStatementAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfEUR = amountOfEUR + ? WHERE username = ?");
-            updateMoneyStatementAdmin.setDouble(1, output*0.01);
-            updateMoneyStatementAdmin.setString(2, "admin");
+        PreparedStatement updateMoneyStatement1 = Main.connection.prepareStatement("UPDATE usersdata SET amountOfEUR = amountOfEUR + ? WHERE username = ?");
+        updateMoneyStatement1.setDouble(1, output*0.99);
+        updateMoneyStatement1.setString(2, Main.username);
+        PreparedStatement updateMoneyStatementAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfEUR = amountOfEUR + ? WHERE username = ?");
+        updateMoneyStatementAdmin.setDouble(1, output*0.01);
+        updateMoneyStatementAdmin.setString(2, "admin");
+        updateMoneyStatement1.executeUpdate();
+        updateMoneyStatementAdmin.executeUpdate();
 
-        }
     }
 
     private void setTOMAN() throws SQLException {
@@ -457,6 +462,8 @@ public class Swap{
         PreparedStatement updateMoneyStatementAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfTOMAN = amountOfTOMAN + ? WHERE username = ?");
         updateMoneyStatementAdmin.setDouble(1, output*0.01);
         updateMoneyStatementAdmin.setString(2, "admin");
+        updateMoneyStatement1.executeUpdate();
+        updateMoneyStatementAdmin.executeUpdate();
     }
 
     private void setGBP() throws SQLException {
@@ -466,6 +473,8 @@ public class Swap{
         PreparedStatement updateMoneyStatementAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfGBP = amountOfGBP + ? WHERE username = ?");
         updateMoneyStatementAdmin.setDouble(1, output*0.01);
         updateMoneyStatementAdmin.setString(2, "admin");
+        updateMoneyStatement1.executeUpdate();
+        updateMoneyStatementAdmin.executeUpdate();
     }
 
     private void setUSD() throws SQLException {
@@ -475,6 +484,8 @@ public class Swap{
         PreparedStatement updateMoneyStatementAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfUSD = amountOfUSD + ? WHERE username = ?");
         updateMoneyStatementAdmin.setDouble(1, output*0.01);
         updateMoneyStatementAdmin.setString(2, "admin");
+        updateMoneyStatement1.executeUpdate();
+        updateMoneyStatementAdmin.executeUpdate();
     }
 
     private void setYEN () throws SQLException {
@@ -484,6 +495,8 @@ public class Swap{
         PreparedStatement updateMoneyStatementAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfYEN = amountOfYEN + ? WHERE username = ?");
         updateMoneyStatementAdmin.setDouble(1, output*0.01);
         updateMoneyStatementAdmin.setString(2, "admin");
+        updateMoneyStatement1.executeUpdate();
+        updateMoneyStatementAdmin.executeUpdate();
     }
 }
 
