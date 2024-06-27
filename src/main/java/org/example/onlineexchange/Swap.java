@@ -276,30 +276,31 @@ public class Swap{
         ResultSet resultSet = findUserStatement.executeQuery();
         PreparedStatement findUserStatementAdmin = Main.connection.prepareStatement("SELECT * FROM usersdata WHERE username = ?");
         findUserStatementAdmin.setString(1, "admin");
-        ResultSet resultSet2 = findUserStatement.executeQuery();
+        ResultSet resultSet2 = findUserStatementAdmin.executeQuery();
         if (resultSet.next() && resultSet2.next()) {
             // User and admin found, update the money
             if (swYen && Double.parseDouble(resultSet.getString("amountOfYEN")) - input >= 0) {
                 PreparedStatement updateMoneyStatement = Main.connection.prepareStatement("UPDATE usersdata SET amountOfYEN = amountOfYEN + ? WHERE username = ?");
                 updateMoneyStatement.setDouble(1, -input);
                 updateMoneyStatement.setString(2, Main.username);
-                PreparedStatement updateMoneyAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfYEN = amountOfYEN + ? WHERE username = ?");
-                updateMoneyAdmin.setDouble(1, input);
-                updateMoneyAdmin.setString(2, "admin");
 
                 if (sw2Gbp) {
                     setGBP();
+                    messageSameCurrency.setText("Exchange done!");
 
                 }
                 else if (sw2Toman) {
                     setTOMAN();
+                    messageSameCurrency.setText("Exchange done!");
                 }
                 else if (sw2Usd) {
                     setUSD();
+                    messageSameCurrency.setText("Exchange done!");
 
                 }
                 else if (sw2Eur){
                     setEUR();
+                    messageSameCurrency.setText("Exchange done!");
                 }
             }
 
@@ -308,22 +309,28 @@ public class Swap{
                 PreparedStatement updateMoneyStatement = Main.connection.prepareStatement("UPDATE usersdata SET amountOfUSD = amountOfUSD + ? WHERE username = ?");
                 updateMoneyStatement.setDouble(1, -input);
                 updateMoneyStatement.setString(2, Main.username);
-                PreparedStatement updateMoneyAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfUSD = amountOfUSD + ? WHERE username = ?");
-                updateMoneyAdmin.setDouble(1, input);
-                updateMoneyAdmin.setString(2, "admin");
+
                 if (sw2Gbp) {
                     setGBP();
+                    messageNotEnoughCurrency.setText("Exchange done!");
+                    messageNotEnoughCurrency.setVisible(true);
 
                 } else if (sw2Toman) {
                     setTOMAN();
+                    messageNotEnoughCurrency.setText("Exchange done!");
+                    messageNotEnoughCurrency.setVisible(true);
 
                 }
                 else if (sw2Yen) {
                     setYEN();
+                    messageNotEnoughCurrency.setText("Exchange done!");
+                    messageNotEnoughCurrency.setVisible(true);
 
                 }
                 else if (sw2Eur){
                     setEUR();
+                    messageNotEnoughCurrency.setText("Exchange done!");
+                    messageNotEnoughCurrency.setVisible(true);
                 }
             }
 
@@ -333,22 +340,28 @@ public class Swap{
                 PreparedStatement updateMoneyStatement = Main.connection.prepareStatement("UPDATE usersdata SET amountOfEUR = amountOfEUR + ? WHERE username = ?");
                 updateMoneyStatement.setDouble(1, -input);
                 updateMoneyStatement.setString(2, Main.username);
-                PreparedStatement updateMoneyAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfEUR = amountOfEUR + ? WHERE username = ?");
-                updateMoneyAdmin.setDouble(1, input);
-                updateMoneyAdmin.setString(2, "admin");
+
                 if (sw2Gbp) {
                     setGBP();
+                    messageNotEnoughCurrency.setText("Exchange done!");
+                    messageNotEnoughCurrency.setVisible(true);
 
                 }
                 else if (sw2Toman) {
                     setTOMAN();
+                    messageNotEnoughCurrency.setText("Exchange done!");
+                    messageNotEnoughCurrency.setVisible(true);
 
                 }
                 else if (sw2Usd) {
                     setUSD();
+                    messageNotEnoughCurrency.setText("Exchange done!");
+                    messageNotEnoughCurrency.setVisible(true);
                 }
                 else if (sw2Yen) {
                     setYEN();
+                    messageNotEnoughCurrency.setText("Exchange done!");
+                    messageNotEnoughCurrency.setVisible(true);
 
                 }
             }
@@ -359,23 +372,28 @@ public class Swap{
                 PreparedStatement updateMoneyStatement = Main.connection.prepareStatement("UPDATE usersdata SET amountOfGBP = amountOfGBP + ? WHERE username = ?");
                 updateMoneyStatement.setDouble(1, -input);
                 updateMoneyStatement.setString(2, Main.username);
-                PreparedStatement updateMoneyAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfGBP = amountOfGBP + ? WHERE username = ?");
-                updateMoneyAdmin.setDouble(1, input);
-                updateMoneyAdmin.setString(2, "admin");
 
                 if (sw2Yen) {
                     setYEN();
+                    messageNotEnoughCurrency.setText("Exchange done!");
+                    messageNotEnoughCurrency.setVisible(true);
 
                 }
                 else if (sw2Toman) {
                     setTOMAN();
+                    messageNotEnoughCurrency.setText("Exchange done!");
+                    messageNotEnoughCurrency.setVisible(true);
 
                 }
                 else if (sw2Usd) {
                     setUSD();
+                    messageNotEnoughCurrency.setText("Exchange done!");
+                    messageNotEnoughCurrency.setVisible(true);
                 }
                 else if (sw2Eur) {
                     setEUR();
+                    messageNotEnoughCurrency.setText("Exchange done!");
+                    messageNotEnoughCurrency.setVisible(true);
 
                 }
             }
@@ -386,24 +404,29 @@ public class Swap{
                 PreparedStatement updateMoneyStatement = Main.connection.prepareStatement("UPDATE usersdata SET amountOfTOMAN = amountOfTOMAN + ? WHERE username = ?");
                 updateMoneyStatement.setDouble(1, -input);
                 updateMoneyStatement.setString(2, Main.username);
-                PreparedStatement updateMoneyAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfTOMAN = amountOfTOMAN + ? WHERE username = ?");
-                updateMoneyAdmin.setDouble(1, input);
-                updateMoneyAdmin.setString(2, "admin");
 
                 if (sw2Gbp) {
                     setGBP();
+                    messageNotEnoughCurrency.setText("Exchange done!");
+                    messageNotEnoughCurrency.setVisible(true);
 
                 }
                 else if (sw2Yen) {
                     setYEN();
+                    messageNotEnoughCurrency.setText("Exchange done!");
+                    messageNotEnoughCurrency.setVisible(true);
 
                 }
                 else if (sw2Usd) {
                     setUSD();
+                    messageNotEnoughCurrency.setText("Exchange done!");
+                    messageNotEnoughCurrency.setVisible(true);
 
                 }
                 else if (sw2Eur) {
                     setEUR();
+                    messageNotEnoughCurrency.setText("Exchange done!");
+                    messageNotEnoughCurrency.setVisible(true);
 
                 }
             }
