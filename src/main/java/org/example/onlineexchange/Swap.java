@@ -2,10 +2,7 @@ package org.example.onlineexchange;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.event.ActionEvent;
 
@@ -35,11 +32,18 @@ public class Swap{
     private TextField inputAmount;
     @FXML
     private Text messageSameCurrency;
+    @FXML
+    private Text messageNotEnoughCurrency;
+    @FXML
+    private SplitMenuButton firstCurrencyMenu;
+    @FXML
+    private SplitMenuButton secondCurrencyMenu;
     public double input;
     public double output;
 
 
     public void ClickOnYenFirst (ActionEvent e) throws IOException{
+        firstCurrencyMenu.setText("YEN");
         swYen = true;
         swToman = false;
         swEur = false;
@@ -48,6 +52,7 @@ public class Swap{
 
     }
     public void ClickOnEurFirst (ActionEvent e) throws IOException{
+        firstCurrencyMenu.setText("EUR");
         swEur = true;
         swUsd = false;
         swGbp = false;
@@ -56,6 +61,7 @@ public class Swap{
 
     }
     public void ClickOnGbpFirst (ActionEvent e) throws IOException{
+        firstCurrencyMenu.setText("GBP");
         swGbp = true;
         swYen = false;
         swToman =false;
@@ -64,6 +70,7 @@ public class Swap{
 
     }
     public void ClickOnUsdFirst (ActionEvent e) throws IOException{
+        firstCurrencyMenu.setText("USD");
         swUsd = true;
         swEur = false;
         swToman = false;
@@ -72,6 +79,7 @@ public class Swap{
 
     }
     public void ClickOnTomanFirst (ActionEvent e) throws IOException{
+        firstCurrencyMenu.setText("TOMAN");
         swToman = true;
         swYen = false;
         swGbp = false;
@@ -80,6 +88,7 @@ public class Swap{
 
     }
     public void ClickOnYenSecond (ActionEvent e) throws IOException{
+        secondCurrencyMenu.setText("YEN");
         sw2Yen = true;
         sw2Toman = false;
         sw2Eur = false;
@@ -111,6 +120,7 @@ public class Swap{
         }
     }
     public void ClickOnEurSecond (ActionEvent e) throws IOException{
+        secondCurrencyMenu.setText("EUR");
         sw2Eur = true;
         sw2Usd = false;
         sw2Gbp = false;
@@ -150,6 +160,7 @@ public class Swap{
         }
     }
     public void ClickOnGbpSecond (ActionEvent e) throws IOException{
+        secondCurrencyMenu.setText("GBP");
         sw2Gbp = true;
         sw2Yen = false;
         sw2Toman =false;
@@ -186,6 +197,7 @@ public class Swap{
         }
     }
     public void ClickOnUsdSecond (ActionEvent e) throws IOException{
+        secondCurrencyMenu.setText("USD");
         sw2Usd = true;
         sw2Eur = false;
         sw2Toman = false;
@@ -222,6 +234,7 @@ public class Swap{
         }
     }
     public void ClickOnTomanSecond (ActionEvent e) throws IOException{
+        secondCurrencyMenu.setText("TOMAN");
         sw2Toman = true;
         sw2Yen = false;
         sw2Gbp = false;
@@ -266,85 +279,188 @@ public class Swap{
         ResultSet resultSet2 = findUserStatement.executeQuery();
         if (resultSet.next() && resultSet2.next()) {
             // User and admin found, update the money
-            if (swYen && Double.parseDouble(resultSet.getString("amountOfYEN"))>=0) {
+            if (swYen && Double.parseDouble(resultSet.getString("amountOfYEN")) - input >= 0) {
                 PreparedStatement updateMoneyStatement = Main.connection.prepareStatement("UPDATE usersdata SET amountOfYEN = amountOfYEN + ? WHERE username = ?");
                 updateMoneyStatement.setDouble(1, -input);
                 updateMoneyStatement.setString(2, Main.username);
+                PreparedStatement updateMoneyAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfYEN = amountOfYEN + ? WHERE username = ?");
+                updateMoneyAdmin.setDouble(1, input);
+                updateMoneyAdmin.setString(2, "admin");
 
                 if (sw2Gbp) {
-                    PreparedStatement updateMoneyStatement1 = Main.connection.prepareStatement("UPDATE usersdata SET amountOfGBP = amountOfGBP + ? WHERE username = ?");
-                    updateMoneyStatement1.setDouble(1, output*0.99);
-                    updateMoneyStatement1.setString(2, Main.username);
-                    PreparedStatement updateMoneyStatementAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfYEN = amountOfYEN + ?, amountOfGBP = amountOfGBP + ? WHERE username = ?");
-                    updateMoneyStatementAdmin.setDouble(1, input);
-                    updateMoneyStatementAdmin.setDouble(2, output*0.01);
-                    updateMoneyStatementAdmin.setString(3, "admin");
+                    setGBP();
+
+                }
+                else if (sw2Toman) {
+                    setTOMAN();
+                }
+                else if (sw2Usd) {
+                    setUSD();
+
+                }
+                else if (sw2Eur){
+                    setEUR();
+                }
+            }
+
+            else if (swUsd && Double.parseDouble(resultSet.getString("amountOfUSD")) - input >= 0) {
+                messageNotEnoughCurrency.setVisible(false);
+                PreparedStatement updateMoneyStatement = Main.connection.prepareStatement("UPDATE usersdata SET amountOfUSD = amountOfUSD + ? WHERE username = ?");
+                updateMoneyStatement.setDouble(1, -input);
+                updateMoneyStatement.setString(2, Main.username);
+                PreparedStatement updateMoneyAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfUSD = amountOfUSD + ? WHERE username = ?");
+                updateMoneyAdmin.setDouble(1, input);
+                updateMoneyAdmin.setString(2, "admin");
+                if (sw2Gbp) {
+                    setGBP();
 
                 } else if (sw2Toman) {
+                    setTOMAN();
 
-                } else if (sw2Usd) {
+                }
+                else if (sw2Yen) {
+                    setYEN();
 
-                } else if (sw2Eur) {
+                }
+                else if (sw2Eur){
+                    setEUR();
+                }
+            }
+
+
+            else if (swEur && Double.parseDouble(resultSet.getString("amountOfEUR")) - input >= 0) {
+                messageNotEnoughCurrency.setVisible(false);
+                PreparedStatement updateMoneyStatement = Main.connection.prepareStatement("UPDATE usersdata SET amountOfEUR = amountOfEUR + ? WHERE username = ?");
+                updateMoneyStatement.setDouble(1, -input);
+                updateMoneyStatement.setString(2, Main.username);
+                PreparedStatement updateMoneyAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfEUR = amountOfEUR + ? WHERE username = ?");
+                updateMoneyAdmin.setDouble(1, input);
+                updateMoneyAdmin.setString(2, "admin");
+                if (sw2Gbp) {
+                    setGBP();
+
+                }
+                else if (sw2Toman) {
+                    setTOMAN();
+
+                }
+                else if (sw2Usd) {
+                    setUSD();
+                }
+                else if (sw2Yen) {
+                    setYEN();
 
                 }
             }
 
-            else if (swUsd) {
-                if (sw2Gbp) {
 
-                } else if (sw2Toman) {
+            else if (swGbp && Double.parseDouble(resultSet.getString("amountOfGBP")) - input >= 0) {
+                messageNotEnoughCurrency.setVisible(false);
+                PreparedStatement updateMoneyStatement = Main.connection.prepareStatement("UPDATE usersdata SET amountOfGBP = amountOfGBP + ? WHERE username = ?");
+                updateMoneyStatement.setDouble(1, -input);
+                updateMoneyStatement.setString(2, Main.username);
+                PreparedStatement updateMoneyAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfGBP = amountOfGBP + ? WHERE username = ?");
+                updateMoneyAdmin.setDouble(1, input);
+                updateMoneyAdmin.setString(2, "admin");
 
-                } else if (sw2Yen) {
-
-                } else if (sw2Eur) {
-
-                }
-            }
-
-
-            else if (swEur) {
-                if (sw2Gbp) {
-
-                } else if (sw2Toman) {
-
-                } else if (sw2Usd) {
-
-                } else if (sw2Yen) {
-
-                }
-            }
-
-
-            else if (swGbp) {
                 if (sw2Yen) {
+                    setYEN();
 
-                } else if (sw2Toman) {
+                }
+                else if (sw2Toman) {
+                    setTOMAN();
 
-                } else if (sw2Usd) {
-
-                } else if (sw2Eur) {
+                }
+                else if (sw2Usd) {
+                    setUSD();
+                }
+                else if (sw2Eur) {
+                    setEUR();
 
                 }
             }
 
 
-            else if (swToman) {
+            else if (swToman && Double.parseDouble(resultSet.getString("amountOfTOMAN")) - input >= 0) {
+                messageNotEnoughCurrency.setVisible(false);
+                PreparedStatement updateMoneyStatement = Main.connection.prepareStatement("UPDATE usersdata SET amountOfTOMAN = amountOfTOMAN + ? WHERE username = ?");
+                updateMoneyStatement.setDouble(1, -input);
+                updateMoneyStatement.setString(2, Main.username);
+                PreparedStatement updateMoneyAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfTOMAN = amountOfTOMAN + ? WHERE username = ?");
+                updateMoneyAdmin.setDouble(1, input);
+                updateMoneyAdmin.setString(2, "admin");
+
                 if (sw2Gbp) {
+                    setGBP();
 
-                } else if (sw2Yen) {
+                }
+                else if (sw2Yen) {
+                    setYEN();
 
-                } else if (sw2Usd) {
+                }
+                else if (sw2Usd) {
+                    setUSD();
 
-                } else if (sw2Eur) {
+                }
+                else if (sw2Eur) {
+                    setEUR();
 
                 }
             }
 
 
             else {
-                //message not enough currency
+                messageNotEnoughCurrency.setVisible(true);
             }
         }
+    }
+
+    private void setEUR() throws SQLException {
+        if (sw2Eur) {
+            PreparedStatement updateMoneyStatement1 = Main.connection.prepareStatement("UPDATE usersdata SET amountOfEUR = amountOfEUR + ? WHERE username = ?");
+            updateMoneyStatement1.setDouble(1, output*0.99);
+            updateMoneyStatement1.setString(2, Main.username);
+            PreparedStatement updateMoneyStatementAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfEUR = amountOfEUR + ? WHERE username = ?");
+            updateMoneyStatementAdmin.setDouble(1, output*0.01);
+            updateMoneyStatementAdmin.setString(2, "admin");
+
+        }
+    }
+
+    private void setTOMAN() throws SQLException {
+        PreparedStatement updateMoneyStatement1 = Main.connection.prepareStatement("UPDATE usersdata SET amountOfTOMAN = amountOfTOMAN + ? WHERE username = ?");
+        updateMoneyStatement1.setDouble(1, output*0.99);
+        updateMoneyStatement1.setString(2, Main.username);
+        PreparedStatement updateMoneyStatementAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfTOMAN = amountOfTOMAN + ? WHERE username = ?");
+        updateMoneyStatementAdmin.setDouble(1, output*0.01);
+        updateMoneyStatementAdmin.setString(2, "admin");
+    }
+
+    private void setGBP() throws SQLException {
+        PreparedStatement updateMoneyStatement1 = Main.connection.prepareStatement("UPDATE usersdata SET amountOfGBP = amountOfGBP + ? WHERE username = ?");
+        updateMoneyStatement1.setDouble(1, output*0.99);
+        updateMoneyStatement1.setString(2, Main.username);
+        PreparedStatement updateMoneyStatementAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfGBP = amountOfGBP + ? WHERE username = ?");
+        updateMoneyStatementAdmin.setDouble(1, output*0.01);
+        updateMoneyStatementAdmin.setString(2, "admin");
+    }
+
+    private void setUSD() throws SQLException {
+        PreparedStatement updateMoneyStatement1 = Main.connection.prepareStatement("UPDATE usersdata SET amountOfUSD = amountOfUSD + ? WHERE username = ?");
+        updateMoneyStatement1.setDouble(1, output*0.99);
+        updateMoneyStatement1.setString(2, Main.username);
+        PreparedStatement updateMoneyStatementAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfUSD = amountOfUSD + ? WHERE username = ?");
+        updateMoneyStatementAdmin.setDouble(1, output*0.01);
+        updateMoneyStatementAdmin.setString(2, "admin");
+    }
+
+    private void setYEN () throws SQLException {
+        PreparedStatement updateMoneyStatement1 = Main.connection.prepareStatement("UPDATE usersdata SET amountOfYEN = amountOfYEN + ? WHERE username = ?");
+        updateMoneyStatement1.setDouble(1, output*0.99);
+        updateMoneyStatement1.setString(2, Main.username);
+        PreparedStatement updateMoneyStatementAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfYEN = amountOfYEN + ? WHERE username = ?");
+        updateMoneyStatementAdmin.setDouble(1, output*0.01);
+        updateMoneyStatementAdmin.setString(2, "admin");
     }
 }
 

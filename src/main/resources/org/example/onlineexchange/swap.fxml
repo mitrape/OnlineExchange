@@ -27,7 +27,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="349.0" prefWidth="459.0" style="-fx-background-color: #C1C8DA; -fx-background-radius: 8;">
                <children>
-                  <SplitMenuButton fx:id="firstCurrencyMenu" layoutX="185.0" layoutY="40.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="148.0" text="choose currency " textFill="#071739">
+                  <SplitMenuButton fx:id="firstCurrencyMenu" layoutX="185.0" layoutY="40.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="148.0" text="Choose currency " textFill="#071739">
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#ClickOnYenFirst" text="YEN" />
                         <MenuItem mnemonicParsing="false" onAction="#ClickOnEurFirst" text="EUR" />
@@ -39,7 +39,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </SplitMenuButton>
-                  <SplitMenuButton fx:id="secondCurrencyMenu" layoutX="185.0" layoutY="246.0" mnemonicParsing="false" text="choose currency " textFill="#071739">
+                  <SplitMenuButton fx:id="secondCurrencyMenu" layoutX="185.0" layoutY="246.0" mnemonicParsing="false" text="Choose currency " textFill="#071739">
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#ClickOnYenSecond" text="YEN" />
                         <MenuItem mnemonicParsing="false" onAction="#ClickOnEurSecond" text="EUR" />
@@ -53,17 +53,22 @@
                   </SplitMenuButton>
                   <TextField fx:id="inputAmount" alignment="CENTER" layoutX="96.0" layoutY="40.0" prefHeight="30.0" prefWidth="63.0" promptText="0.00" />
                   <Label fx:id="outputAmount" alignment="CENTER" layoutX="96.0" layoutY="246.0" prefHeight="27.0" prefWidth="63.0" style="-fx-background-color: white; -fx-background-radius: 2;" text="0.00" />
-                  <Button layoutX="157.0" layoutY="301.0" mnemonicParsing="false" onAction="#ClickOnSwap" prefHeight="29.0" prefWidth="80.0" style="-fx-background-color: #071739; -fx-background-radius: 8;" text="Swap" textFill="WHITE">
+                  <Button layoutX="162.0" layoutY="306.0" mnemonicParsing="false" onAction="#ClickOnSwap" prefHeight="29.0" prefWidth="80.0" style="-fx-background-color: #071739; -fx-background-radius: 8;" text="Swap" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <ImageView fitHeight="105.0" fitWidth="125.0" layoutX="132.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="105.0" fitWidth="125.0" layoutX="144.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@arrow-swap-icon-2048x2048-k1oxo9he.png" />
                      </image>
                   </ImageView>
-                  <Text fx:id="messageSameCurrency" fill="#e80a0a" layoutX="333.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Same Currency!" visible="false">
+                  <Text fx:id="messageSameCurrency" fill="#e80a0a" layoutX="336.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Same currency!  " visible="false">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="messageNotEnoughCurrency" fill="#e80a0a" layoutX="252.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Not enough of input currency!" visible="false">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
