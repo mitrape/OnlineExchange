@@ -62,14 +62,13 @@ public class Exchange implements Initializable {
 
     int lastMinute = -1;
     private volatile boolean stop = false;
-    public String sellOrBuy ;
+    public String sellOrBuy = null;
     Date date = Calendar.getInstance().getTime();
     DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        sellOrBuy = null;
         ToggleGroup toggleGroup = new ToggleGroup();
         buyButton.setToggleGroup(toggleGroup);
         sellButton.setToggleGroup(toggleGroup);
@@ -145,48 +144,52 @@ public class Exchange implements Initializable {
         String price = PriceTextField.getText();
         String turnover = TurnoverTextField.getText();
 
-        if(sellOrBuy.equals("buy")){
-            if(price==null || turnover==null){
-                errorText.setText("please fill all the text fields");
-                errorText.setVisible(true);
-            }
-            else {
-                PreparedStatement prestm = Main.connection.prepareStatement("SELECT * FROM usersdata WHERE username = ?");
-                prestm.setString(1,Main.username);
-                ResultSet resultSet = prestm.executeQuery();
-                while (resultSet.next()){
-                    Double userMoney = resultSet.getDouble("money");
-                    if(userMoney<(Double.parseDouble(price)*Double.parseDouble(turnover))){
-                        errorText.setText("you don't have enough money!");
+        if(sellOrBuy!=null) {
+            if(!CurrencyButton.getText().equals("currency")) {
+                if (sellOrBuy.equals("buy")) {
+                    if (PriceTextField.getText().isEmpty() || TurnoverTextField.getText().isEmpty()) {
+                        errorText.setText("please fill all the text fields");
                         errorText.setVisible(true);
+                    } else {
+                        PreparedStatement prestm = Main.connection.prepareStatement("SELECT * FROM usersdata WHERE username = ?");
+                        prestm.setString(1, Main.username);
+                        ResultSet resultSet = prestm.executeQuery();
+                        while (resultSet.next()) {
+                            Double userMoney = resultSet.getDouble("money");
+                            if (userMoney < (Double.parseDouble(price) * Double.parseDouble(turnover))) {
+                                errorText.setText("you don't have enough money!");
+                                errorText.setVisible(true);
+                            } else {
+                                // do the transaction
+                                continueTransaction(Double.parseDouble(price), Double.parseDouble(turnover));
+                            }
+                        }
                     }
-                    else {
-                        // do the transaction
-                        continueTransaction(Double.parseDouble(price),Double.parseDouble(turnover));
+                } else {
+                    //if (sellOrBuy.equals("sell"))
+                    if (PriceTextField.getText().isEmpty() || TurnoverTextField.getText().isEmpty()) {
+                        errorText.setText("please fill all the text fields");
+                        errorText.setVisible(true);
+                    } else {
+                        PreparedStatement prestm = Main.connection.prepareStatement("SELECT * FROM usersdata WHERE username = ?");
+                        prestm.setString(1, Main.username);
+                        ResultSet resultSet = prestm.executeQuery();
+                        while (resultSet.next()) {
+                            double userCurrencyAmount = resultSet.getDouble("amountOf" + CurrencyButton.getText());
+                            if (userCurrencyAmount < Double.parseDouble(turnover)) {
+                                errorText.setText("you don't have enough money!");
+                                errorText.setVisible(true);
+                            } else {
+                                // do the transaction
+                                continueTransaction(Double.parseDouble(price), Double.parseDouble(turnover));
+                            }
+                        }
                     }
                 }
             }
-        }
-        else if (sellOrBuy.equals("sell")){
-            if(price==null || turnover==null){
-                errorText.setText("please fill all the text fields");
-                errorText.setVisible(true);
-            }
             else {
-                PreparedStatement prestm = Main.connection.prepareStatement("SELECT * FROM usersdata WHERE username = ?");
-                prestm.setString(1,Main.username);
-                ResultSet resultSet = prestm.executeQuery();
-                while (resultSet.next()){
-                    double userCurrencyAmount = resultSet.getDouble("amountOf"+CurrencyButton.getText());
-                    if(userCurrencyAmount < Double.parseDouble(turnover)){
-                        errorText.setText("you don't have enough money!");
-                        errorText.setVisible(true);
-                    }
-                    else {
-                        // do the transaction
-                        continueTransaction(Double.parseDouble(price),Double.parseDouble(turnover));
-                    }
-                }
+                errorText.setText("please choose currency");
+                errorText.setVisible(true);
             }
         }
         else {
@@ -414,6 +417,8 @@ public class Exchange implements Initializable {
                     p10.setString(2,"admin");
                     p10.executeUpdate();
 
+                    errorText.setText("TRANSACTION DONE!");
+                    errorText.setVisible(true);
                     break;
                 }
             }
@@ -490,6 +495,8 @@ public class Exchange implements Initializable {
                     p10.setString(2,"admin");
                     p10.executeUpdate();
 
+                    errorText.setText("TRANSACTION DONE!");
+                    errorText.setVisible(true);
                     break;
                 }
             }
