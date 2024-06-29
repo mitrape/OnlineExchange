@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -23,10 +24,13 @@
             </Label>
       <AnchorPane layoutX="47.0" layoutY="134.0" prefHeight="513.0" prefWidth="498.0" style="-fx-background-color: white; -fx-background-radius: 7;">
          <children>
-                  <Button layoutX="175.0" layoutY="440.0" mnemonicParsing="false" onAction="#ClickOnDone" prefHeight="31.0" prefWidth="147.0" style="-fx-background-color: green;" text="DONE!" textFill="WHITE">
+                  <Button layoutX="175.0" layoutY="440.0" mnemonicParsing="false" onAction="#ClickOnDone" prefHeight="31.0" prefWidth="147.0" style="-fx-background-color: #1EF1B1;" text="DONE!" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></Button>
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
             <MenuButton fx:id="CurrencyButton" alignment="CENTER" layoutX="271.0" layoutY="160.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="147.0" style="-fx-background-color: transparent; -fx-border-color: #071739;" text="currency" textFill="#071739">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#ClickOnTOMAN" text="TOMAN" />
@@ -47,28 +51,12 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Button fx:id="buyButton" layoutX="137.0" layoutY="69.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="74.0" style="-fx-background-color: green; -fx-background-radius: 8;" text="BUY" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button fx:id="sellButton" layoutX="282.0" layoutY="69.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: red; -fx-background-radius: 8;" text="SELL" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
             <Label layoutX="86.0" layoutY="260.0" text="Turnover " textFill="#071739">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="238.0" layoutY="76.0" text="OR" textFill="#071739">
+            <Label layoutX="230.0" layoutY="76.0" text="OR" textFill="#071739">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -93,6 +81,16 @@
                   <Font size="13.0" />
                </font>
             </Text>
+            <ToggleButton fx:id="buyButton" layoutX="102.0" layoutY="71.0" mnemonicParsing="false" onAction="#ClickOnBuyButton" prefHeight="26.0" prefWidth="76.0" style="-fx-background-color: #1EF1B1;" text="BUY" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </ToggleButton>
+            <ToggleButton fx:id="sellButton" layoutX="302.0" layoutY="71.0" mnemonicParsing="false" onAction="#ClickOnSellButton" prefHeight="26.0" prefWidth="76.0" style="-fx-background-color: red;" text="SELL" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </ToggleButton>
          </children>
       </AnchorPane>
       <TableView fx:id="marketTable" layoutX="598.0" layoutY="407.0" prefHeight="238.0" prefWidth="290.0" style="-fx-background-color: white; -fx-background-radius: 3;">
