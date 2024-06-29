@@ -219,8 +219,6 @@ public class HomePage implements Initializable{
         slopeTOMAN = slopeANDinterceptTOMAN[0];
         interceptTOMAN = slopeANDinterceptTOMAN[1];
 
-
-
     }
     public void ClickOnProfile (ActionEvent event) throws IOException {
         Main m = new Main();
