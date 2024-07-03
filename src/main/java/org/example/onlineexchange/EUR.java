@@ -54,13 +54,13 @@ public class EUR implements Initializable {
 
 
     @FXML
-    private TableView<Double> TransactionTable;
+    private TableView<String> TransactionTable;
     @FXML
-    private TableColumn<Double, Double> TransactionColumn;
+    private TableColumn<String, String> TransactionColumn;
     @FXML
-    private TableView <Double> OpenRequestsTable ;
+    private TableView <String> OpenRequestsTable ;
     @FXML
-    private TableColumn <Double,Double> OpenRequestsColumn ;
+    private TableColumn <String,String> OpenRequestsColumn ;
     @FXML
     private LineChart lineChartMinute;
     @FXML
@@ -75,8 +75,8 @@ public class EUR implements Initializable {
     private LineChart lineChartYear;
     int lastMinute = -1;
     private volatile boolean stop = false;
-    ObservableList <Double> TransactionList = FXCollections.observableArrayList();
-    ObservableList <Double> OpenRequestsList = FXCollections.observableArrayList();
+    ObservableList <String> TransactionList = FXCollections.observableArrayList();
+    ObservableList <String> OpenRequestsList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         showTime();
@@ -163,10 +163,9 @@ public class EUR implements Initializable {
         OpenRequestsColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue()));
         try {
             Statement statement1 = Main.connection.createStatement();
-            ResultSet resultSet1 = statement1.executeQuery("SELECT Transaction FROM eurtransaction");
+            ResultSet resultSet1 = statement1.executeQuery("SELECT * FROM eurtransaction");
             while (resultSet1.next()){
-                Double eurTransaction = resultSet1.getDouble("Transaction");
-                TransactionList.add(eurTransaction);
+                TransactionList.add(String.format("%.4f",resultSet1.getDouble("Transaction")*resultSet1.getDouble("amount"))+"->"+resultSet1.getString("SellOrBuy"));
             }
             TransactionTable.setItems(TransactionList);
 
@@ -175,10 +174,9 @@ public class EUR implements Initializable {
         }
         try {
             Statement statement1 = Main.connection.createStatement();
-            ResultSet resultSet1 = statement1.executeQuery("SELECT eurOpenRequests FROM europenrequests");
+            ResultSet resultSet1 = statement1.executeQuery("SELECT * FROM europenrequests");
             while (resultSet1.next()){
-                Double eurOpenRequests = resultSet1.getDouble("eurOpenRequests");
-                OpenRequestsList.add(eurOpenRequests);
+                OpenRequestsList.add(String.format("%.4f",resultSet1.getDouble("eurOpenRequests")*resultSet1.getDouble("amount"))+"->"+resultSet1.getString("SellOrBuy"));
             }
             OpenRequestsTable.setItems(OpenRequestsList);
 
