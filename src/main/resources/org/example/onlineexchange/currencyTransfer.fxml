@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="669.0" prefWidth="600.0" style="-fx-background-color: #071739;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.onlineexchange.Transfer">
+   <children>
+      <Label layoutX="259.0" layoutY="33.0" text="Transfer" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="21.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </Label>
+      <Line endX="100.0" layoutX="383.0" layoutY="85.0" startX="-267.0" startY="-7.62939453125E-6" stroke="WHITE" strokeWidth="2.0" />
+      <Label layoutX="69.0" layoutY="188.0" text="Choose currency please :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <MenuButton layoutX="314.0" layoutY="182.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="201.0" style="-fx-background-color: transparent; -fx-border-color: #1EF1B1; -fx-border-radius: 5; -fx-background-radius: 5;" text="choose currency" textFill="#1ef1b1">
+        <items>
+          <MenuItem mnemonicParsing="false" text="USD" />
+            <MenuItem mnemonicParsing="false" text="TOMAN" />
+            <MenuItem mnemonicParsing="false" text="YEN" />
+            <MenuItem mnemonicParsing="false" text="GBP" />
+          <MenuItem mnemonicParsing="false" text="EUR" />
+        </items>
+      </MenuButton>
+      <Slider blockIncrement="1000.0" layoutX="68.0" layoutY="396.0" majorTickUnit="10000.0" max="100000.0" prefHeight="38.0" prefWidth="464.0" showTickLabels="true" showTickMarks="true" />
+      <Label alignment="CENTER" layoutX="313.0" layoutY="300.0" prefHeight="31.0" prefWidth="202.0" style="-fx-border-color: #1EF1B1; -fx-border-radius: 5;" text="0.00" textAlignment="CENTER" textFill="#1ef1b1" />
+      <Label layoutX="69.0" layoutY="306.0" text="Amount of transfer :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="211.0" layoutY="571.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="177.0" style="-fx-background-color: #1EF1B1;" text="Done" textFill="#23478e">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="68.0" layoutY="492.0" text="Enter email to get transaction receipt :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="360.0" layoutY="488.0" prefHeight="31.0" prefWidth="170.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #1EF1B1; -fx-border-width: 3;" />
+   </children>
+</AnchorPane>

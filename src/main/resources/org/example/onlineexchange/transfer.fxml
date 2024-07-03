@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="415.0" prefWidth="496.0" style="-fx-background-color: #071739;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.onlineexchange.Transfer">
+   <children>
+      <Label layoutX="189.0" layoutY="14.0" text="Transfer" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </Label>
+      <TextField focusTraversable="false" layoutX="204.0" layoutY="103.0" prefHeight="35.0" prefWidth="246.0" style="-fx-background-color: #1EF1B1;">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <effect>
+            <Glow>
+               <input>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </input>
+            </Glow>
+         </effect>
+      </TextField>
+      <Label layoutX="38.0" layoutY="111.0" text="Enter wallet-id :" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </Label>
+      <Label layoutX="38.0" layoutY="219.0" text="Choose type of transfer:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </Label>
+      <RadioButton layoutX="70.0" layoutY="268.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="158.0" text="currency transfer" textFill="#1ef1b1">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </RadioButton>
+      <RadioButton layoutX="283.0" layoutY="285.0" mnemonicParsing="false" text="money transfer" textFill="#1ef1b1">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </RadioButton>
+   </children>
+   <cursor>
+      <Cursor fx:constant="TEXT" />
+   </cursor>
+</AnchorPane>
