@@ -1,10 +1,15 @@
 package org.example.onlineexchange;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -22,9 +27,49 @@ import java.util.ResourceBundle;
 public class History implements Initializable {
     int lastMinute = -1;
     private volatile boolean stop = false;
+    @FXML
+    private TableView<TransactionData> OpenRequestsTable;
+    @FXML
+    private TableView <TransactionData> TransactionTable;
+
+
+    @FXML
+    private TableColumn<TransactionData, String> currencyOpen;
+    @FXML
+    private TableColumn<TransactionData, Double> priceOpen;
+    @FXML
+    private TableColumn<TransactionData, Double> turnoverOpen;
+    @FXML
+    private TableColumn<TransactionData, String> sellorbuyOpen;
+    @FXML
+    private TableColumn<TransactionData, String> dateOpen;
+
+    @FXML
+    private TableColumn<TransactionData, String> currencyTran;
+    @FXML
+    private TableColumn<TransactionData, Double> priceTran;
+    @FXML
+    private TableColumn<TransactionData, Double> turnoverTran;
+    @FXML
+    private TableColumn<TransactionData, String> sellorbuyTran;
+    @FXML
+    private TableColumn<TransactionData, String> dateTran;
+
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            setLastTransactionTable();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            setPendingTable();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         changeTime();
     }
 
@@ -46,7 +91,16 @@ public class History implements Initializable {
                     int currentMinute = calendar.get(Calendar.MINUTE);
                     if (currentMinute != lastMinute) {
                         // A new minute has passed, call your update function here
-
+                        try {
+                            setLastTransactionTable();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            setPendingTable();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
                         lastMinute = currentMinute;
                     }
                 });
@@ -184,6 +238,106 @@ public class History implements Initializable {
             exportOpenRequestsToCSV(Main.username,path);
         }
     }
+    public void setPendingTable () throws SQLException {
+        OpenRequestsTable.getItems().clear();
+
+        currencyOpen.setCellValueFactory(new PropertyValueFactory<TransactionData, String>("currency"));
+        priceOpen.setCellValueFactory(new PropertyValueFactory<TransactionData, Double>("transaction"));
+        turnoverOpen.setCellValueFactory(new PropertyValueFactory<TransactionData, Double>("amount"));
+        sellorbuyOpen.setCellValueFactory(new PropertyValueFactory<TransactionData, String>("sellOrBuy"));
+        dateOpen.setCellValueFactory(new PropertyValueFactory<TransactionData, String>("date"));
+
+        PreparedStatement stmt1 = Main.connection.prepareStatement("SELECT tomanOpenRequests, amount, SellOrBuy, date FROM tomanopenrequests WHERE username =?");
+        stmt1.setString(1,Main.username);
+        ResultSet tomanResult = stmt1.executeQuery();
+        while (tomanResult.next()) {
+            OpenRequestsTable.getItems().add(new TransactionData("toman", tomanResult.getDouble("tomanOpenRequests"), tomanResult.getDouble("amount"), tomanResult.getString("SellOrBuy"), tomanResult.getString("date")));
+        }
 
 
+        PreparedStatement stmt2 = Main.connection.prepareStatement("SELECT eurOpenRequests, amount, SellOrBuy, date FROM europenrequests WHERE username =?");
+        stmt2.setString(1,Main.username);
+        ResultSet eurResult = stmt2.executeQuery();
+        while (eurResult.next()) {
+            OpenRequestsTable.getItems().add(new TransactionData("eur", eurResult.getDouble("eurOpenRequests"), eurResult.getDouble("amount"), eurResult.getString("SellOrBuy"), eurResult.getString("date")));
+        }
+
+
+        PreparedStatement stmt3 = Main.connection.prepareStatement("SELECT usdOpenRequests, amount, SellOrBuy, date FROM usdopenrequests WHERE username =?");
+        stmt3.setString(1,Main.username);
+        ResultSet usdResult = stmt3.executeQuery();
+        while (usdResult.next()) {
+            OpenRequestsTable.getItems().add(new TransactionData("usd", usdResult.getDouble("usdOpenRequests"), usdResult.getDouble("amount"), usdResult.getString("SellOrBuy"), usdResult.getString("date")));
+        }
+
+
+        PreparedStatement stmt4 = Main.connection.prepareStatement("SELECT yenOpenRequests, amount, SellOrBuy, date FROM yenopenrequests WHERE username =?");
+        stmt4.setString(1,Main.username);
+        ResultSet yenResult = stmt4.executeQuery();
+        while (yenResult.next()) {
+            OpenRequestsTable.getItems().add(new TransactionData("yen", yenResult.getDouble("yenOpenRequests"), yenResult.getDouble("amount"), yenResult.getString("SellOrBuy"), yenResult.getString("date")));
+        }
+
+
+        PreparedStatement stmt5 = Main.connection.prepareStatement("SELECT gbpOpenRequests, amount, SellOrBuy, date FROM gbpopenrequests WHERE username =?");
+        stmt5.setString(1,Main.username);
+        ResultSet gbpResult = stmt5.executeQuery();
+        while (gbpResult.next()) {
+            OpenRequestsTable.getItems().add(new TransactionData("gbp", gbpResult.getDouble("gbpOpenRequests"), gbpResult.getDouble("amount"), gbpResult.getString("SellOrBuy"), gbpResult.getString("date")));
+        }
+
+    }
+    public void setLastTransactionTable () throws SQLException {
+        TransactionTable.getItems().clear();
+
+        currencyTran.setCellValueFactory(new PropertyValueFactory<TransactionData, String>("currency"));
+        priceTran.setCellValueFactory(new PropertyValueFactory<TransactionData, Double>("transaction"));
+        turnoverTran.setCellValueFactory(new PropertyValueFactory<TransactionData, Double>("amount"));
+        sellorbuyTran.setCellValueFactory(new PropertyValueFactory<TransactionData, String>("sellOrBuy"));
+        dateTran.setCellValueFactory(new PropertyValueFactory<TransactionData, String>("date"));
+
+        PreparedStatement stmt1 = Main.connection.prepareStatement("SELECT Transaction, amount, SellOrBuy, date FROM tomantransaction WHERE username =?");
+        stmt1.setString(1,Main.username);
+        ResultSet tomanResult = stmt1.executeQuery();
+        while (tomanResult.next()) {
+            TransactionTable.getItems().add(new TransactionData("toman", tomanResult.getDouble("Transaction"), tomanResult.getDouble("amount"), tomanResult.getString("SellOrBuy"), tomanResult.getString("date")));
+        }
+
+
+        PreparedStatement stmt2 = Main.connection.prepareStatement("SELECT Transaction, amount, SellOrBuy, date FROM eurtransaction WHERE username =?");
+        stmt2.setString(1,Main.username);
+        ResultSet eurResult = stmt2.executeQuery();
+        while (eurResult.next()) {
+            TransactionTable.getItems().add(new TransactionData("eur", eurResult.getDouble("Transaction"), eurResult.getDouble("amount"), eurResult.getString("SellOrBuy"), eurResult.getString("date")));
+        }
+
+
+        PreparedStatement stmt3 = Main.connection.prepareStatement("SELECT Transaction, amount, SellOrBuy, date FROM usdtransaction WHERE username =?");
+        stmt3.setString(1,Main.username);
+        ResultSet usdResult = stmt3.executeQuery();
+        while (usdResult.next()) {
+            TransactionTable.getItems().add(new TransactionData("usd", usdResult.getDouble("Transaction"), usdResult.getDouble("amount"), usdResult.getString("SellOrBuy"), usdResult.getString("date")));
+        }
+
+
+        PreparedStatement stmt4 = Main.connection.prepareStatement("SELECT Transaction, amount, SellOrBuy, date FROM yentransaction WHERE username =?");
+        stmt4.setString(1,Main.username);
+        ResultSet yenResult = stmt4.executeQuery();
+        while (yenResult.next()) {
+            TransactionTable.getItems().add(new TransactionData("yen", yenResult.getDouble("Transaction"), yenResult.getDouble("amount"), yenResult.getString("SellOrBuy"), yenResult.getString("date")));
+        }
+
+
+        PreparedStatement stmt5 = Main.connection.prepareStatement("SELECT Transaction, amount, SellOrBuy, date FROM gbptransaction WHERE username =?");
+        stmt5.setString(1,Main.username);
+        ResultSet gbpResult = stmt5.executeQuery();
+        while (gbpResult.next()) {
+            TransactionTable.getItems().add(new TransactionData("gbp", gbpResult.getDouble("Transaction"), gbpResult.getDouble("amount"), gbpResult.getString("SellOrBuy"), gbpResult.getString("date")));
+        }
+    }
+
+    public void ClickOnExit (ActionEvent event){
+        System.exit(0);
+    }
 }
+
