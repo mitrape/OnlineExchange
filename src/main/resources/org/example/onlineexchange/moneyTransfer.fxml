@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="495.0" prefWidth="528.0" style="-fx-background-color: #071739;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.onlineexchange.Transfer">
    <children>
@@ -21,16 +21,21 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Slider layoutX="71.0" layoutY="265.0" majorTickUnit="10000.0" max="100000.0" prefHeight="38.0" prefWidth="385.0" showTickLabels="true" showTickMarks="true" />
-      <Label alignment="CENTER" layoutX="249.0" layoutY="155.0" prefHeight="38.0" prefWidth="194.0" style="-fx-border-color: #1EF1B1; -fx-border-radius: 5; -fx-background-radius: 5;" text="0.00" textFill="#1ef1b1">
+      <Slider fx:id="moneySlider" layoutX="71.0" layoutY="265.0" majorTickUnit="10000.0" max="100000.0" prefHeight="38.0" prefWidth="385.0" showTickLabels="true" showTickMarks="true" />
+      <Label fx:id="moneyLabel" alignment="CENTER" layoutX="249.0" layoutY="155.0" prefHeight="38.0" prefWidth="194.0" style="-fx-border-color: #1EF1B1; -fx-border-radius: 5; -fx-background-radius: 5;" text="0.00" textFill="#1ef1b1">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Button layoutX="181.0" layoutY="381.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="165.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 5; -fx-border-radius: 5;" text="Done" textFill="#143876">
+      <Button layoutX="181.0" layoutY="381.0" mnemonicParsing="false" onAction="#ClickOnDoneMoney" prefHeight="38.0" prefWidth="165.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 5; -fx-border-radius: 5;" text="Done" textFill="#143876">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
+      <Text fx:id="moneyError" fill="RED" layoutX="48.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="error" textAlignment="CENTER" visible="false" wrappingWidth="430.93682861328125">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
