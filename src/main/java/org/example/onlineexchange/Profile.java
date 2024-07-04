@@ -105,11 +105,11 @@ public class Profile implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-//       Image image = new Image("D:\\programming projects\\OnlineExchange\\src\\image\\"+photoName);
-//        int cropWidth = 484;
-//        int cropHeight = 361;
-//        WritableImage croppedImage = new WritableImage(image.getPixelReader(), 0, 0, cropWidth, cropHeight);
-//        photo.setImage(croppedImage);
+       Image image = new Image(photoName);
+        int cropWidth = 484;
+        int cropHeight = 361;
+        WritableImage croppedImage = new WritableImage(image.getPixelReader(), 0, 0, cropWidth, cropHeight);
+        photo.setImage(croppedImage);
         usernameLabel.setText(username);
         nameLabel.setText(firstName);
         lastnameLabel.setText(lastName);
@@ -130,27 +130,31 @@ public class Profile implements Initializable {
         m2.changeScene("Wallet");
     }
     public void ClickOnChoosePhotoButton (ActionEvent event) throws IOException {
-        //اینجا بیاد عکس با اسم تکراری بزنه رو هندل نکردم
         try {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Choose an image file");
             File selectedFile = fileChooser.showOpenDialog(Main.stg);
             if (selectedFile != null) {
 
-                String sql = "UPDATE usersdata SET photoName = ? WHERE username = ?";
-                PreparedStatement pstmt = Main.connection.prepareStatement(sql);
-                pstmt.setString(1, selectedFile.getName());
-                pstmt.setString(2, Main.username);
-                pstmt.executeUpdate();
+                PreparedStatement ps = Main.connection.prepareStatement("SELECT * FROM usersdata WHERE photoName = ?");
+                ps.setString(1,selectedFile.getName());
+                ResultSet rs = ps.executeQuery();
+                if(!rs.isBeforeFirst()) {
+                    String sql = "UPDATE usersdata SET photoName = ? WHERE username = ?";
+                    PreparedStatement pstmt = Main.connection.prepareStatement(sql);
+                    pstmt.setString(1, selectedFile.getName());
+                    pstmt.setString(2, Main.username);
+                    pstmt.executeUpdate();
 
-                Path sourcePath = selectedFile.toPath();
-                Path destinationPath = Paths.get("/Users/melikadehestani/Desktop/uni/FOP advanced/final proj/OnlineExchange/src/image"+selectedFile.getName());
-                Files.copy(sourcePath, destinationPath);
-                Image image = new Image(sourcePath.toUri().toString());
-                int cropWidth = 484;
-                int cropHeight = 361;
-                WritableImage croppedImage = new WritableImage(image.getPixelReader(), 0, 0, cropWidth, cropHeight);
-                photo.setImage(croppedImage);
+                    Path sourcePath = selectedFile.toPath();
+                    Path destinationPath = Paths.get("src\\image\\" + selectedFile.getName());
+                    Files.copy(sourcePath, destinationPath);
+                    Image image = new Image(sourcePath.toUri().toString());
+                    int cropWidth = 484;
+                    int cropHeight = 361;
+                    WritableImage croppedImage = new WritableImage(image.getPixelReader(), 0, 0, cropWidth, cropHeight);
+                    photo.setImage(croppedImage);
+                }
 
             }
         } catch (Exception e) {

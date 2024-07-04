@@ -231,7 +231,7 @@ public class SignUp implements Initializable{
         if(swFinal){
             try {
                 Main.username = username.getText();
-                psInsert= Main.connection.prepareStatement("INSERT INTO usersdata (username , password , firstName , lastName , email , phoneNumber , photoName )VAlUES (? , ? , ? , ? , ? , ? , ?)");
+                psInsert= Main.connection.prepareStatement("INSERT INTO usersdata (username , password , firstName , lastName , email , phoneNumber , photoName  ,amountOfUSD , amountOfEUR,amountOfYEN , amountOfGBP, amountOfTOMAN , money)VAlUES (? , ? , ? , ? , ? , ? , ?,?,?,?,?,?,?)");
                 psInsert.setString(1 ,username.getText());
                 psInsert.setString(2 ,password.getText());
                 psInsert.setString(3 ,firstName.getText());
@@ -239,6 +239,12 @@ public class SignUp implements Initializable{
                 psInsert.setString(5 ,email.getText());
                 psInsert.setString(6 ,phoneNumber.getText());
                 psInsert.setString(7 ,selectedFile.getName());
+                psInsert.setString(8 ,"0");
+                psInsert.setString(9 ,"0");
+                psInsert.setString(10 ,"0");
+                psInsert.setString(11 ,"0");
+                psInsert.setString(12 ,"0");
+                psInsert.setString(13 ,"0");
                 psInsert.executeUpdate();
                 user.setProfilePhoto(selectedFile.getName());
             }
@@ -302,7 +308,7 @@ public class SignUp implements Initializable{
             resultSet3 = psCheckUsernameExists3.executeQuery();
             if (selectedFile != null && ! resultSet3.isBeforeFirst()) {
                 Path sourcePath = selectedFile.toPath();
-                Path destinationPath = Paths.get("D:\\programming projects\\OnlineExchange\\src\\image\\"+selectedFile.getName());
+                Path destinationPath = Paths.get("src\\image\\"+selectedFile.getName());
                 Files.copy(sourcePath, destinationPath);
                 Image image = new Image(sourcePath.toUri().toString());
                 int cropWidth = 484;
