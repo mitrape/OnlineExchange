@@ -57,17 +57,6 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-
-//    public static void main(String[] args) {
-//        Main m = new Main();
-//        try {
-//            m.createConnection();
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//        launch(args);
-//
-//    }
     public static void go (){
         Main m = new Main();
         try {
