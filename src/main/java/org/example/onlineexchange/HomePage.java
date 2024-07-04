@@ -229,7 +229,7 @@ public class HomePage implements Initializable{
     }
     public void ClickOnTransfer (ActionEvent event) throws IOException{
         Main m = new Main();
-        m.changeScene("transfer");
+        m.openNewWindow("Transfer","transfer");
     }
     public void ClickOnExchange (ActionEvent event)throws IOException{
         Main m = new Main();
