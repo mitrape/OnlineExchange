@@ -121,8 +121,6 @@ public class SignUp implements Initializable{
             usernameMessage.setText("Username already exist");
             usernameMessage.setVisible(true);
             user.correctInfo[0]=false;
-            System.out.println("loop");
-            System.out.println(user.correctInfo[0]);
         }
         else {
             usernameMessage.setVisible(false);
