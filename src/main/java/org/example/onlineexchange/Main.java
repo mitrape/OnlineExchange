@@ -11,8 +11,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
 
 public class Main extends Application {
     public static String username = null;
@@ -47,9 +46,9 @@ public class Main extends Application {
     }
 
     void createConnection () throws Exception{
-        final String URL = "jdbc:mysql://127.0.0.1:3306/users_personal_data";
+        final String URL = "jdbc:mysql://127.0.0.1:3307/users_personal_data";
         final String USER = "root";
-        final String PASSWORD = "melika138329";
+        final String PASSWORD = "13832220";
         try {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
             System.out.println("Connected to the database");
@@ -59,14 +58,23 @@ public class Main extends Application {
         }
     }
 
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
+//        Main m = new Main();
+//        try {
+//            m.createConnection();
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//        launch(args);
+//
+//    }
+    public static void go (){
         Main m = new Main();
         try {
             m.createConnection();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        launch(args);
-
+        launch();
     }
 }
