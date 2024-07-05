@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="669.0" prefWidth="600.0" style="-fx-background-color: #071739;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.onlineexchange.Transfer">
    <children>
@@ -28,23 +28,23 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <MenuButton layoutX="314.0" layoutY="182.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="201.0" style="-fx-background-color: transparent; -fx-border-color: #1EF1B1; -fx-border-radius: 5; -fx-background-radius: 5;" text="choose currency" textFill="#1ef1b1">
+      <MenuButton fx:id="currencyMenuButton" layoutX="314.0" layoutY="182.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="201.0" style="-fx-background-color: transparent; -fx-border-color: #1EF1B1; -fx-border-radius: 5; -fx-background-radius: 5;" text="choose currency" textFill="#1ef1b1">
         <items>
-          <MenuItem mnemonicParsing="false" text="USD" />
-            <MenuItem mnemonicParsing="false" text="TOMAN" />
-            <MenuItem mnemonicParsing="false" text="YEN" />
-            <MenuItem mnemonicParsing="false" text="GBP" />
-          <MenuItem mnemonicParsing="false" text="EUR" />
+          <MenuItem mnemonicParsing="false" onAction="#ClickOnUSD" text="USD" />
+            <MenuItem mnemonicParsing="false" onAction="#ClickOnTOMAN" text="TOMAN" />
+            <MenuItem mnemonicParsing="false" onAction="#ClickOnYEN" text="YEN" />
+            <MenuItem mnemonicParsing="false" onAction="#ClickOnGBP" text="GBP" />
+          <MenuItem mnemonicParsing="false" onAction="#ClickOnEUR" text="EUR" />
         </items>
       </MenuButton>
-      <Slider blockIncrement="1000.0" layoutX="68.0" layoutY="396.0" majorTickUnit="10000.0" max="100000.0" prefHeight="38.0" prefWidth="464.0" showTickLabels="true" showTickMarks="true" />
-      <Label alignment="CENTER" layoutX="313.0" layoutY="300.0" prefHeight="31.0" prefWidth="202.0" style="-fx-border-color: #1EF1B1; -fx-border-radius: 5;" text="0.00" textAlignment="CENTER" textFill="#1ef1b1" />
+      <Slider fx:id="currencySlider" blockIncrement="1000.0" layoutX="68.0" layoutY="396.0" majorTickUnit="10000.0" max="100000.0" prefHeight="38.0" prefWidth="464.0" showTickLabels="true" showTickMarks="true" />
+      <Label fx:id="amountLabel" alignment="CENTER" layoutX="313.0" layoutY="300.0" prefHeight="31.0" prefWidth="202.0" style="-fx-border-color: #1EF1B1; -fx-border-radius: 5;" text="0.00" textAlignment="CENTER" textFill="#1ef1b1" />
       <Label layoutX="69.0" layoutY="306.0" text="Amount of transfer :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Button layoutX="211.0" layoutY="571.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="177.0" style="-fx-background-color: #1EF1B1;" text="Done" textFill="#23478e">
+      <Button layoutX="211.0" layoutY="571.0" mnemonicParsing="false" onAction="#ClickOnDoneCurrency" prefHeight="31.0" prefWidth="177.0" style="-fx-background-color: #1EF1B1;" text="Done" textFill="#23478e">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -54,6 +54,26 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="360.0" layoutY="488.0" prefHeight="31.0" prefWidth="170.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #1EF1B1; -fx-border-width: 3;" />
+      <TextField fx:id="emailTextField" layoutX="360.0" layoutY="488.0" prefHeight="31.0" prefWidth="170.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #1EF1B1; -fx-border-width: 3;" />
+      <Text fx:id="currencyNameError" fill="RED" layoutX="345.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="please choose a currency" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <Text fx:id="amountError" fill="RED" layoutX="312.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="please choose a amount for transfer" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <Label fx:id="doneCurrencyLabel" layoutX="281.0" layoutY="544.0" text="DONE!" textFill="RED" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="enoughCurrencyError" layoutX="198.0" layoutY="116.0" prefHeight="19.0" prefWidth="203.0" text="you don't have enough currency" textFill="RED" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
