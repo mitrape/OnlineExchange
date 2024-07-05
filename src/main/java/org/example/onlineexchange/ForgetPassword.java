@@ -78,7 +78,7 @@ public class ForgetPassword {
             message.setSubject("log in with code");
             Random rand = new Random();
             code = rand.nextInt(10000);
-            message.setText(code.toString());
+            message.setText("Dear User\nHere is your entry code : \n"+code+"\nPlease enter this code in the verification field.");
 
             Transport.send(message);
             return true;
