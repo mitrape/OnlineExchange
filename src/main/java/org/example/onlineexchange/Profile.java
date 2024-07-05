@@ -123,11 +123,11 @@ public class Profile implements Initializable {
     }
     public void ClickOnHistoryButton (ActionEvent event) throws IOException {
         Main m1 = new Main();
-        m1.changeScene("History");
+        m1.openNewWindow("History","history");
     }
     public void ClickOnWalletButton (ActionEvent event) throws IOException {
         Main m2 = new Main();
-        m2.changeScene("Wallet");
+        m2.openNewWindow("Wallet","wallet");
     }
     public void ClickOnChoosePhotoButton (ActionEvent event) throws IOException {
         try {
