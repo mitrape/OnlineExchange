@@ -53,6 +53,7 @@ public class Wallet implements Initializable{
     double eur;
     double total;
     double[] totalMoney = new double[HomePage.USD.length*1000];
+    double money;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -108,16 +109,17 @@ public class Wallet implements Initializable{
              yen =Double.parseDouble(resultSet.getString("amountOfYEN"));
              toman=Double.parseDouble(resultSet.getString("amountOfTOMAN"));
              gbp=Double.parseDouble(resultSet.getString("amountOfGBP"));
-            usdWealth.setText(String.valueOf(usd));
-            eurWealth.setText(String.valueOf(eur));
-            yenWealth.setText(String.valueOf(yen));
-            tomanWealth.setText(String.valueOf(toman));
-            gbpWealth.setText(String.valueOf(gbp));
-            total = usd*Double.parseDouble(HomePage.USDinfo[2])+yen*Double.parseDouble(HomePage.YENinfo[2])+eur*Double.parseDouble(HomePage.EURinfo[2])+toman*Double.parseDouble(HomePage.TOMANinfo[2])+gbp*Double.parseDouble(HomePage.GBPinfo[2]);
-            totalCapital.setText(String.valueOf(total));
+             money=Double.parseDouble(resultSet.getString("money"));
+            usdWealth.setText(String.format("%.4f",usd));
+            eurWealth.setText(String.format("%.4f",eur));
+            yenWealth.setText(String.format("%.4f",yen));
+            tomanWealth.setText(String.format("%.4f",toman));
+            gbpWealth.setText(String.format("%.4f",gbp));
+            total = money+usd*Double.parseDouble(HomePage.USDinfo[2])+yen*Double.parseDouble(HomePage.YENinfo[2])+eur*Double.parseDouble(HomePage.EURinfo[2])+toman*Double.parseDouble(HomePage.TOMANinfo[2])+gbp*Double.parseDouble(HomePage.GBPinfo[2]);
+            totalCapital.setText(String.format("%.4f",total));
         }
         for (int i = 0; i < HomePage.USD.length; i++) {
-            totalMoney[i]=usd*HomePage.USD[i]+yen*HomePage.YEN[i]+eur*HomePage.EUR[i]+toman*HomePage.TOMAN[i]+gbp*HomePage.GBP[i];
+            totalMoney[i]=money+usd*HomePage.USD[i]+yen*HomePage.YEN[i]+eur*HomePage.EUR[i]+toman*HomePage.TOMAN[i]+gbp*HomePage.GBP[i];
         }
     }
     public void showTime (){
@@ -140,6 +142,7 @@ public class Wallet implements Initializable{
         return regression.getSlope();
     }
     public void setLineChartYear (){
+        regressionLineYear.getData().removeAll(Collections.singleton(yearlyWealth.getData().setAll()));
         double slope=linearRegressionData(totalMoney);
         regressionLineYear = new XYChart.Series<>();
         regressionLineYear.getData().add(new XYChart.Data<>("2024",  total));
