@@ -203,7 +203,7 @@
           <Menu mnemonicParsing="false" text="Menu">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#ClickOnProfile" text="Profile" />
-                  <MenuItem mnemonicParsing="false" onAction="#ClickOnExchange" text="Exchange" />
+                  <MenuItem fx:id="exchangeButton" mnemonicParsing="false" onAction="#ClickOnExchange" text="Exchange" />
                   <MenuItem mnemonicParsing="false" onAction="#ClickOnSignUp" text="Sign Up" />
                   <MenuItem mnemonicParsing="false" onAction="#ClickOnLogin" text="Login" />
                   <MenuItem mnemonicParsing="false" onAction="#ClickOnSwap" text="Swap" />

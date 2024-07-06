@@ -131,9 +131,16 @@ public class Login implements Initializable {
         }
         try {
             if (swUsername && swPassword && swCode) {
-                Main m = new Main();
-                Main.username = Username;
-                m.changeScene("homePage");
+                if(Username.equals("admin")){
+                    Main m = new Main();
+                    Main.username = Username;
+                    m.changeScene("admin");
+                }
+                else {
+                    Main m = new Main();
+                    Main.username = Username;
+                    m.changeScene("homePage");
+                }
                 loginMessage.setVisible(false);
                 UsernameMessage.setVisible(false);
                 PasswordMessage.setVisible(false);

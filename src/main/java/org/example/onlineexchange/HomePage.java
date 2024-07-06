@@ -15,6 +15,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -28,6 +29,10 @@ import javafx.util.Duration;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
+
 
 
 public class HomePage implements Initializable{
@@ -122,6 +127,9 @@ public class HomePage implements Initializable{
     private ImageView img3 ;
     @FXML
     private ImageView img4 ;
+    @FXML
+    public MenuItem exchangeButton;
+
 
     public ArrayList<Double> usd = new ArrayList<>();
     public ArrayList<Double> eur = new ArrayList<>();
@@ -220,6 +228,14 @@ public class HomePage implements Initializable{
         interceptTOMAN = slopeANDinterceptTOMAN[1];
 
     }
+    public static void showErrorAlert(String message) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
     public void ClickOnProfile (ActionEvent event) throws IOException {
         Main m = new Main();
         m.openNewWindow("Profile","profile");
@@ -232,8 +248,13 @@ public class HomePage implements Initializable{
         m.openNewWindow("Transfer","transfer");
     }
     public void ClickOnExchange (ActionEvent event)throws IOException{
-        Main m = new Main();
-        m.openNewWindow("Exchange","exchange");
+        if(Admin.swExchange) {
+            Main m = new Main();
+            m.openNewWindow("Exchange", "exchange");
+        }
+        else{
+            showErrorAlert("Exchange has been closed by admin!");
+        }
     }
     public void ClickOnSwap (ActionEvent event) throws IOException{
         Main m = new Main();

@@ -12,8 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="598.0" prefWidth="751.0" style="-fx-background-color: #071739;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.onlineexchange.Admin">
+<AnchorPane prefHeight="599.0" prefWidth="759.0" style="-fx-background-color: #071739;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.onlineexchange.Admin">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1ef1b1" height="32.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="758.0" />
       <Label layoutX="656.0" layoutY="4.0" prefHeight="23.0" prefWidth="60.0" text="Admin" textFill="#071739">
@@ -24,31 +23,32 @@
             <Glow level="1.0" />
          </effect>
       </Label>
-      <TableView layoutX="173.0" layoutY="132.0" prefHeight="425.0" prefWidth="375.0">
+      <TableView fx:id="TransactionTable" layoutX="154.0" layoutY="123.0" prefHeight="423.0" prefWidth="450.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Turnover" />
-          <TableColumn prefWidth="75.0" text="Price" />
-            <TableColumn prefWidth="75.0" text="Sell / Buy" />
-            <TableColumn prefWidth="75.0" text="Username" />
-            <TableColumn prefWidth="75.0" text="Date" />
+            <TableColumn fx:id="currencyTran" prefWidth="75.0" text="Currency" />
+          <TableColumn fx:id="turnoverTran" prefWidth="75.0" text="Turnover" />
+          <TableColumn fx:id="priceTran" prefWidth="75.0" text="Price" />
+            <TableColumn fx:id="sellorbuyTran" prefWidth="75.0" text="Sell / Buy" />
+            <TableColumn fx:id="userTran" prefWidth="75.0" text="Username" />
+            <TableColumn fx:id="dateTran" prefWidth="75.0" text="Date" />
         </columns>
       </TableView>
-      <Label alignment="CENTER" layoutX="173.0" layoutY="109.0" prefHeight="23.0" prefWidth="375.0" style="-fx-background-color: #1EF1B1;" text="All transactions" textAlignment="CENTER" textFill="WHITE">
+      <Label alignment="CENTER" layoutX="154.0" layoutY="100.0" prefHeight="23.0" prefWidth="450.0" style="-fx-background-color: #1EF1B1;" text="All transactions" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button layoutY="1.0" mnemonicParsing="false" style="-fx-background-radius: 0; -fx-background-color: transparent;" text="Wallet" textFill="#071739">
+      <Button layoutY="1.0" mnemonicParsing="false" onAction="#clickOnWallet" style="-fx-background-radius: 0; -fx-background-color: transparent;" text="Wallet" textFill="#071739">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="130.0" layoutY="1.0" mnemonicParsing="false" style="-fx-background-radius: 0; -fx-background-color: transparent;" text="Close store " textFill="#071739">
+      <Button layoutX="130.0" layoutY="1.0" mnemonicParsing="false" onAction="#clickOnClose" style="-fx-background-radius: 0; -fx-background-color: transparent;" text="Close store " textFill="#071739">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="52.0" layoutY="1.0" mnemonicParsing="false" style="-fx-background-radius: 0; -fx-background-color: transparent;" text="Open store" textFill="#071739">
+      <Button layoutX="52.0" layoutY="1.0" mnemonicParsing="false" onAction="#clickOnOpen" style="-fx-background-radius: 0; -fx-background-color: transparent;" text="Open store" textFill="#071739">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -61,5 +61,10 @@
             <Image url="@admin%20profle.png" />
          </image>
       </ImageView>
+      <Label fx:id="time" layoutX="26.0" layoutY="557.0" prefHeight="5.0" prefWidth="40.0" text="Label" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

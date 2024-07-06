@@ -85,6 +85,7 @@ public class Wallet implements Initializable{
                     if (currentMinute != lastMinute) {
                         // A new minute has passed, call your update function here
                         try {
+                            regressionLineYear.getData().removeAll(Collections.singleton(yearlyWealth.getData().setAll()));
                             setLabels();
                             setLineChartYear();
                         } catch (SQLException e) {
@@ -142,7 +143,6 @@ public class Wallet implements Initializable{
         return regression.getSlope();
     }
     public void setLineChartYear (){
-        regressionLineYear.getData().removeAll(Collections.singleton(yearlyWealth.getData().setAll()));
         double slope=linearRegressionData(totalMoney);
         regressionLineYear = new XYChart.Series<>();
         regressionLineYear.getData().add(new XYChart.Data<>("2024",  total));
