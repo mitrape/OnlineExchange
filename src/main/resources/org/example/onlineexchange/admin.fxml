@@ -23,17 +23,17 @@
             <Glow level="1.0" />
          </effect>
       </Label>
-      <TableView fx:id="TransactionTable" layoutX="154.0" layoutY="123.0" prefHeight="423.0" prefWidth="450.0">
+      <TableView fx:id="TransactionTable" layoutX="115.0" layoutY="114.0" prefHeight="423.0" prefWidth="528.0">
         <columns>
             <TableColumn fx:id="currencyTran" prefWidth="75.0" text="Currency" />
           <TableColumn fx:id="turnoverTran" prefWidth="75.0" text="Turnover" />
           <TableColumn fx:id="priceTran" prefWidth="75.0" text="Price" />
             <TableColumn fx:id="sellorbuyTran" prefWidth="75.0" text="Sell / Buy" />
             <TableColumn fx:id="userTran" prefWidth="75.0" text="Username" />
-            <TableColumn fx:id="dateTran" prefWidth="75.0" text="Date" />
+            <TableColumn fx:id="dateTran" prefWidth="151.20001220703125" text="Date" />
         </columns>
       </TableView>
-      <Label alignment="CENTER" layoutX="154.0" layoutY="100.0" prefHeight="23.0" prefWidth="450.0" style="-fx-background-color: #1EF1B1;" text="All transactions" textAlignment="CENTER" textFill="WHITE">
+      <Label alignment="CENTER" layoutX="115.0" layoutY="87.0" prefHeight="27.0" prefWidth="528.0" style="-fx-background-color: #1EF1B1;" text="All transactions" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -53,9 +53,9 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <Line endX="-100.5" endY="-44.0" layoutX="152.0" layoutY="44.0" startX="-100.5" startY="-14.0" stroke="WHITE" />
-      <Line endX="-100.5" endY="-44.0" layoutX="230.0" layoutY="44.0" startX="-100.5" startY="-14.0" stroke="WHITE" />
-      <Line endX="-100.5" endY="-44.0" layoutX="312.0" layoutY="44.0" startX="-100.5" startY="-14.0" stroke="WHITE" />
+      <Line endX="-100.5" endY="-44.0" layoutX="156.0" layoutY="43.0" startX="-100.5" startY="-14.0" stroke="WHITE" />
+      <Line endX="-100.5" endY="-44.0" layoutX="234.0" layoutY="43.0" startX="-100.5" startY="-14.0" stroke="WHITE" />
+      <Line endX="-100.5" endY="-44.0" layoutX="312.0" layoutY="43.0" startX="-100.5" startY="-14.0" stroke="WHITE" />
       <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="718.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@admin%20profle.png" />
@@ -66,5 +66,11 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
+      <Button layoutX="211.0" layoutY="1.0" mnemonicParsing="false" onAction="#clickOnEmbezzlement" style="-fx-background-radius: 0; -fx-background-color: transparent;" text="Embezzlement" textFill="#071739">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Line endX="-100.5" endY="-44.0" layoutX="418.0" layoutY="43.0" startX="-100.5" startY="-14.0" stroke="WHITE" />
    </children>
 </AnchorPane>

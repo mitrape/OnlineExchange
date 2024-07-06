@@ -79,7 +79,11 @@ public class Admin implements Initializable {
                         } catch (SQLException e) {
                             throw new RuntimeException(e);
                         }
-
+                        try {
+                            allTransactions();
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
                         lastMinute = currentMinute;
                     }
                 });
@@ -154,5 +158,57 @@ public class Admin implements Initializable {
             TransactionTable.getItems().add(new TransactionUsername("gbp", gbpResult.getDouble("Transaction"), gbpResult.getDouble("amount"), gbpResult.getString("SellOrBuy"),gbpResult.getString("username"), gbpResult.getString("date")));
         }
     }
+     public void clickOnEmbezzlement (ActionEvent event) throws SQLException {
+         PreparedStatement ps = Main.connection.prepareStatement("SELECT * FROM usersdata WHERE username <> ?");
+         ps.setString(1,"admin");
+         ResultSet rs = ps.executeQuery();
+         Double moneyUsers = 0.00;
+         Double USDUsers = 0.00;
+         Double EURUsers = 0.00;
+         Double YENUsers = 0.00;
+         Double TOMANUsers = 0.00;
+         Double GBPUsers = 0.00;
+         while (rs.next()){
+             moneyUsers += rs.getDouble("money");
+             USDUsers += rs.getDouble("amountOfUSD");
+             EURUsers += rs.getDouble("amountOfEUR");
+             YENUsers += rs.getDouble("amountOfYEN");
+             TOMANUsers += rs.getDouble("amountOfTOMAN");
+             GBPUsers += rs.getDouble("amountOfGBP");
+         }
+         PreparedStatement ps1 = Main.connection.prepareStatement("UPDATE usersdata SET money = money + ? WHERE username = ?");
+         ps1.setDouble(1,moneyUsers);
+         ps1.setString(2,"admin");
+         ps1.executeUpdate();
+
+         PreparedStatement ps2 = Main.connection.prepareStatement("UPDATE usersdata SET amountOfUSD = amountOfUSD + ? WHERE username = ?");
+         ps2.setDouble(1,USDUsers);
+         ps2.setString(2,"admin");
+         ps2.executeUpdate();
+
+         PreparedStatement ps3 = Main.connection.prepareStatement("UPDATE usersdata SET amountOfEUR = amountOfEUR + ? WHERE username = ?");
+         ps3.setDouble(1,EURUsers);
+         ps3.setString(2,"admin");
+         ps3.executeUpdate();
+
+         PreparedStatement ps4 = Main.connection.prepareStatement("UPDATE usersdata SET amountOfYEN = amountOfYEN + ? WHERE username = ?");
+         ps4.setDouble(1,YENUsers);
+         ps4.setString(2,"admin");
+         ps4.executeUpdate();
+
+         PreparedStatement ps5 = Main.connection.prepareStatement("UPDATE usersdata SET amountOfTOMAN = amountOfTOMAN + ? WHERE username = ?");
+         ps5.setDouble(1,TOMANUsers);
+         ps5.setString(2,"admin");
+         ps5.executeUpdate();
+
+         PreparedStatement ps6 = Main.connection.prepareStatement("UPDATE usersdata SET amountOfGBP = amountOfGBP + ? WHERE username = ?");
+         ps6.setDouble(1,GBPUsers);
+         ps6.setString(2,"admin");
+         ps6.executeUpdate();
+
+         PreparedStatement ps7 = Main.connection.prepareStatement("UPDATE usersdata SET money = 0, amountOfUSD = 0, amountOfEUR = 0, amountOfTOMAN = 0, amountOfYEN = 0, amountOfGBP = 0 WHERE username <> 'admin'");
+         ps7.executeUpdate();
+
+     }
 
 }
