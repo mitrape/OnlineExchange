@@ -214,88 +214,160 @@ public class Exchange implements Initializable {
                 Statement statement1 = Main.connection.createStatement();
                 ResultSet resultSet1 = statement1.executeQuery("SELECT * FROM tomanopenrequests");
                 while (resultSet1.next()) {
-                    Double OpenRequest = resultSet1.getDouble("tomanOpenRequests");
-                    Double amount = resultSet1.getDouble("amount");
-                    String SellOrBuy = resultSet1.getString("SellOrBuy");
-                    transaction = new Transaction(OpenRequest, amount, SellOrBuy);
-                    marketTable.getItems().add(transaction);
+                    if(resultSet1.getString("demo").equals("false")) {
+                        Double OpenRequest = resultSet1.getDouble("tomanOpenRequests");
+                        Double amount = resultSet1.getDouble("amount");
+                        String SellOrBuy = resultSet1.getString("SellOrBuy");
+                        transaction = new Transaction(OpenRequest, amount, SellOrBuy);
+                        marketTable.getItems().add(transaction);
+                    }
+                    if(Main.demoState.equals("true") && resultSet1.getString("username").equals(Main.username) && resultSet1.getString("demo").equals("true")){
+                        Double OpenRequest = resultSet1.getDouble("tomanOpenRequests");
+                        Double amount = resultSet1.getDouble("amount");
+                        String SellOrBuy = resultSet1.getString("SellOrBuy");
+                        transaction = new Transaction(OpenRequest, amount, SellOrBuy);
+                        marketTable.getItems().add(transaction);
+                    }
                 }
 
                 PreparedStatement statement = Main.connection.prepareStatement("SELECT * FROM tomantransaction WHERE username = ?");
                 statement.setString(1, Main.username);
                 ResultSet resultSet = statement.executeQuery();
                 while (resultSet.next()) {
-                    Double OpenRequest = resultSet.getDouble("Transaction");
-                    Double amount = resultSet.getDouble("amount");
-                    String SellOrBuy = resultSet.getString("SellOrBuy");
-                    transaction = new Transaction(OpenRequest, amount, SellOrBuy);
-                    userTable.getItems().add(transaction);
+                    if(resultSet.getString("demo").equals("false")) {
+                        Double OpenRequest = resultSet.getDouble("Transaction");
+                        Double amount = resultSet.getDouble("amount");
+                        String SellOrBuy = resultSet.getString("SellOrBuy");
+                        transaction = new Transaction(OpenRequest, amount, SellOrBuy);
+                        userTable.getItems().add(transaction);
+                    }
+                    if(resultSet.getString("username").equals(Main.username) && resultSet.getString("demo").equals("true") && Main.demoState.equals("true")){
+                        Double OpenRequest = resultSet.getDouble("Transaction");
+                        Double amount = resultSet.getDouble("amount");
+                        String SellOrBuy = resultSet.getString("SellOrBuy");
+                        transaction = new Transaction(OpenRequest, amount, SellOrBuy);
+                        userTable.getItems().add(transaction);
+                    }
                 }
             } else if (CurrencyButton.getText().equals("USD")) {
                 Transaction transaction = null;
                 Statement statement1 = Main.connection.createStatement();
                 ResultSet resultSet1 = statement1.executeQuery("SELECT * FROM usdopenrequests");
                 while (resultSet1.next()) {
-                    Double OpenRequest = resultSet1.getDouble("usdOpenRequests");
-                    Double amount = resultSet1.getDouble("amount");
-                    String SellOrBuy = resultSet1.getString("SellOrBuy");
-                    transaction = new Transaction(OpenRequest, amount, SellOrBuy);
-                    marketTable.getItems().add(transaction);
+                    if(resultSet1.getString("demo").equals("false")) {
+                        Double OpenRequest = resultSet1.getDouble("usdOpenRequests");
+                        Double amount = resultSet1.getDouble("amount");
+                        String SellOrBuy = resultSet1.getString("SellOrBuy");
+                        transaction = new Transaction(OpenRequest, amount, SellOrBuy);
+                        marketTable.getItems().add(transaction);
+                    }
+                    if(Main.demoState.equals("true") && resultSet1.getString("username").equals(Main.username) && resultSet1.getString("demo").equals("true")){
+                        Double OpenRequest = resultSet1.getDouble("usdOpenRequests");
+                        Double amount = resultSet1.getDouble("amount");
+                        String SellOrBuy = resultSet1.getString("SellOrBuy");
+                        transaction = new Transaction(OpenRequest, amount, SellOrBuy);
+                        marketTable.getItems().add(transaction);
+                    }
                 }
 
                 PreparedStatement statement = Main.connection.prepareStatement("SELECT * FROM usdtransaction WHERE username = ?");
                 statement.setString(1, Main.username);
                 ResultSet resultSet = statement.executeQuery();
                 while (resultSet.next()) {
-                    Double OpenRequest = resultSet.getDouble("Transaction");
-                    Double amount = resultSet.getDouble("amount");
-                    String SellOrBuy = resultSet.getString("SellOrBuy");
-                    transaction = new Transaction(OpenRequest, amount, SellOrBuy);
-                    userTable.getItems().add(transaction);
+                    if(resultSet.getString("demo").equals("false")) {
+                        Double OpenRequest = resultSet.getDouble("Transaction");
+                        Double amount = resultSet.getDouble("amount");
+                        String SellOrBuy = resultSet.getString("SellOrBuy");
+                        transaction = new Transaction(OpenRequest, amount, SellOrBuy);
+                        userTable.getItems().add(transaction);
+                    }
+                    if(resultSet.getString("username").equals(Main.username) && resultSet.getString("demo").equals("true") && Main.demoState.equals("true")){
+                        Double OpenRequest = resultSet.getDouble("Transaction");
+                        Double amount = resultSet.getDouble("amount");
+                        String SellOrBuy = resultSet.getString("SellOrBuy");
+                        transaction = new Transaction(OpenRequest, amount, SellOrBuy);
+                        userTable.getItems().add(transaction);
+                    }
                 }
             } else if (CurrencyButton.getText().equals("YEN")) {
                 Transaction transaction = null;
                 Statement statement1 = Main.connection.createStatement();
                 ResultSet resultSet1 = statement1.executeQuery("SELECT * FROM yenopenrequests");
                 while (resultSet1.next()) {
-                    Double OpenRequest = resultSet1.getDouble("yenOpenRequests");
-                    Double amount = resultSet1.getDouble("amount");
-                    String SellOrBuy = resultSet1.getString("SellOrBuy");
-                    transaction = new Transaction(OpenRequest, amount, SellOrBuy);
-                    marketTable.getItems().add(transaction);
+                    if(resultSet1.getString("demo").equals("false")) {
+                        Double OpenRequest = resultSet1.getDouble("yenOpenRequests");
+                        Double amount = resultSet1.getDouble("amount");
+                        String SellOrBuy = resultSet1.getString("SellOrBuy");
+                        transaction = new Transaction(OpenRequest, amount, SellOrBuy);
+                        marketTable.getItems().add(transaction);
+                    }
+                    if(Main.demoState.equals("true") && resultSet1.getString("username").equals(Main.username) && resultSet1.getString("demo").equals("true")){
+                        Double OpenRequest = resultSet1.getDouble("yenOpenRequests");
+                        Double amount = resultSet1.getDouble("amount");
+                        String SellOrBuy = resultSet1.getString("SellOrBuy");
+                        transaction = new Transaction(OpenRequest, amount, SellOrBuy);
+                        marketTable.getItems().add(transaction);
+                    }
                 }
 
                 PreparedStatement statement = Main.connection.prepareStatement("SELECT * FROM yentransaction WHERE username = ?");
                 statement.setString(1, Main.username);
                 ResultSet resultSet = statement.executeQuery();
                 while (resultSet.next()) {
-                    Double OpenRequest = resultSet.getDouble("Transaction");
-                    Double amount = resultSet.getDouble("amount");
-                    String SellOrBuy = resultSet.getString("SellOrBuy");
-                    transaction = new Transaction(OpenRequest, amount, SellOrBuy);
-                    userTable.getItems().add(transaction);
+                    if(resultSet.getString("demo").equals("false")) {
+                        Double OpenRequest = resultSet.getDouble("Transaction");
+                        Double amount = resultSet.getDouble("amount");
+                        String SellOrBuy = resultSet.getString("SellOrBuy");
+                        transaction = new Transaction(OpenRequest, amount, SellOrBuy);
+                        userTable.getItems().add(transaction);
+                    }
+                    if(resultSet.getString("username").equals(Main.username) && resultSet.getString("demo").equals("true") && Main.demoState.equals("true")){
+                        Double OpenRequest = resultSet.getDouble("Transaction");
+                        Double amount = resultSet.getDouble("amount");
+                        String SellOrBuy = resultSet.getString("SellOrBuy");
+                        transaction = new Transaction(OpenRequest, amount, SellOrBuy);
+                        userTable.getItems().add(transaction);
+                    }
                 }
             } else if (CurrencyButton.getText().equals("EUR")) {
                 Transaction transaction = null;
                 Statement statement1 = Main.connection.createStatement();
                 ResultSet resultSet1 = statement1.executeQuery("SELECT * FROM europenrequests");
                 while (resultSet1.next()) {
-                    Double OpenRequest = resultSet1.getDouble("eurOpenRequests");
-                    Double amount = resultSet1.getDouble("amount");
-                    String SellOrBuy = resultSet1.getString("SellOrBuy");
-                    transaction = new Transaction(OpenRequest, amount, SellOrBuy);
-                    marketTable.getItems().add(transaction);
+                    if(resultSet1.getString("demo").equals("false")) {
+                        Double OpenRequest = resultSet1.getDouble("eurOpenRequests");
+                        Double amount = resultSet1.getDouble("amount");
+                        String SellOrBuy = resultSet1.getString("SellOrBuy");
+                        transaction = new Transaction(OpenRequest, amount, SellOrBuy);
+                        marketTable.getItems().add(transaction);
+                    }
+                    if(Main.demoState.equals("true") && resultSet1.getString("username").equals(Main.username) && resultSet1.getString("demo").equals("true")){
+                        Double OpenRequest = resultSet1.getDouble("eurOpenRequests");
+                        Double amount = resultSet1.getDouble("amount");
+                        String SellOrBuy = resultSet1.getString("SellOrBuy");
+                        transaction = new Transaction(OpenRequest, amount, SellOrBuy);
+                        marketTable.getItems().add(transaction);
+                    }
                 }
 
                 PreparedStatement statement = Main.connection.prepareStatement("SELECT * FROM eurtransaction WHERE username = ?");
                 statement.setString(1, Main.username);
                 ResultSet resultSet = statement.executeQuery();
                 while (resultSet.next()) {
-                    Double OpenRequest = resultSet.getDouble("Transaction");
-                    Double amount = resultSet.getDouble("amount");
-                    String SellOrBuy = resultSet.getString("SellOrBuy");
-                    transaction = new Transaction(OpenRequest, amount, SellOrBuy);
-                    userTable.getItems().add(transaction);
+                    if(resultSet.getString("demo").equals("false")) {
+                        Double OpenRequest = resultSet.getDouble("Transaction");
+                        Double amount = resultSet.getDouble("amount");
+                        String SellOrBuy = resultSet.getString("SellOrBuy");
+                        transaction = new Transaction(OpenRequest, amount, SellOrBuy);
+                        userTable.getItems().add(transaction);
+                    }
+                    if(resultSet.getString("username").equals(Main.username) && resultSet.getString("demo").equals("true") && Main.demoState.equals("true")){
+                        Double OpenRequest = resultSet.getDouble("Transaction");
+                        Double amount = resultSet.getDouble("amount");
+                        String SellOrBuy = resultSet.getString("SellOrBuy");
+                        transaction = new Transaction(OpenRequest, amount, SellOrBuy);
+                        userTable.getItems().add(transaction);
+                    }
                 }
             } else {
                 //GBP
@@ -303,22 +375,40 @@ public class Exchange implements Initializable {
                 Statement statement1 = Main.connection.createStatement();
                 ResultSet resultSet1 = statement1.executeQuery("SELECT * FROM gbpopenrequests");
                 while (resultSet1.next()) {
-                    Double OpenRequest = resultSet1.getDouble("gbpOpenRequests");
-                    Double amount = resultSet1.getDouble("amount");
-                    String SellOrBuy = resultSet1.getString("SellOrBuy");
-                    transaction = new Transaction(OpenRequest, amount, SellOrBuy);
-                    marketTable.getItems().add(transaction);
+                    if(resultSet1.getString("demo").equals("false")) {
+                        Double OpenRequest = resultSet1.getDouble("gbpOpenRequests");
+                        Double amount = resultSet1.getDouble("amount");
+                        String SellOrBuy = resultSet1.getString("SellOrBuy");
+                        transaction = new Transaction(OpenRequest, amount, SellOrBuy);
+                        marketTable.getItems().add(transaction);
+                    }
+                    if(Main.demoState.equals("true") && resultSet1.getString("username").equals(Main.username) && resultSet1.getString("demo").equals("true")){
+                        Double OpenRequest = resultSet1.getDouble("gbpOpenRequests");
+                        Double amount = resultSet1.getDouble("amount");
+                        String SellOrBuy = resultSet1.getString("SellOrBuy");
+                        transaction = new Transaction(OpenRequest, amount, SellOrBuy);
+                        marketTable.getItems().add(transaction);
+                    }
                 }
 
                 PreparedStatement statement = Main.connection.prepareStatement("SELECT * FROM gbptransaction WHERE username = ?");
                 statement.setString(1, Main.username);
                 ResultSet resultSet = statement.executeQuery();
                 while (resultSet.next()) {
-                    Double OpenRequest = resultSet.getDouble("Transaction");
-                    Double amount = resultSet.getDouble("amount");
-                    String SellOrBuy = resultSet.getString("SellOrBuy");
-                    transaction = new Transaction(OpenRequest, amount, SellOrBuy);
-                    userTable.getItems().add(transaction);
+                    if(resultSet.getString("demo").equals("false")) {
+                        Double OpenRequest = resultSet.getDouble("Transaction");
+                        Double amount = resultSet.getDouble("amount");
+                        String SellOrBuy = resultSet.getString("SellOrBuy");
+                        transaction = new Transaction(OpenRequest, amount, SellOrBuy);
+                        userTable.getItems().add(transaction);
+                    }
+                    if(resultSet.getString("username").equals(Main.username) && resultSet.getString("demo").equals("true") && Main.demoState.equals("true")){
+                        Double OpenRequest = resultSet.getDouble("Transaction");
+                        Double amount = resultSet.getDouble("amount");
+                        String SellOrBuy = resultSet.getString("SellOrBuy");
+                        transaction = new Transaction(OpenRequest, amount, SellOrBuy);
+                        userTable.getItems().add(transaction);
+                    }
                 }
             }
         }
@@ -326,12 +416,13 @@ public class Exchange implements Initializable {
 
     }
     public void addToLine (Double Price , Double Turnover , String currency) throws SQLException {
-        PreparedStatement p3 = Main.connection.prepareStatement("INSERT INTO "+currency.toLowerCase()+"openrequests ( "+currency+"OpenRequests , amount , SellOrBuy , username , date)VAlUES (? , ? , ? , ? , ?)");
+        PreparedStatement p3 = Main.connection.prepareStatement("INSERT INTO "+currency.toLowerCase()+"openrequests ( "+currency+"OpenRequests , amount , SellOrBuy , username , date , demo)VAlUES (? , ? , ? , ? , ? , ?)");
         p3.setDouble(1,Price);
         p3.setDouble(2,Turnover);
         p3.setString(3,sellOrBuy);
         p3.setString(4,Main.username);
         p3.setString(5,dateFormat.format(date));
+        p3.setString(6,Main.demoState);
         p3.executeUpdate();
     }
     public void continueTransaction (Double Price , Double Turnover) throws SQLException {
@@ -344,8 +435,9 @@ public class Exchange implements Initializable {
 
 
         if(sellOrBuy.equals("sell")) {
-            PreparedStatement p1 = Main.connection.prepareStatement("SELECT  * FROM " + currency.toLowerCase() + "openrequests WHERE SellOrBuy = ?");
+            PreparedStatement p1 = Main.connection.prepareStatement("SELECT  * FROM " + currency.toLowerCase() + "openrequests WHERE SellOrBuy = ? AND demo = ?");
             p1.setString(1,"buy");
+            p1.setString(2,"false");
             ResultSet r1 = p1.executeQuery();
             boolean sw = false;
             while (r1.next()){
@@ -358,58 +450,70 @@ public class Exchange implements Initializable {
                     turnoverSecond = r1.getDouble("amount");
                     dateSecond = r1.getString("date");
 
-                    PreparedStatement p2 = Main.connection.prepareStatement("DELETE FROM " + currency.toLowerCase() + "openrequests WHERE username = ? AND date  = ?");
-                    p2.setString(1,usernameSecond);
-                    p2.setString(2,dateSecond);
-                    p2.executeUpdate();
+                    if (Main.demoState.equals("false")) {
+                        PreparedStatement p2 = Main.connection.prepareStatement("DELETE FROM " + currency.toLowerCase() + "openrequests WHERE username = ? AND date  = ?");
+                        p2.setString(1, usernameSecond);
+                        p2.setString(2, dateSecond);
+                        p2.executeUpdate();
+                    }
 
-                    PreparedStatement p3 = Main.connection.prepareStatement("INSERT INTO "+currency.toLowerCase()+"transaction (Transaction , amount , SellOrBuy , username , date)VAlUES (? , ? , ? , ? , ?)");
+                    PreparedStatement p3 = Main.connection.prepareStatement("INSERT INTO "+currency.toLowerCase()+"transaction (Transaction , amount , SellOrBuy , username , date , demo)VAlUES (? , ? , ? , ? , ?, ?)");
                     p3.setDouble(1,priceSecond);
                     p3.setDouble(2,Turnover);
                     p3.setString(3,"sell");
                     p3.setString(4,Main.username);
                     p3.setString(5,dateFormat.format(date));
+                    p3.setString(6,Main.demoState);
                     p3.executeUpdate();
 
-                    PreparedStatement p4 = Main.connection.prepareStatement("INSERT INTO "+currency.toLowerCase()+"transaction (Transaction , amount , SellOrBuy , username , date)VAlUES (? , ? , ? , ? , ?)");
-                    p4.setDouble(1,priceSecond);
-                    p4.setDouble(2,Turnover);
-                    p4.setString(3,"buy");
-                    p4.setString(4,usernameSecond);
-                    p4.setString(5,dateFormat.format(date));
-                    p4.executeUpdate();
+                    if(Main.demoState.equals("false")) {
+                        PreparedStatement p4 = Main.connection.prepareStatement("INSERT INTO " + currency.toLowerCase() + "transaction (Transaction , amount , SellOrBuy , username , date , demo)VAlUES (? , ? , ? , ? , ? , ?)");
+                        p4.setDouble(1, priceSecond);
+                        p4.setDouble(2, Turnover);
+                        p4.setString(3, "buy");
+                        p4.setString(4, usernameSecond);
+                        p4.setString(5, dateFormat.format(date));
+                        p4.setString(6,"false");
+                        p4.executeUpdate();
+                    }
 
                     double money1 = priceSecond*Turnover ;
 
-                    PreparedStatement p5 = Main.connection.prepareStatement("UPDATE usersdata SET money = money + ? WHERE username = ?");
-                    p5.setDouble(1,money1*0.01);
-                    p5.setString(2,"admin");
-                    p5.executeUpdate();
+                    if(Main.demoState.equals("false")) {
+                        PreparedStatement p5 = Main.connection.prepareStatement("UPDATE usersdata SET money = money + ? WHERE username = ?");
+                        p5.setDouble(1, money1 * 0.01);
+                        p5.setString(2, "admin");
+                        p5.executeUpdate();
+                    }
 
                     PreparedStatement p6 = Main.connection.prepareStatement("UPDATE usersdata SET money = money + ? WHERE username = ?");
                     p6.setDouble(1,money1*0.99);
                     p6.setString(2,Main.username);
                     p6.executeUpdate();
 
-                    PreparedStatement p7 = Main.connection.prepareStatement("UPDATE usersdata SET money = money - ? WHERE username = ?");
-                    p7.setDouble(1,money1);
-                    p7.setString(2,usernameSecond);
-                    p7.executeUpdate();
+                    if(Main.demoState.equals("false")) {
+                        PreparedStatement p7 = Main.connection.prepareStatement("UPDATE usersdata SET money = money - ? WHERE username = ?");
+                        p7.setDouble(1, money1);
+                        p7.setString(2, usernameSecond);
+                        p7.executeUpdate();
+                    }
 
                     PreparedStatement p8 = Main.connection.prepareStatement("UPDATE usersdata SET amountOf"+currency.toLowerCase()+" = amountOf"+currency.toLowerCase()+" - ? WHERE username = ?");
                     p8.setDouble(1,Turnover);
                     p8.setString(2,Main.username);
                     p8.executeUpdate();
 
-                    PreparedStatement p9 = Main.connection.prepareStatement("UPDATE usersdata SET amountOf"+currency.toLowerCase()+" = amountOf"+currency.toLowerCase()+" + ? WHERE username = ?");
-                    p9.setDouble(1,0.99*Turnover);
-                    p9.setString(2,usernameSecond);
-                    p9.executeUpdate();
+                    if(Main.demoState.equals("false")) {
+                        PreparedStatement p9 = Main.connection.prepareStatement("UPDATE usersdata SET amountOf" + currency.toLowerCase() + " = amountOf" + currency.toLowerCase() + " + ? WHERE username = ?");
+                        p9.setDouble(1, 0.99 * Turnover);
+                        p9.setString(2, usernameSecond);
+                        p9.executeUpdate();
 
-                    PreparedStatement p10 = Main.connection.prepareStatement("UPDATE usersdata SET amountOf"+currency.toLowerCase()+" = amountOf"+currency.toLowerCase()+" + ? WHERE username = ?");
-                    p10.setDouble(1,0.01*Turnover);
-                    p10.setString(2,"admin");
-                    p10.executeUpdate();
+                        PreparedStatement p10 = Main.connection.prepareStatement("UPDATE usersdata SET amountOf" + currency.toLowerCase() + " = amountOf" + currency.toLowerCase() + " + ? WHERE username = ?");
+                        p10.setDouble(1, 0.01 * Turnover);
+                        p10.setString(2, "admin");
+                        p10.executeUpdate();
+                    }
 
                     errorText.setText("TRANSACTION DONE!");
                     errorText.setVisible(true);
@@ -422,8 +526,9 @@ public class Exchange implements Initializable {
         }
         else {
             // if user choose buy
-            PreparedStatement p1 = Main.connection.prepareStatement("SELECT  * FROM " + currency.toLowerCase() + "openrequests WHERE SellOrBuy = ?");
+            PreparedStatement p1 = Main.connection.prepareStatement("SELECT  * FROM " + currency.toLowerCase() + "openrequests WHERE SellOrBuy = ? AND demo = ?");
             p1.setString(1,"sell");
+            p1.setString(2,"false");
             ResultSet r1 = p1.executeQuery();
             boolean sw = false;
             while (r1.next()){
@@ -436,58 +541,69 @@ public class Exchange implements Initializable {
                     turnoverSecond = r1.getDouble("amount");
                     dateSecond = r1.getString("date");
 
-                    PreparedStatement p2 = Main.connection.prepareStatement("DELETE FROM " + currency.toLowerCase() + "openrequests WHERE username = ? AND date  = ?");
-                    p2.setString(1,usernameSecond);
-                    p2.setString(2,dateSecond);
-                    p2.executeUpdate();
+                    if(Main.demoState.equals("false")) {
+                        PreparedStatement p2 = Main.connection.prepareStatement("DELETE FROM " + currency.toLowerCase() + "openrequests WHERE username = ? AND date  = ?");
+                        p2.setString(1, usernameSecond);
+                        p2.setString(2, dateSecond);
+                        p2.executeUpdate();
+                    }
 
-                    PreparedStatement p3 = Main.connection.prepareStatement("INSERT INTO "+currency.toLowerCase()+"transaction (Transaction , amount , SellOrBuy , username , date)VAlUES (? , ? , ? , ? , ?)");
+                    PreparedStatement p3 = Main.connection.prepareStatement("INSERT INTO "+currency.toLowerCase()+"transaction (Transaction , amount , SellOrBuy , username , date , demo)VAlUES (? , ? , ? , ? , ? , ?)");
                     p3.setDouble(1,Price);
                     p3.setDouble(2,Turnover);
                     p3.setString(3,"buy");
                     p3.setString(4,Main.username);
                     p3.setString(5,dateFormat.format(date));
+                    p3.setString(6,Main.demoState);
                     p3.executeUpdate();
 
-                    PreparedStatement p4 = Main.connection.prepareStatement("INSERT INTO "+currency.toLowerCase()+"transaction (Transaction , amount , SellOrBuy , username , date)VAlUES (? , ? , ? , ? , ?)");
-                    p4.setDouble(1,Price);
-                    p4.setDouble(2,Turnover);
-                    p4.setString(3,"sell");
-                    p4.setString(4,usernameSecond);
-                    p4.setString(5,dateFormat.format(date));
-                    p4.executeUpdate();
+                    if(Main.demoState.equals("false")) {
+                        PreparedStatement p4 = Main.connection.prepareStatement("INSERT INTO " + currency.toLowerCase() + "transaction (Transaction , amount , SellOrBuy , username , date)VAlUES (? , ? , ? , ? , ?)");
+                        p4.setDouble(1, Price);
+                        p4.setDouble(2, Turnover);
+                        p4.setString(3, "sell");
+                        p4.setString(4, usernameSecond);
+                        p4.setString(5, dateFormat.format(date));
+                        p4.executeUpdate();
+                    }
 
                     double money1 = Price*Turnover ;
 
-                    PreparedStatement p5 = Main.connection.prepareStatement("UPDATE usersdata SET money = money + ? WHERE username = ?");
-                    p5.setDouble(1,money1*0.01);
-                    p5.setString(2,"admin");
-                    p5.executeUpdate();
+                    if(Main.demoState.equals("false")) {
+                        PreparedStatement p5 = Main.connection.prepareStatement("UPDATE usersdata SET money = money + ? WHERE username = ?");
+                        p5.setDouble(1, money1 * 0.01);
+                        p5.setString(2, "admin");
+                        p5.executeUpdate();
+                    }
 
                     PreparedStatement p6 = Main.connection.prepareStatement("UPDATE usersdata SET money = money - ? WHERE username = ?");
                     p6.setDouble(1,money1);
                     p6.setString(2,Main.username);
                     p6.executeUpdate();
 
-                    PreparedStatement p7 = Main.connection.prepareStatement("UPDATE usersdata SET money = money + ? WHERE username = ?");
-                    p7.setDouble(1,0.99*money1);
-                    p7.setString(2,usernameSecond);
-                    p7.executeUpdate();
+                    if(Main.demoState.equals("false")) {
+                        PreparedStatement p7 = Main.connection.prepareStatement("UPDATE usersdata SET money = money + ? WHERE username = ?");
+                        p7.setDouble(1, 0.99 * money1);
+                        p7.setString(2, usernameSecond);
+                        p7.executeUpdate();
+                    }
 
                     PreparedStatement p8 = Main.connection.prepareStatement("UPDATE usersdata SET amountOf"+currency.toLowerCase()+" = amountOf"+currency.toLowerCase()+" + ? WHERE username = ?");
                     p8.setDouble(1,0.99*Turnover);
                     p8.setString(2,Main.username);
                     p8.executeUpdate();
 
-                    PreparedStatement p9 = Main.connection.prepareStatement("UPDATE usersdata SET amountOf"+currency.toLowerCase()+" = amountOf"+currency.toLowerCase()+" - ? WHERE username = ?");
-                    p9.setDouble(1,Turnover);
-                    p9.setString(2,usernameSecond);
-                    p9.executeUpdate();
+                    if(Main.demoState.equals("false")) {
+                        PreparedStatement p9 = Main.connection.prepareStatement("UPDATE usersdata SET amountOf" + currency.toLowerCase() + " = amountOf" + currency.toLowerCase() + " - ? WHERE username = ?");
+                        p9.setDouble(1, Turnover);
+                        p9.setString(2, usernameSecond);
+                        p9.executeUpdate();
 
-                    PreparedStatement p10 = Main.connection.prepareStatement("UPDATE usersdata SET amountOf"+currency.toLowerCase()+" = amountOf"+currency.toLowerCase()+" + ? WHERE username = ?");
-                    p10.setDouble(1,0.01*Turnover);
-                    p10.setString(2,"admin");
-                    p10.executeUpdate();
+                        PreparedStatement p10 = Main.connection.prepareStatement("UPDATE usersdata SET amountOf" + currency.toLowerCase() + " = amountOf" + currency.toLowerCase() + " + ? WHERE username = ?");
+                        p10.setDouble(1, 0.01 * Turnover);
+                        p10.setString(2, "admin");
+                        p10.executeUpdate();
+                    }
 
                     errorText.setText("TRANSACTION DONE!");
                     errorText.setVisible(true);

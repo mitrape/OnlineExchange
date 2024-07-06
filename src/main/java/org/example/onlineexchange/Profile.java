@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -70,6 +71,8 @@ public class Profile implements Initializable {
     private Text phoneNumberMessage ;
     @FXML
     private Text emailMessage ;
+    @FXML
+    private CheckBox DemoCheckBox ;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -179,6 +182,7 @@ public class Profile implements Initializable {
         phonenumberLabel.setVisible(false);
         emailLabel.setVisible(false);
         doneButton.setVisible(true);
+        DemoCheckBox.setVisible(false);
     }
     public void ClickOnDoneButton (ActionEvent event) throws IOException, SQLException {
 
@@ -418,9 +422,45 @@ public class Profile implements Initializable {
             phonenumberLabel.setVisible(true);
             emailLabel.setVisible(true);
             doneButton.setVisible(false);
+            DemoCheckBox.setVisible(true);
         }
 
     }
 
 
+    public void ClickOnDemo(ActionEvent event) throws SQLException {
+        if(DemoCheckBox.isSelected()){
+
+            Main.demoState = "true";
+
+            PreparedStatement ps = Main.connection.prepareStatement("SELECT * FROM usersdata WHERE username = ?");
+            ps.setString(1,Main.username);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                Main.userMoney = rs.getDouble("money");
+                Main.userEUR = rs.getDouble("amountOfEUR");
+                Main.userGBP = rs.getDouble("amountOfGBP");
+                Main.userUSD = rs.getDouble("amountOfUSD");
+                Main.userYEN = rs.getDouble("amountOfYEN");
+                Main.userTOMAN = rs.getDouble("amountOfTOMAN");
+            }
+            PreparedStatement ps1 = Main.connection.prepareStatement("UPDATE usersdata SET money = 0, amountOfUSD = 5000, amountOfEUR = 0, amountOfTOMAN = 0, amountOfYEN = 0, amountOfGBP = 0 WHERE username = ?");
+            ps1.setString(1,Main.username);
+            ps1.executeUpdate();
+        }
+        else {
+
+            Main.demoState = "false";
+
+            PreparedStatement ps1 = Main.connection.prepareStatement("UPDATE usersdata SET money = ?, amountOfUSD = ?, amountOfEUR = ?, amountOfTOMAN = ?, amountOfYEN = ?, amountOfGBP = ? WHERE username = ?");
+            ps1.setDouble(1,Main.userMoney);
+            ps1.setDouble(2,Main.userUSD);
+            ps1.setDouble(3,Main.userEUR);
+            ps1.setDouble(4,Main.userTOMAN);
+            ps1.setDouble(5,Main.userYEN);
+            ps1.setDouble(6,Main.userGBP);
+            ps1.setString(7,Main.username);
+            ps1.executeUpdate();
+        }
+    }
 }
