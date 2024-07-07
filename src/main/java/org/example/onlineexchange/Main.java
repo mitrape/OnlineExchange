@@ -17,6 +17,13 @@ public class Main extends Application {
     public static String username = null;
     public static Stage stg;
     public static Connection connection = null;
+    public static String demoState = "false";
+    public static Double userMoney ;
+    public static Double userUSD ;
+    public static Double userEUR ;
+    public static Double userYEN ;
+    public static Double userGBP ;
+    public static Double userTOMAN ;
 
     @Override
     public void start(Stage PrimaryStage) throws IOException {
@@ -46,9 +53,9 @@ public class Main extends Application {
     }
 
     void createConnection () throws Exception{
-        final String URL = "jdbc:mysql://127.0.0.1:3306/users_personal_data";
+        final String URL = "jdbc:mysql://127.0.0.1:3307/users_personal_data";
         final String USER = "root";
-        final String PASSWORD = "melika138329";
+        final String PASSWORD = "13832220";
         try {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
             System.out.println("Connected to the database");
