@@ -12,6 +12,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -247,8 +250,11 @@ public class HomePage implements Initializable{
         Main m = new Main();
         m.openNewWindow("Transfer","transfer");
     }
-    public void ClickOnExchange (ActionEvent event)throws IOException{
-        if(Admin.swExchange) {
+    public void ClickOnExchange (ActionEvent event) throws IOException, SQLException {
+        PreparedStatement stmt1 = Main.connection.prepareStatement("SELECT * FROM admin");
+        ResultSet resultSet = stmt1.executeQuery();
+        String openClose = resultSet.getString("closeOpen");
+        if(openClose.equals("open")) {
             Main m = new Main();
             m.openNewWindow("Exchange", "exchange");
         }

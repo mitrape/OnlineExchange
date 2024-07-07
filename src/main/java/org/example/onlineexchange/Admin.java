@@ -44,7 +44,6 @@ public class Admin implements Initializable {
     private Label time;
     int lastMinute = -1;
     private volatile boolean stop = false;
-    public static boolean swExchange=true;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -55,6 +54,14 @@ public class Admin implements Initializable {
             e.printStackTrace();
         }
         showTime1();
+    }
+    public void clickOnOpen (ActionEvent e) throws IOException,SQLException{
+        PreparedStatement stmt1 = Main.connection.prepareStatement("UPDATE admin SET closeOpen = ?");
+        stmt1.setString(1,"open");
+    }
+    public void clickOnClose (ActionEvent e) throws IOException,SQLException{
+        PreparedStatement stmt1 = Main.connection.prepareStatement("UPDATE admin SET closeOpen = ?");
+        stmt1.setString(1,"close");
     }
     public void showTime1() {
         Thread thread = new Thread(() -> {
@@ -103,16 +110,7 @@ public class Admin implements Initializable {
         clock.play();
     }
 
-    public void clickOnWallet(ActionEvent e) throws IOException {
-        Main m = new Main();
-        m.openNewWindow("Wallet","wallet");
-    }
-    public void clickOnOpen(ActionEvent e) throws IOException{
-        swExchange=true;
-    }
-    public void clickOnClose(ActionEvent e) throws IOException{
-        swExchange=false;
-    }
+
     public void allTransactions () throws SQLException {
         TransactionTable.getItems().clear();
 
