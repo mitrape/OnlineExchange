@@ -134,7 +134,7 @@ public class Login implements Initializable {
                 if(Username.equals("admin")){
                     Main m = new Main();
                     Main.username = Username;
-                    m.changeScene("admin");
+                    m.changeScene("homePageAdmin");
                 }
                 else {
                     Main m = new Main();
