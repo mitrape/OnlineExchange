@@ -88,6 +88,8 @@ public class Swap{
 
     }
     public void ClickOnYenSecond (ActionEvent e) throws IOException{
+        messageNotEnoughCurrency.setVisible(false);
+
         secondCurrencyMenu.setText("YEN");
         sw2Yen = true;
         sw2Toman = false;
@@ -97,22 +99,22 @@ public class Swap{
         input = Double.parseDouble(inputAmount.getText());
         if(swEur){
             output = input /Double.parseDouble(HomePage.YENinfo[2]) * Double.parseDouble(HomePage.EURinfo[2]);
-            outputAmount.setText(String.valueOf(output));
+            outputAmount.setText(String.format("%.4f",output));
             messageSameCurrency.setVisible(false);
         }
         else if(swUsd){
             output = input / Double.parseDouble(HomePage.YENinfo[2]) * Double.parseDouble(HomePage.USDinfo[2]);
-            outputAmount.setText(String.valueOf(output));
+            outputAmount.setText(String.format("%.4f",output));
             messageSameCurrency.setVisible(false);
         }
         else if(swGbp){
             output = input / Double.parseDouble(HomePage.YENinfo[2])*Double.parseDouble(HomePage.GBPinfo[2]);
-            outputAmount.setText(String.valueOf(output));
+            outputAmount.setText(String.format("%.4f",output));
             messageSameCurrency.setVisible(false);
         }
         else if(swToman){
             output = input / Double.parseDouble(HomePage.YENinfo[2])*Double.parseDouble(HomePage.TOMANinfo[2]);
-            outputAmount.setText(String.valueOf(output));
+            outputAmount.setText(String.format("%.4f",output));
             messageSameCurrency.setVisible(false);
         }
         else{
@@ -120,6 +122,8 @@ public class Swap{
         }
     }
     public void ClickOnEurSecond (ActionEvent e) throws IOException{
+        messageNotEnoughCurrency.setVisible(false);
+
         secondCurrencyMenu.setText("EUR");
         sw2Eur = true;
         sw2Usd = false;
@@ -129,27 +133,27 @@ public class Swap{
         input = Double.parseDouble(inputAmount.getText());
         if(swYen){
             output = input / Double.parseDouble(HomePage.EURinfo[2])*Double.parseDouble(HomePage.YENinfo[2]);
-            outputAmount.setText(String.valueOf(output));
+            outputAmount.setText(String.format("%.4f",output));
             messageSameCurrency.setVisible(false);
 
         }
         else if(swUsd){
             output = input / Double.parseDouble(HomePage.EURinfo[2])*Double.parseDouble(HomePage.USDinfo[2]);
-            outputAmount.setText(String.valueOf(output));
+            outputAmount.setText(String.format("%.4f",output));
             messageSameCurrency.setVisible(false);
 
 
         }
         else if(swGbp){
             output = input / Double.parseDouble(HomePage.EURinfo[2])*Double.parseDouble(HomePage.GBPinfo[2]);
-            outputAmount.setText(String.valueOf(output));
+            outputAmount.setText(String.format("%.4f",output));
             messageSameCurrency.setVisible(false);
 
 
         }
         else if(swToman){
             output = input / Double.parseDouble(HomePage.EURinfo[2])*Double.parseDouble(HomePage.TOMANinfo[2]);
-            outputAmount.setText(String.valueOf(output));
+            outputAmount.setText(String.format("%.4f",output));
             messageSameCurrency.setVisible(false);
 
 
@@ -160,6 +164,8 @@ public class Swap{
         }
     }
     public void ClickOnGbpSecond (ActionEvent e) throws IOException{
+        messageNotEnoughCurrency.setVisible(false);
+
         secondCurrencyMenu.setText("GBP");
         sw2Gbp = true;
         sw2Yen = false;
@@ -169,26 +175,26 @@ public class Swap{
         input = Double.parseDouble(inputAmount.getText());
         if(swEur){
             output = input / Double.parseDouble(HomePage.GBPinfo[2])*Double.parseDouble(HomePage.EURinfo[2]);
-            outputAmount.setText(String.valueOf(output));
+            outputAmount.setText(String.format("%.4f",output));
             messageSameCurrency.setVisible(false);
 
 
         }
         else if(swUsd){
             output = input / Double.parseDouble(HomePage.GBPinfo[2])*Double.parseDouble(HomePage.USDinfo[2]);
-            outputAmount.setText(String.valueOf(output));
+            outputAmount.setText(String.format("%.4f",output));
             messageSameCurrency.setVisible(false);
 
         }
         else if(swYen){
             output = input / Double.parseDouble(HomePage.GBPinfo[2])*Double.parseDouble(HomePage.YENinfo[2]);
-            outputAmount.setText(String.valueOf(output));
+            outputAmount.setText(String.format("%.4f",output));
             messageSameCurrency.setVisible(false);
 
         }
         else if(swToman){
             output = input / Double.parseDouble(HomePage.GBPinfo[2])*Double.parseDouble(HomePage.TOMANinfo[2]);
-            outputAmount.setText(String.valueOf(output));
+            outputAmount.setText(String.format("%.4f",output));
             messageSameCurrency.setVisible(false);
 
         }
@@ -197,6 +203,8 @@ public class Swap{
         }
     }
     public void ClickOnUsdSecond (ActionEvent e) throws IOException{
+        messageNotEnoughCurrency.setVisible(false);
+
         secondCurrencyMenu.setText("USD");
         sw2Usd = true;
         sw2Eur = false;
@@ -206,25 +214,25 @@ public class Swap{
         input = Double.parseDouble(inputAmount.getText());
         if(swEur){
             output = input / Double.parseDouble(HomePage.USDinfo[2])*Double.parseDouble(HomePage.EURinfo[2]);
-            outputAmount.setText(String.valueOf(output));
+            outputAmount.setText(String.format("%.4f",output));
             messageSameCurrency.setVisible(false);
 
         }
         else if(swYen){
             output = input / Double.parseDouble(HomePage.USDinfo[2])*Double.parseDouble(HomePage.YENinfo[2]);
-            outputAmount.setText(String.valueOf(output));
+            outputAmount.setText(String.format("%.4f",output));
             messageSameCurrency.setVisible(false);
 
         }
         else if(swGbp){
             output = input / Double.parseDouble(HomePage.USDinfo[2])*Double.parseDouble(HomePage.GBPinfo[2]);
-            outputAmount.setText(String.valueOf(output));
+            outputAmount.setText(String.format("%.4f",output));
             messageSameCurrency.setVisible(false);
 
         }
         else if(swToman){
             output = input / Double.parseDouble(HomePage.USDinfo[2])*Double.parseDouble(HomePage.TOMANinfo[2]);
-            outputAmount.setText(String.valueOf(output));
+            outputAmount.setText(String.format("%.4f",output));
             messageSameCurrency.setVisible(false);
 
         }
@@ -234,6 +242,8 @@ public class Swap{
         }
     }
     public void ClickOnTomanSecond (ActionEvent e) throws IOException{
+        messageNotEnoughCurrency.setVisible(false);
+
         secondCurrencyMenu.setText("TOMAN");
         sw2Toman = true;
         sw2Yen = false;
@@ -243,25 +253,25 @@ public class Swap{
         input = Double.parseDouble(inputAmount.getText());
         if(swEur){
             output = input / Double.parseDouble(HomePage.TOMANinfo[2])*Double.parseDouble(HomePage.EURinfo[2]);
-            outputAmount.setText(String.valueOf(output));
+            outputAmount.setText(String.format("%.4f",output));
             messageSameCurrency.setVisible(false);
 
         }
         else if(swUsd){
             output = input / Double.parseDouble(HomePage.TOMANinfo[2])*Double.parseDouble(HomePage.USDinfo[2]);
-            outputAmount.setText(String.valueOf(output));
+            outputAmount.setText(String.format("%.4f",output));
             messageSameCurrency.setVisible(false);
 
         }
         else if(swGbp){
             output = input / Double.parseDouble(HomePage.TOMANinfo[2])*Double.parseDouble(HomePage.GBPinfo[2]);
-            outputAmount.setText(String.valueOf(output));
+            outputAmount.setText(String.format("%.4f",output));
             messageSameCurrency.setVisible(false);
 
         }
         else if(swYen){
             output = input / Double.parseDouble(HomePage.TOMANinfo[2])*Double.parseDouble(HomePage.YENinfo[2]);
-            outputAmount.setText(String.valueOf(output));
+            outputAmount.setText(String.format("%.4f",output));
             messageSameCurrency.setVisible(false);
 
         }

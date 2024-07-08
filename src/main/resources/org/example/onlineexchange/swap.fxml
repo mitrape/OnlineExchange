@@ -68,7 +68,7 @@
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Text>
-                  <ImageView fitHeight="160.0" fitWidth="134.0" layoutX="158.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="160.0" fitWidth="134.0" layoutX="158.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@swap%20logo1.png" />
                      </image>
