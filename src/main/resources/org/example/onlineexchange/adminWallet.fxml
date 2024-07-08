@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="615.0" prefWidth="558.0" style="-fx-background-color: #071739;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.onlineexchange.AdminWallet">
+    <children>
+        <Label layoutX="24.0" layoutY="6.0" prefHeight="62.0" prefWidth="123.0" text="Wallet" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="40.0" />
+            </font>
+        </Label>
+        <LineChart fx:id="yearlyWealth" layoutX="34.0" layoutY="309.0" prefHeight="289.0" prefWidth="472.0">
+            <xAxis>
+                <CategoryAxis side="BOTTOM" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis side="LEFT" />
+            </yAxis>
+        </LineChart>
+        <Label layoutX="33.0" layoutY="79.0" prefHeight="23.0" prefWidth="123.0" text="Total capital:" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="56.0" layoutY="116.0" text="USD: " textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="55.0" layoutY="150.0" text="EUR:" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="55.0" layoutY="186.0" text="YEN:" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="55.0" layoutY="220.0" text="GBP:" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="47.0" layoutY="254.0" text="TOMAN:" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <Line endX="117.0" layoutX="117.0" layoutY="110.0" startX="-83.0" stroke="#1ef1b1" />
+        <Line endX="118.0" layoutX="117.0" layoutY="146.0" startX="-83.0" stroke="#1ef1b1" />
+        <Line endX="117.0" layoutX="117.0" layoutY="179.0" startX="-83.0" stroke="#1ef1b1" />
+        <Line endX="115.0" layoutX="117.0" layoutY="215.0" startX="-83.0" stroke="#1ef1b1" />
+        <Line endX="115.0" layoutX="117.0" layoutY="250.0" startX="-83.0" stroke="#1ef1b1" />
+        <Text fx:id="totalCapital" fill="WHITE" layoutX="177.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Text>
+        <Text fx:id="usdWealth" fill="WHITE" layoutX="177.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Text>
+        <Text fx:id="eurWealth" fill="WHITE" layoutX="177.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Text>
+        <Text fx:id="yenWealth" fill="WHITE" layoutX="177.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Text>
+        <Text fx:id="gbpWealth" fill="WHITE" layoutX="177.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Text>
+        <Text fx:id="tomanWealth" fill="WHITE" layoutX="177.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Text>
+        <Separator layoutX="144.0" layoutY="76.0" nodeOrientation="LEFT_TO_RIGHT" orientation="VERTICAL" prefHeight="200.0" style="-fx-background-color: #1ef1b1;" />
+        <Label fx:id="time" layoutX="470.0" layoutY="29.0" text="Label" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>

@@ -56,12 +56,16 @@ public class Admin implements Initializable {
         showTime1();
     }
     public void clickOnOpen (ActionEvent e) throws IOException,SQLException{
-        PreparedStatement stmt1 = Main.connection.prepareStatement("UPDATE admin SET closeOpen = ?");
+        PreparedStatement stmt1 = Main.connection.prepareStatement("UPDATE closing SET closeOpen = ? WHERE id = ?");
         stmt1.setString(1,"open");
+        stmt1.setInt(2,1);
+        stmt1.executeUpdate();
     }
     public void clickOnClose (ActionEvent e) throws IOException,SQLException{
-        PreparedStatement stmt1 = Main.connection.prepareStatement("UPDATE admin SET closeOpen = ?");
+        PreparedStatement stmt1 = Main.connection.prepareStatement("UPDATE closing SET closeOpen = ? WHERE id = ?");
         stmt1.setString(1,"close");
+        stmt1.setInt(2,1);
+        stmt1.executeUpdate();
     }
     public void showTime1() {
         Thread thread = new Thread(() -> {

@@ -62,8 +62,7 @@ public class HomePageAdmin implements Initializable{
     public static Double[] YEN;
     public static Double[] GBP;
 
-    @FXML
-    private Button username ;
+
     @FXML
     private Label timeLabel ;
     @FXML
@@ -160,8 +159,6 @@ public class HomePageAdmin implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle) {
         showTime();
 
-        username.setText(Main.username);
-
 
         USDinfo [0] = "USD.jpg";
         Image USD1 = new Image(USDinfo[0]);
@@ -241,7 +238,7 @@ public class HomePageAdmin implements Initializable{
     }
     public void ClickOnWallet (ActionEvent event) throws IOException{
         Main m = new Main();
-        m.openNewWindow("Wallet", "wallet");
+        m.openNewWindow("AdminWallet", "adminWallet");
     }
     public void ClickOnAdmin ( ActionEvent event ) throws IOException{
         Main m = new Main();

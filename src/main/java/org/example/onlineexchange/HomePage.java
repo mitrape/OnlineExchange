@@ -247,12 +247,19 @@ public class HomePage implements Initializable{
         System.exit(0);
     }
     public void ClickOnTransfer (ActionEvent event) throws IOException{
-        Main m = new Main();
-        m.openNewWindow("Transfer","transfer");
+        if(Main.demoState.equals("true")){
+            showErrorAlert("Transfer is closed during demo!");
+        }
+        else {
+            Main m = new Main();
+            m.openNewWindow("Transfer","transfer");
+        }
     }
     public void ClickOnExchange (ActionEvent event) throws IOException, SQLException {
-        PreparedStatement stmt1 = Main.connection.prepareStatement("SELECT * FROM admin");
+        PreparedStatement stmt1 = Main.connection.prepareStatement("SELECT * FROM closing WHERE id = ?");
+        stmt1.setInt(1,1);
         ResultSet resultSet = stmt1.executeQuery();
+        while (resultSet.next()){
         String openClose = resultSet.getString("closeOpen");
         if(openClose.equals("open")) {
             Main m = new Main();
@@ -260,6 +267,7 @@ public class HomePage implements Initializable{
         }
         else{
             showErrorAlert("Exchange has been closed by admin!");
+        }
         }
     }
     public void ClickOnSwap (ActionEvent event) throws IOException{
