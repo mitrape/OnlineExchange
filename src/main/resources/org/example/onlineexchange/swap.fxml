@@ -18,7 +18,7 @@
          <children>
             <AnchorPane prefHeight="83.0" prefWidth="593.0">
                <children>
-                  <Label layoutX="167.0" layoutY="22.0" text="swap" textFill="WHITE">
+                  <Label layoutX="188.0" layoutY="22.0" text="swap" textFill="WHITE">
                      <font>
                         <Font name="System Bold Italic" size="26.0" />
                      </font>
@@ -58,11 +58,6 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <ImageView fitHeight="105.0" fitWidth="125.0" layoutX="144.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@arrow-swap-icon-2048x2048-k1oxo9he.png" />
-                     </image>
-                  </ImageView>
                   <Text fx:id="messageSameCurrency" fill="#e80a0a" layoutX="336.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Same currency!  " visible="false">
                      <font>
                         <Font name="System Bold" size="13.0" />
@@ -73,6 +68,11 @@
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Text>
+                  <ImageView fitHeight="160.0" fitWidth="134.0" layoutX="158.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@swap%20logo1.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="48.0" prefWidth="402.0" />
