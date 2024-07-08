@@ -122,35 +122,35 @@ public class Admin implements Initializable {
         dateTran.setCellValueFactory(new PropertyValueFactory<TransactionUsername, String>("date"));
 
 
-        PreparedStatement stmt1 = Main.connection.prepareStatement("SELECT * FROM tomantransaction ");
+        PreparedStatement stmt1 = Main.connection.prepareStatement("SELECT * FROM tomantransaction WHERE demo=false");
         ResultSet tomanResult = stmt1.executeQuery();
         while (tomanResult.next()) {
             TransactionTable.getItems().add(new TransactionUsername("toman", tomanResult.getDouble("Transaction"), tomanResult.getDouble("amount"), tomanResult.getString("SellOrBuy"), tomanResult.getString("username"),tomanResult.getString("date")));
         }
 
 
-        PreparedStatement stmt2 = Main.connection.prepareStatement("SELECT * FROM eurtransaction ");
+        PreparedStatement stmt2 = Main.connection.prepareStatement("SELECT * FROM eurtransaction WHERE demo=false");
         ResultSet eurResult = stmt2.executeQuery();
         while (eurResult.next()) {
             TransactionTable.getItems().add(new TransactionUsername("eur", eurResult.getDouble("Transaction"), eurResult.getDouble("amount"), eurResult.getString("SellOrBuy"),eurResult.getString("username"), eurResult.getString("date")));
         }
 
 
-        PreparedStatement stmt3 = Main.connection.prepareStatement("SELECT * FROM usdtransaction ");
+        PreparedStatement stmt3 = Main.connection.prepareStatement("SELECT * FROM usdtransaction WHERE demo=false");
         ResultSet usdResult = stmt3.executeQuery();
         while (usdResult.next()) {
             TransactionTable.getItems().add(new TransactionUsername("usd", usdResult.getDouble("Transaction"), usdResult.getDouble("amount"), usdResult.getString("SellOrBuy"),usdResult.getString("username"), usdResult.getString("date")));
         }
 
 
-        PreparedStatement stmt4 = Main.connection.prepareStatement("SELECT * FROM yentransaction ");
+        PreparedStatement stmt4 = Main.connection.prepareStatement("SELECT * FROM yentransaction WHERE demo=false");
         ResultSet yenResult = stmt4.executeQuery();
         while (yenResult.next()) {
             TransactionTable.getItems().add(new TransactionUsername("yen", yenResult.getDouble("Transaction"), yenResult.getDouble("amount"), yenResult.getString("SellOrBuy"),yenResult.getString("username"), yenResult.getString("date")));
         }
 
 
-        PreparedStatement stmt5 = Main.connection.prepareStatement("SELECT * FROM gbptransaction  ");
+        PreparedStatement stmt5 = Main.connection.prepareStatement("SELECT * FROM gbptransaction WHERE demo=false");
         ResultSet gbpResult = stmt5.executeQuery();
         while (gbpResult.next()) {
             TransactionTable.getItems().add(new TransactionUsername("gbp", gbpResult.getDouble("Transaction"), gbpResult.getDouble("amount"), gbpResult.getString("SellOrBuy"),gbpResult.getString("username"), gbpResult.getString("date")));

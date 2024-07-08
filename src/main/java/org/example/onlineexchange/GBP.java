@@ -165,7 +165,12 @@ public class GBP implements Initializable {
             Statement statement1 = Main.connection.createStatement();
             ResultSet resultSet1 = statement1.executeQuery("SELECT * FROM gbptransaction");
             while (resultSet1.next()){
-                TransactionList.add(String.format("%.4f",resultSet1.getDouble("Transaction")*resultSet1.getDouble("amount"))+"->"+resultSet1.getString("SellOrBuy"));
+                if(resultSet1.getString("demo").equals("false")) {
+                    TransactionList.add(String.format("%.4f",resultSet1.getDouble("Transaction")*resultSet1.getDouble("amount"))+"->"+resultSet1.getString("SellOrBuy"));
+                }
+                if(Main.demoState.equals("true") && resultSet1.getString("username").equals(Main.username) && resultSet1.getString("demo").equals("true")) {
+                    TransactionList.add(String.format("%.4f",resultSet1.getDouble("Transaction")*resultSet1.getDouble("amount"))+"->"+resultSet1.getString("SellOrBuy"));
+                }
             }
             TransactionTable.setItems(TransactionList);
 
@@ -176,7 +181,12 @@ public class GBP implements Initializable {
             Statement statement1 = Main.connection.createStatement();
             ResultSet resultSet1 = statement1.executeQuery("SELECT * FROM gbpopenrequests");
             while (resultSet1.next()){
-                OpenRequestsList.add(String.format("%.4f",resultSet1.getDouble("gbpOpenRequests")*resultSet1.getDouble("amount"))+"->"+resultSet1.getString("SellOrBuy"));
+                if(resultSet1.getString("demo").equals("false")) {
+                    OpenRequestsList.add(String.format("%.4f",resultSet1.getDouble("gbpOpenRequests")*resultSet1.getDouble("amount"))+"->"+resultSet1.getString("SellOrBuy"));
+                }
+                if(Main.demoState.equals("true") && resultSet1.getString("username").equals(Main.username) && resultSet1.getString("demo").equals("true")){
+                    OpenRequestsList.add(String.format("%.4f",resultSet1.getDouble("gbpOpenRequests")*resultSet1.getDouble("amount"))+"->"+resultSet1.getString("SellOrBuy"));
+                }
             }
             OpenRequestsTable.setItems(OpenRequestsList);
 

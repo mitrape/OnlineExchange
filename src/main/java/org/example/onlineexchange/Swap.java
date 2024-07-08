@@ -459,44 +459,52 @@ public class Swap{
         PreparedStatement updateMoneyStatement1 = Main.connection.prepareStatement("UPDATE usersdata SET amountOfTOMAN = amountOfTOMAN + ? WHERE username = ?");
         updateMoneyStatement1.setDouble(1, output*0.99);
         updateMoneyStatement1.setString(2, Main.username);
-        PreparedStatement updateMoneyStatementAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfTOMAN = amountOfTOMAN + ? WHERE username = ?");
-        updateMoneyStatementAdmin.setDouble(1, output*0.01);
-        updateMoneyStatementAdmin.setString(2, "admin");
+        if(Main.demoState.equals("false")) {
+            PreparedStatement updateMoneyStatementAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfTOMAN = amountOfTOMAN + ? WHERE username = ?");
+            updateMoneyStatementAdmin.setDouble(1, output * 0.01);
+            updateMoneyStatementAdmin.setString(2, "admin");
+            updateMoneyStatementAdmin.executeUpdate();
+        }
         updateMoneyStatement1.executeUpdate();
-        updateMoneyStatementAdmin.executeUpdate();
     }
 
     private void setGBP() throws SQLException {
         PreparedStatement updateMoneyStatement1 = Main.connection.prepareStatement("UPDATE usersdata SET amountOfGBP = amountOfGBP + ? WHERE username = ?");
         updateMoneyStatement1.setDouble(1, output*0.99);
         updateMoneyStatement1.setString(2, Main.username);
-        PreparedStatement updateMoneyStatementAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfGBP = amountOfGBP + ? WHERE username = ?");
-        updateMoneyStatementAdmin.setDouble(1, output*0.01);
-        updateMoneyStatementAdmin.setString(2, "admin");
+        if (Main.demoState.equals("false")) {
+            PreparedStatement updateMoneyStatementAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfGBP = amountOfGBP + ? WHERE username = ?");
+            updateMoneyStatementAdmin.setDouble(1, output * 0.01);
+            updateMoneyStatementAdmin.setString(2, "admin");
+            updateMoneyStatementAdmin.executeUpdate();
+        }
         updateMoneyStatement1.executeUpdate();
-        updateMoneyStatementAdmin.executeUpdate();
     }
 
     private void setUSD() throws SQLException {
         PreparedStatement updateMoneyStatement1 = Main.connection.prepareStatement("UPDATE usersdata SET amountOfUSD = amountOfUSD + ? WHERE username = ?");
         updateMoneyStatement1.setDouble(1, output*0.99);
         updateMoneyStatement1.setString(2, Main.username);
-        PreparedStatement updateMoneyStatementAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfUSD = amountOfUSD + ? WHERE username = ?");
-        updateMoneyStatementAdmin.setDouble(1, output*0.01);
-        updateMoneyStatementAdmin.setString(2, "admin");
+        if(Main.demoState.equals("false")) {
+            PreparedStatement updateMoneyStatementAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfUSD = amountOfUSD + ? WHERE username = ?");
+            updateMoneyStatementAdmin.setDouble(1, output * 0.01);
+            updateMoneyStatementAdmin.setString(2, "admin");
+            updateMoneyStatementAdmin.executeUpdate();
+        }
         updateMoneyStatement1.executeUpdate();
-        updateMoneyStatementAdmin.executeUpdate();
     }
 
     private void setYEN () throws SQLException {
         PreparedStatement updateMoneyStatement1 = Main.connection.prepareStatement("UPDATE usersdata SET amountOfYEN = amountOfYEN + ? WHERE username = ?");
         updateMoneyStatement1.setDouble(1, output*0.99);
         updateMoneyStatement1.setString(2, Main.username);
-        PreparedStatement updateMoneyStatementAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfYEN = amountOfYEN + ? WHERE username = ?");
-        updateMoneyStatementAdmin.setDouble(1, output*0.01);
-        updateMoneyStatementAdmin.setString(2, "admin");
+        if(Main.demoState.equals("false")) {
+            PreparedStatement updateMoneyStatementAdmin = Main.connection.prepareStatement("UPDATE usersdata SET amountOfYEN = amountOfYEN + ? WHERE username = ?");
+            updateMoneyStatementAdmin.setDouble(1, output * 0.01);
+            updateMoneyStatementAdmin.setString(2, "admin");
+            updateMoneyStatementAdmin.executeUpdate();
+        }
         updateMoneyStatement1.executeUpdate();
-        updateMoneyStatementAdmin.executeUpdate();
     }
 }
 

@@ -109,11 +109,21 @@ public class History implements Initializable {
         thread.start();
     }
     public static void exportTransactionsToCSV(String username, String outputPath) {
-        String query = "SELECT 'tomantransaction' AS TableName, Transaction, amount, SellOrBuy, date FROM tomantransaction WHERE username = ? "
-                + "UNION ALL SELECT 'eurtransaction' AS TableName, Transaction, amount, SellOrBuy, date FROM eurtransaction WHERE username = ? "
-                + "UNION ALL SELECT 'usdtransaction' AS TableName, Transaction, amount, SellOrBuy, date FROM usdtransaction WHERE username = ?"
-                + "UNION ALL SELECT 'yentransaction' AS TableName, Transaction, amount, SellOrBuy, date FROM usdtransaction WHERE username = ?"
-                + "UNION ALL SELECT 'gbptransaction' AS TableName, Transaction, amount, SellOrBuy, date FROM usdtransaction WHERE username = ?";
+        String query;
+        if(Main.demoState.equals("true")) {
+            query = "SELECT 'tomantransaction' AS TableName, Transaction, amount, SellOrBuy, date FROM tomantransaction WHERE username = ? "
+                    + "UNION ALL SELECT 'eurtransaction' AS TableName, Transaction, amount, SellOrBuy, date FROM eurtransaction WHERE username = ? "
+                    + "UNION ALL SELECT 'usdtransaction' AS TableName, Transaction, amount, SellOrBuy, date FROM usdtransaction WHERE username = ?"
+                    + "UNION ALL SELECT 'yentransaction' AS TableName, Transaction, amount, SellOrBuy, date FROM usdtransaction WHERE username = ?"
+                    + "UNION ALL SELECT 'gbptransaction' AS TableName, Transaction, amount, SellOrBuy, date FROM usdtransaction WHERE username = ?";
+        }
+        else{
+            query = "SELECT 'tomantransaction' AS TableName, Transaction, amount, SellOrBuy, date FROM tomantransaction WHERE username = ?, demo=false "
+                    + "UNION ALL SELECT 'eurtransaction' AS TableName, Transaction, amount, SellOrBuy, date FROM eurtransaction WHERE username = ?, demo=false "
+                    + "UNION ALL SELECT 'usdtransaction' AS TableName, Transaction, amount, SellOrBuy, date FROM usdtransaction WHERE username = ?, demo=false "
+                    + "UNION ALL SELECT 'yentransaction' AS TableName, Transaction, amount, SellOrBuy, date FROM usdtransaction WHERE username = ?, demo=false "
+                    + "UNION ALL SELECT 'gbptransaction' AS TableName, Transaction, amount, SellOrBuy, date FROM usdtransaction WHERE username = ?, demo=false";
+        }
 
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/users_personal_data", "root", "13832220");
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -145,11 +155,25 @@ public class History implements Initializable {
         }
     }
     public static void exportOpenRequestsToCSV (String username, String outputPath) throws SQLException, IOException {
-        String query1 = "SELECT 'tomanopenrequests' AS TableName, tomanOpenRequests, amount, SellOrBuy, date FROM tomanopenrequests WHERE username = ? ";
-        String query2 = "SELECT 'europenrequests' AS TableName, eurOpenRequests, amount, SellOrBuy, date FROM europenrequests WHERE username = ? ";
-        String query3 = "SELECT 'usdopenrequests' AS TableName, usdOpenRequests, amount, SellOrBuy, date FROM usdopenrequests WHERE username = ?";
-        String query4 = "SELECT 'yenopenrequests' AS TableName, yenOpenRequests, amount, SellOrBuy, date FROM yenopenrequests WHERE username = ?";
-        String query5 = "SELECT 'gbpopenrequests' AS TableName, gbpOpenRequests, amount, SellOrBuy, date FROM gbpopenrequests WHERE username = ?";
+        String query1;
+        String query2;
+        String query3;
+        String query4;
+        String query5;
+        if(Main.demoState.equals("true")) {
+            query1 = "SELECT 'tomanopenrequests' AS TableName, tomanOpenRequests, amount, SellOrBuy, date FROM tomanopenrequests WHERE username = ? ";
+            query2 = "SELECT 'europenrequests' AS TableName, eurOpenRequests, amount, SellOrBuy, date FROM europenrequests WHERE username = ? ";
+            query3 = "SELECT 'usdopenrequests' AS TableName, usdOpenRequests, amount, SellOrBuy, date FROM usdopenrequests WHERE username = ?";
+            query4 = "SELECT 'yenopenrequests' AS TableName, yenOpenRequests, amount, SellOrBuy, date FROM yenopenrequests WHERE username = ?";
+            query5 = "SELECT 'gbpopenrequests' AS TableName, gbpOpenRequests, amount, SellOrBuy, date FROM gbpopenrequests WHERE username = ?";
+        }
+        else{
+            query1 = "SELECT 'tomanopenrequests' AS TableName, tomanOpenRequests, amount, SellOrBuy, date FROM tomanopenrequests WHERE username = ? , demo=false ";
+            query2 = "SELECT 'europenrequests' AS TableName, eurOpenRequests, amount, SellOrBuy, date FROM europenrequests WHERE username = ? , demo=false ";
+            query3 = "SELECT 'usdopenrequests' AS TableName, usdOpenRequests, amount, SellOrBuy, date FROM usdopenrequests WHERE username = ?, demo=false ";
+            query4 = "SELECT 'yenopenrequests' AS TableName, yenOpenRequests, amount, SellOrBuy, date FROM yenopenrequests WHERE username = ?, demo=false ";
+            query5 = "SELECT 'gbpopenrequests' AS TableName, gbpOpenRequests, amount, SellOrBuy, date FROM gbpopenrequests WHERE username = ?, demo=false ";
+        }
 
         PreparedStatement stm1 = Main.connection.prepareStatement(query1);
         PreparedStatement stm2 = Main.connection.prepareStatement(query2);
@@ -251,7 +275,14 @@ public class History implements Initializable {
         stmt1.setString(1,Main.username);
         ResultSet tomanResult = stmt1.executeQuery();
         while (tomanResult.next()) {
-            OpenRequestsTable.getItems().add(new TransactionData("toman", tomanResult.getDouble("tomanOpenRequests"), tomanResult.getDouble("amount"), tomanResult.getString("SellOrBuy"), tomanResult.getString("date")));
+            if(tomanResult.getString("demo").equals("false")) {
+                OpenRequestsTable.getItems().add(new TransactionData("toman", tomanResult.getDouble("tomanOpenRequests"), tomanResult.getDouble("amount"), tomanResult.getString("SellOrBuy"), tomanResult.getString("date")));
+
+            }
+            if(tomanResult.getString("username").equals(Main.username) && tomanResult.getString("demo").equals("true") && Main.demoState.equals("true")){
+                OpenRequestsTable.getItems().add(new TransactionData("toman", tomanResult.getDouble("tomanOpenRequests"), tomanResult.getDouble("amount"), tomanResult.getString("SellOrBuy"), tomanResult.getString("date")));
+
+            }
         }
 
 
@@ -259,7 +290,14 @@ public class History implements Initializable {
         stmt2.setString(1,Main.username);
         ResultSet eurResult = stmt2.executeQuery();
         while (eurResult.next()) {
-            OpenRequestsTable.getItems().add(new TransactionData("eur", eurResult.getDouble("eurOpenRequests"), eurResult.getDouble("amount"), eurResult.getString("SellOrBuy"), eurResult.getString("date")));
+            if(eurResult.getString("demo").equals("false")) {
+                OpenRequestsTable.getItems().add(new TransactionData("eur", eurResult.getDouble("eurOpenRequests"), eurResult.getDouble("amount"), eurResult.getString("SellOrBuy"), eurResult.getString("date")));
+
+            }
+            if(eurResult.getString("username").equals(Main.username) && eurResult.getString("demo").equals("true") && Main.demoState.equals("true")){
+                OpenRequestsTable.getItems().add(new TransactionData("eur", eurResult.getDouble("eurOpenRequests"), eurResult.getDouble("amount"), eurResult.getString("SellOrBuy"), eurResult.getString("date")));
+
+            }
         }
 
 
@@ -267,7 +305,14 @@ public class History implements Initializable {
         stmt3.setString(1,Main.username);
         ResultSet usdResult = stmt3.executeQuery();
         while (usdResult.next()) {
-            OpenRequestsTable.getItems().add(new TransactionData("usd", usdResult.getDouble("usdOpenRequests"), usdResult.getDouble("amount"), usdResult.getString("SellOrBuy"), usdResult.getString("date")));
+            if(usdResult.getString("demo").equals("false")) {
+                OpenRequestsTable.getItems().add(new TransactionData("usd", usdResult.getDouble("usdOpenRequests"), usdResult.getDouble("amount"), usdResult.getString("SellOrBuy"), usdResult.getString("date")));
+
+            }
+            if(usdResult.getString("username").equals(Main.username) && usdResult.getString("demo").equals("true") && Main.demoState.equals("true")){
+                OpenRequestsTable.getItems().add(new TransactionData("usd", usdResult.getDouble("usdOpenRequests"), usdResult.getDouble("amount"), usdResult.getString("SellOrBuy"), usdResult.getString("date")));
+
+            }
         }
 
 
@@ -275,16 +320,28 @@ public class History implements Initializable {
         stmt4.setString(1,Main.username);
         ResultSet yenResult = stmt4.executeQuery();
         while (yenResult.next()) {
-            OpenRequestsTable.getItems().add(new TransactionData("yen", yenResult.getDouble("yenOpenRequests"), yenResult.getDouble("amount"), yenResult.getString("SellOrBuy"), yenResult.getString("date")));
-        }
+            if(yenResult.getString("demo").equals("false")) {
+                OpenRequestsTable.getItems().add(new TransactionData("yen", yenResult.getDouble("yenOpenRequests"), yenResult.getDouble("amount"), yenResult.getString("SellOrBuy"), yenResult.getString("date")));
+
+            }
+            if(yenResult.getString("username").equals(Main.username) && yenResult.getString("demo").equals("true") && Main.demoState.equals("true")){
+                OpenRequestsTable.getItems().add(new TransactionData("yen", yenResult.getDouble("yenOpenRequests"), yenResult.getDouble("amount"), yenResult.getString("SellOrBuy"), yenResult.getString("date")));
+
+            }}
 
 
         PreparedStatement stmt5 = Main.connection.prepareStatement("SELECT gbpOpenRequests, amount, SellOrBuy, date FROM gbpopenrequests WHERE username =?");
         stmt5.setString(1,Main.username);
         ResultSet gbpResult = stmt5.executeQuery();
         while (gbpResult.next()) {
-            OpenRequestsTable.getItems().add(new TransactionData("gbp", gbpResult.getDouble("gbpOpenRequests"), gbpResult.getDouble("amount"), gbpResult.getString("SellOrBuy"), gbpResult.getString("date")));
-        }
+            if(gbpResult.getString("demo").equals("false")) {
+                OpenRequestsTable.getItems().add(new TransactionData("gbp", gbpResult.getDouble("gbpOpenRequests"), gbpResult.getDouble("amount"), gbpResult.getString("SellOrBuy"), gbpResult.getString("date")));
+
+            }
+            if(gbpResult.getString("username").equals(Main.username) && gbpResult.getString("demo").equals("true") && Main.demoState.equals("true")){
+                OpenRequestsTable.getItems().add(new TransactionData("gbp", gbpResult.getDouble("gbpOpenRequests"), gbpResult.getDouble("amount"), gbpResult.getString("SellOrBuy"), gbpResult.getString("date")));
+
+            }}
 
     }
     public void setLastTransactionTable () throws SQLException {
@@ -300,7 +357,14 @@ public class History implements Initializable {
         stmt1.setString(1,Main.username);
         ResultSet tomanResult = stmt1.executeQuery();
         while (tomanResult.next()) {
-            TransactionTable.getItems().add(new TransactionData("toman", tomanResult.getDouble("Transaction"), tomanResult.getDouble("amount"), tomanResult.getString("SellOrBuy"), tomanResult.getString("date")));
+            if(tomanResult.getString("demo").equals("false")) {
+                TransactionTable.getItems().add(new TransactionData("toman", tomanResult.getDouble("Transaction"), tomanResult.getDouble("amount"), tomanResult.getString("SellOrBuy"), tomanResult.getString("date")));
+
+            }
+            if(tomanResult.getString("username").equals(Main.username) && tomanResult.getString("demo").equals("true") && Main.demoState.equals("true")){
+                TransactionTable.getItems().add(new TransactionData("toman", tomanResult.getDouble("Transaction"), tomanResult.getDouble("amount"), tomanResult.getString("SellOrBuy"), tomanResult.getString("date")));
+
+            }
         }
 
 
@@ -308,7 +372,14 @@ public class History implements Initializable {
         stmt2.setString(1,Main.username);
         ResultSet eurResult = stmt2.executeQuery();
         while (eurResult.next()) {
-            TransactionTable.getItems().add(new TransactionData("eur", eurResult.getDouble("Transaction"), eurResult.getDouble("amount"), eurResult.getString("SellOrBuy"), eurResult.getString("date")));
+            if(eurResult.getString("demo").equals("false")) {
+                TransactionTable.getItems().add(new TransactionData("eur", eurResult.getDouble("Transaction"), eurResult.getDouble("amount"), eurResult.getString("SellOrBuy"), eurResult.getString("date")));
+
+            }
+            if(eurResult.getString("username").equals(Main.username) && eurResult.getString("demo").equals("true") && Main.demoState.equals("true")){
+                TransactionTable.getItems().add(new TransactionData("eur", eurResult.getDouble("Transaction"), eurResult.getDouble("amount"), eurResult.getString("SellOrBuy"), eurResult.getString("date")));
+
+            }
         }
 
 
@@ -316,7 +387,14 @@ public class History implements Initializable {
         stmt3.setString(1,Main.username);
         ResultSet usdResult = stmt3.executeQuery();
         while (usdResult.next()) {
-            TransactionTable.getItems().add(new TransactionData("usd", usdResult.getDouble("Transaction"), usdResult.getDouble("amount"), usdResult.getString("SellOrBuy"), usdResult.getString("date")));
+            if(usdResult.getString("demo").equals("false")) {
+                TransactionTable.getItems().add(new TransactionData("usd", usdResult.getDouble("Transaction"), usdResult.getDouble("amount"), usdResult.getString("SellOrBuy"), usdResult.getString("date")));
+
+            }
+            if(usdResult.getString("username").equals(Main.username) && usdResult.getString("demo").equals("true") && Main.demoState.equals("true")){
+                TransactionTable.getItems().add(new TransactionData("usd", usdResult.getDouble("Transaction"), usdResult.getDouble("amount"), usdResult.getString("SellOrBuy"), usdResult.getString("date")));
+
+            }
         }
 
 
@@ -324,15 +402,28 @@ public class History implements Initializable {
         stmt4.setString(1,Main.username);
         ResultSet yenResult = stmt4.executeQuery();
         while (yenResult.next()) {
-            TransactionTable.getItems().add(new TransactionData("yen", yenResult.getDouble("Transaction"), yenResult.getDouble("amount"), yenResult.getString("SellOrBuy"), yenResult.getString("date")));
-        }
+            if(yenResult.getString("demo").equals("false")) {
+                TransactionTable.getItems().add(new TransactionData("yen", yenResult.getDouble("Transaction"), yenResult.getDouble("amount"), yenResult.getString("SellOrBuy"), yenResult.getString("date")));
+
+            }
+            if(yenResult.getString("username").equals(Main.username) && yenResult.getString("demo").equals("true") && Main.demoState.equals("true")){
+                TransactionTable.getItems().add(new TransactionData("yen", yenResult.getDouble("Transaction"), yenResult.getDouble("amount"), yenResult.getString("SellOrBuy"), yenResult.getString("date")));
+
+            }}
 
 
         PreparedStatement stmt5 = Main.connection.prepareStatement("SELECT Transaction, amount, SellOrBuy, date FROM gbptransaction WHERE username =?");
         stmt5.setString(1,Main.username);
         ResultSet gbpResult = stmt5.executeQuery();
         while (gbpResult.next()) {
-            TransactionTable.getItems().add(new TransactionData("gbp", gbpResult.getDouble("Transaction"), gbpResult.getDouble("amount"), gbpResult.getString("SellOrBuy"), gbpResult.getString("date")));
+            if(gbpResult.getString("demo").equals("false")) {
+                TransactionTable.getItems().add(new TransactionData("gbp", gbpResult.getDouble("Transaction"), gbpResult.getDouble("amount"), gbpResult.getString("SellOrBuy"), gbpResult.getString("date")));
+
+            }
+            if(gbpResult.getString("username").equals(Main.username) && gbpResult.getString("demo").equals("true") && Main.demoState.equals("true")){
+                TransactionTable.getItems().add(new TransactionData("gbp", gbpResult.getDouble("Transaction"), gbpResult.getDouble("amount"), gbpResult.getString("SellOrBuy"), gbpResult.getString("date")));
+
+            }
         }
     }
 
