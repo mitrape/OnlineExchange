@@ -118,11 +118,11 @@ public class History implements Initializable {
                     + "UNION ALL SELECT 'gbptransaction' AS TableName, Transaction, amount, SellOrBuy, date FROM usdtransaction WHERE username = ?";
         }
         else{
-            query = "SELECT 'tomantransaction' AS TableName, Transaction, amount, SellOrBuy, date FROM tomantransaction WHERE username = ?, demo=false "
-                    + "UNION ALL SELECT 'eurtransaction' AS TableName, Transaction, amount, SellOrBuy, date FROM eurtransaction WHERE username = ?, demo=false "
-                    + "UNION ALL SELECT 'usdtransaction' AS TableName, Transaction, amount, SellOrBuy, date FROM usdtransaction WHERE username = ?, demo=false "
-                    + "UNION ALL SELECT 'yentransaction' AS TableName, Transaction, amount, SellOrBuy, date FROM usdtransaction WHERE username = ?, demo=false "
-                    + "UNION ALL SELECT 'gbptransaction' AS TableName, Transaction, amount, SellOrBuy, date FROM usdtransaction WHERE username = ?, demo=false";
+            query = "SELECT 'tomantransaction' AS TableName, Transaction, amount, SellOrBuy, date FROM tomantransaction WHERE username = ? AND demo='false' "
+                    + "UNION ALL SELECT 'eurtransaction' AS TableName, Transaction, amount, SellOrBuy, date FROM eurtransaction WHERE username = ? AND demo='false' "
+                    + "UNION ALL SELECT 'usdtransaction' AS TableName, Transaction, amount, SellOrBuy, date FROM usdtransaction WHERE username = ? AND demo='false' "
+                    + "UNION ALL SELECT 'yentransaction' AS TableName, Transaction, amount, SellOrBuy, date FROM usdtransaction WHERE username = ? AND demo='false' "
+                    + "UNION ALL SELECT 'gbptransaction' AS TableName, Transaction, amount, SellOrBuy, date FROM usdtransaction WHERE username = ? AND demo='false'";
         }
 
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/users_personal_data", "root", "13832220");
@@ -168,11 +168,11 @@ public class History implements Initializable {
             query5 = "SELECT 'gbpopenrequests' AS TableName, gbpOpenRequests, amount, SellOrBuy, date FROM gbpopenrequests WHERE username = ?";
         }
         else{
-            query1 = "SELECT 'tomanopenrequests' AS TableName, tomanOpenRequests, amount, SellOrBuy, date FROM tomanopenrequests WHERE username = ? , demo=false ";
-            query2 = "SELECT 'europenrequests' AS TableName, eurOpenRequests, amount, SellOrBuy, date FROM europenrequests WHERE username = ? , demo=false ";
-            query3 = "SELECT 'usdopenrequests' AS TableName, usdOpenRequests, amount, SellOrBuy, date FROM usdopenrequests WHERE username = ?, demo=false ";
-            query4 = "SELECT 'yenopenrequests' AS TableName, yenOpenRequests, amount, SellOrBuy, date FROM yenopenrequests WHERE username = ?, demo=false ";
-            query5 = "SELECT 'gbpopenrequests' AS TableName, gbpOpenRequests, amount, SellOrBuy, date FROM gbpopenrequests WHERE username = ?, demo=false ";
+            query1 = "SELECT 'tomanopenrequests' AS TableName, tomanOpenRequests, amount, SellOrBuy, date FROM tomanopenrequests WHERE username = ? AND demo='false' ";
+            query2 = "SELECT 'europenrequests' AS TableName, eurOpenRequests, amount, SellOrBuy, date FROM europenrequests WHERE username = ? AND demo='false' ";
+            query3 = "SELECT 'usdopenrequests' AS TableName, usdOpenRequests, amount, SellOrBuy, date FROM usdopenrequests WHERE username = ? AND demo='false' ";
+            query4 = "SELECT 'yenopenrequests' AS TableName, yenOpenRequests, amount, SellOrBuy, date FROM yenopenrequests WHERE username = ? AND demo='false' ";
+            query5 = "SELECT 'gbpopenrequests' AS TableName, gbpOpenRequests, amount, SellOrBuy, date FROM gbpopenrequests WHERE username = ? AND demo='false' ";
         }
 
         PreparedStatement stm1 = Main.connection.prepareStatement(query1);
