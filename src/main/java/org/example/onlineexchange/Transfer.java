@@ -99,11 +99,11 @@ public class Transfer implements Initializable {
             if (rs.isBeforeFirst()){
                 if(currencyRadioButton.isSelected()){
                     Main m = new Main();
-                    m.changeScene("currencyTransfer");
+                    m.openNewWindow("currencyTransfer","currencyTransfer");
                 }
                 else if(moneyRadioButton.isSelected()){
                     Main m = new Main();
-                    m.changeScene("moneyTransfer");
+                    m.openNewWindow("moneyTransfer","moneyTransfer");
                 }
                 else{
                     transferOptionError.setVisible(true);

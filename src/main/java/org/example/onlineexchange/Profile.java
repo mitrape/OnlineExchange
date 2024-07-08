@@ -76,6 +76,9 @@ public class Profile implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if(Main.demoState.equals("true")){
+            DemoCheckBox.setSelected(true);
+        }
         PreparedStatement findUser = null;
         ResultSet resultSet = null;
         String photoName = null;
