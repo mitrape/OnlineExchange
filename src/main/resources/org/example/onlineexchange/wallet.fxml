@@ -4,20 +4,21 @@
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="615.0" prefWidth="558.0" style="-fx-background-color: #071739;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.onlineexchange.Wallet">
+<AnchorPane prefHeight="599.0" prefWidth="799.0" style="-fx-background-color: #071739;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.onlineexchange.Wallet">
    <children>
-      <Label layoutX="24.0" layoutY="6.0" prefHeight="62.0" prefWidth="123.0" text="Wallet" textFill="WHITE">
+      <Label alignment="CENTER" layoutX="331.0" layoutY="14.0" prefHeight="62.0" prefWidth="137.0" text="Wallet" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="40.0" />
+            <Font name="System Bold Italic" size="33.0" />
          </font>
+         <effect>
+            <Bloom />
+         </effect>
       </Label>
-      <LineChart fx:id="yearlyWealth" layoutX="34.0" layoutY="309.0" prefHeight="289.0" prefWidth="472.0">
+      <LineChart fx:id="yearlyWealth" layoutX="397.0" layoutY="172.0" prefHeight="294.0" prefWidth="386.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -25,75 +26,74 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </LineChart>
-      <Label layoutX="33.0" layoutY="79.0" prefHeight="23.0" prefWidth="123.0" text="Total capital:" textFill="WHITE">
+      <Label layoutX="30.0" layoutY="109.0" prefHeight="30.0" prefWidth="158.0" text="TOTAL CAPITAL" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="73.0" layoutY="204.0" text="USD" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="56.0" layoutY="116.0" text="USD: " textFill="WHITE">
+      <Label layoutX="74.0" layoutY="268.0" text="EUR" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="55.0" layoutY="150.0" text="EUR:" textFill="WHITE">
+      <Label layoutX="76.0" layoutY="334.0" text="YEN" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="55.0" layoutY="186.0" text="YEN:" textFill="WHITE">
+      <Label layoutX="73.0" layoutY="401.0" text="GBP" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="55.0" layoutY="220.0" text="GBP:" textFill="WHITE">
+      <Label layoutX="57.0" layoutY="466.0" text="TOMAN" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="47.0" layoutY="254.0" text="TOMAN:" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
-      <Line endX="117.0" layoutX="117.0" layoutY="110.0" startX="-83.0" stroke="#1ef1b1" />
-      <Line endX="118.0" layoutX="117.0" layoutY="146.0" startX="-83.0" stroke="#1ef1b1" />
-      <Line endX="117.0" layoutX="117.0" layoutY="179.0" startX="-83.0" stroke="#1ef1b1" />
-      <Line endX="115.0" layoutX="117.0" layoutY="215.0" startX="-83.0" stroke="#1ef1b1" />
-      <Line endX="115.0" layoutX="117.0" layoutY="250.0" startX="-83.0" stroke="#1ef1b1" />
-      <Text fx:id="totalCapital" fill="WHITE" layoutX="177.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Text>
-      <Text fx:id="usdWealth" fill="WHITE" layoutX="177.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Text>
-      <Text fx:id="eurWealth" fill="WHITE" layoutX="177.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Text>
-      <Text fx:id="yenWealth" fill="WHITE" layoutX="177.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Text>
-      <Text fx:id="gbpWealth" fill="WHITE" layoutX="177.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Text>
-      <Text fx:id="tomanWealth" fill="WHITE" layoutX="177.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Text>
-      <Separator layoutX="144.0" layoutY="76.0" nodeOrientation="LEFT_TO_RIGHT" orientation="VERTICAL" prefHeight="200.0" style="-fx-background-color: #1ef1b1;" />
-      <Label fx:id="time" layoutX="470.0" layoutY="29.0" text="Label" textFill="WHITE">
+      <Label fx:id="time" layoutX="696.0" layoutY="557.0" text="Label" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="totalCapital" alignment="CENTER" layoutX="211.0" layoutY="105.0" prefHeight="38.0" prefWidth="190.0" style="-fx-background-color: #1EF1B1; -fx-background-radius: 6;" text="0.00000" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="443.0" layoutY="423.0" prefHeight="45.0" prefWidth="326.0" style="-fx-border-color: #1EF1B1; -fx-border-radius: 5; -fx-background-color: #071739; -fx-background-radius: 5;" text="Annual Asset Chart" textFill="#1ef1b1">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="usdWealth" alignment="CENTER" layoutX="195.0" layoutY="199.0" prefHeight="38.0" prefWidth="146.0" style="-fx-border-radius: 6; -fx-border-color: #1EF1B1;" text="0.00000" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="eurWealth" alignment="CENTER" layoutX="195.0" layoutY="263.0" prefHeight="38.0" prefWidth="146.0" style="-fx-border-radius: 6; -fx-border-color: #1EF1B1;" text="0.00000" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="yenWealth" alignment="CENTER" layoutX="195.0" layoutY="329.0" prefHeight="38.0" prefWidth="146.0" style="-fx-border-radius: 6; -fx-border-color: #1EF1B1;" text="0.00000" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="gbpWealth" alignment="CENTER" layoutX="198.0" layoutY="395.0" prefHeight="38.0" prefWidth="146.0" style="-fx-border-radius: 6; -fx-border-color: #1EF1B1;" text="0.00000" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="tomanWealth" alignment="CENTER" layoutX="198.0" layoutY="461.0" prefHeight="38.0" prefWidth="146.0" style="-fx-border-radius: 6; -fx-border-color: #1EF1B1;" text="0.00000" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
          </font>
       </Label>
    </children>

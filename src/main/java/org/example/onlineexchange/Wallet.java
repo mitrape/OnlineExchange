@@ -28,17 +28,17 @@ import java.util.ResourceBundle;
 
 public class Wallet implements Initializable{
     @FXML
-    private Text totalCapital;
+    private Label totalCapital;
     @FXML
-    private Text usdWealth;
+    private Label usdWealth;
     @FXML
-    private Text eurWealth;
+    private Label eurWealth;
     @FXML
-    private Text gbpWealth;
+    private Label gbpWealth;
     @FXML
-    private Text tomanWealth;
+    private Label tomanWealth;
     @FXML
-    private Text yenWealth;
+    private Label yenWealth;
     @FXML
     private LineChart yearlyWealth;
     @FXML

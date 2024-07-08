@@ -38,6 +38,7 @@ import javafx.scene.control.Alert.AlertType;
 
 
 
+
 public class HomePage implements Initializable{
 
     public boolean orderPrices = false; // which means that it is getting bigger at the end
