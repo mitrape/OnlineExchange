@@ -271,7 +271,7 @@ public class History implements Initializable {
         sellorbuyOpen.setCellValueFactory(new PropertyValueFactory<TransactionData, String>("sellOrBuy"));
         dateOpen.setCellValueFactory(new PropertyValueFactory<TransactionData, String>("date"));
 
-        PreparedStatement stmt1 = Main.connection.prepareStatement("SELECT tomanOpenRequests, amount, SellOrBuy, date FROM tomanopenrequests WHERE username =?");
+        PreparedStatement stmt1 = Main.connection.prepareStatement("SELECT * FROM tomanopenrequests WHERE username =?");
         stmt1.setString(1,Main.username);
         ResultSet tomanResult = stmt1.executeQuery();
         while (tomanResult.next()) {
@@ -286,7 +286,7 @@ public class History implements Initializable {
         }
 
 
-        PreparedStatement stmt2 = Main.connection.prepareStatement("SELECT eurOpenRequests, amount, SellOrBuy, date FROM europenrequests WHERE username =?");
+        PreparedStatement stmt2 = Main.connection.prepareStatement("SELECT * FROM europenrequests WHERE username =?");
         stmt2.setString(1,Main.username);
         ResultSet eurResult = stmt2.executeQuery();
         while (eurResult.next()) {
@@ -301,7 +301,7 @@ public class History implements Initializable {
         }
 
 
-        PreparedStatement stmt3 = Main.connection.prepareStatement("SELECT usdOpenRequests, amount, SellOrBuy, date FROM usdopenrequests WHERE username =?");
+        PreparedStatement stmt3 = Main.connection.prepareStatement("SELECT * FROM usdopenrequests WHERE username =?");
         stmt3.setString(1,Main.username);
         ResultSet usdResult = stmt3.executeQuery();
         while (usdResult.next()) {
@@ -316,7 +316,7 @@ public class History implements Initializable {
         }
 
 
-        PreparedStatement stmt4 = Main.connection.prepareStatement("SELECT yenOpenRequests, amount, SellOrBuy, date FROM yenopenrequests WHERE username =?");
+        PreparedStatement stmt4 = Main.connection.prepareStatement("SELECT * FROM yenopenrequests WHERE username =?");
         stmt4.setString(1,Main.username);
         ResultSet yenResult = stmt4.executeQuery();
         while (yenResult.next()) {
@@ -330,7 +330,7 @@ public class History implements Initializable {
             }}
 
 
-        PreparedStatement stmt5 = Main.connection.prepareStatement("SELECT gbpOpenRequests, amount, SellOrBuy, date FROM gbpopenrequests WHERE username =?");
+        PreparedStatement stmt5 = Main.connection.prepareStatement("SELECT * FROM gbpopenrequests WHERE username =?");
         stmt5.setString(1,Main.username);
         ResultSet gbpResult = stmt5.executeQuery();
         while (gbpResult.next()) {
@@ -353,7 +353,7 @@ public class History implements Initializable {
         sellorbuyTran.setCellValueFactory(new PropertyValueFactory<TransactionData, String>("sellOrBuy"));
         dateTran.setCellValueFactory(new PropertyValueFactory<TransactionData, String>("date"));
 
-        PreparedStatement stmt1 = Main.connection.prepareStatement("SELECT Transaction, amount, SellOrBuy, date FROM tomantransaction WHERE username =?");
+        PreparedStatement stmt1 = Main.connection.prepareStatement("SELECT * FROM tomantransaction WHERE username =?");
         stmt1.setString(1,Main.username);
         ResultSet tomanResult = stmt1.executeQuery();
         while (tomanResult.next()) {
@@ -368,7 +368,7 @@ public class History implements Initializable {
         }
 
 
-        PreparedStatement stmt2 = Main.connection.prepareStatement("SELECT Transaction, amount, SellOrBuy, date FROM eurtransaction WHERE username =?");
+        PreparedStatement stmt2 = Main.connection.prepareStatement("SELECT * FROM eurtransaction WHERE username =?");
         stmt2.setString(1,Main.username);
         ResultSet eurResult = stmt2.executeQuery();
         while (eurResult.next()) {
@@ -383,7 +383,7 @@ public class History implements Initializable {
         }
 
 
-        PreparedStatement stmt3 = Main.connection.prepareStatement("SELECT Transaction, amount, SellOrBuy, date FROM usdtransaction WHERE username =?");
+        PreparedStatement stmt3 = Main.connection.prepareStatement("SELECT * FROM usdtransaction WHERE username =?");
         stmt3.setString(1,Main.username);
         ResultSet usdResult = stmt3.executeQuery();
         while (usdResult.next()) {
@@ -398,7 +398,7 @@ public class History implements Initializable {
         }
 
 
-        PreparedStatement stmt4 = Main.connection.prepareStatement("SELECT Transaction, amount, SellOrBuy, date FROM yentransaction WHERE username =?");
+        PreparedStatement stmt4 = Main.connection.prepareStatement("SELECT * FROM yentransaction WHERE username =?");
         stmt4.setString(1,Main.username);
         ResultSet yenResult = stmt4.executeQuery();
         while (yenResult.next()) {
@@ -412,7 +412,7 @@ public class History implements Initializable {
             }}
 
 
-        PreparedStatement stmt5 = Main.connection.prepareStatement("SELECT Transaction, amount, SellOrBuy, date FROM gbptransaction WHERE username =?");
+        PreparedStatement stmt5 = Main.connection.prepareStatement("SELECT * FROM gbptransaction WHERE username =?");
         stmt5.setString(1,Main.username);
         ResultSet gbpResult = stmt5.executeQuery();
         while (gbpResult.next()) {

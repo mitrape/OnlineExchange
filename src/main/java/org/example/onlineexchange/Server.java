@@ -23,14 +23,6 @@ public class Server {
         }
     }
 
-//    public void stopServer() {
-//        try {
-//            serverSocket.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     public static void main(String[] args) {
         Server server = new Server();
         server.startServer(9090);

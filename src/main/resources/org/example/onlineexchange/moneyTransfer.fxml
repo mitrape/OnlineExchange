@@ -37,5 +37,10 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
+      <Button layoutX="14.0" layoutY="455.0" mnemonicParsing="false" onAction="#ClickOnHomePageMoney" style="-fx-background-color: red;" text="Home Page" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -75,5 +75,10 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
+      <Button layoutX="14.0" layoutY="629.0" mnemonicParsing="false" onAction="#ClickOnHomePageCurrency" style="-fx-background-color: red;" text="Home Page" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

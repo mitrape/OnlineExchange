@@ -239,4 +239,12 @@ public class Transfer implements Initializable {
             return false;
         }
     }
+    public void ClickOnHomePageCurrency (ActionEvent event) throws IOException {
+        Main m = new Main();
+        m.changeScene("homePage");
+    }
+    public void ClickOnHomePageMoney (ActionEvent event) throws IOException {
+        Main m = new Main();
+        m.changeScene("homePage");
+    }
 }

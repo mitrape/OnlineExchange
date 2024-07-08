@@ -558,12 +558,13 @@ public class Exchange implements Initializable {
                     p3.executeUpdate();
 
                     if(Main.demoState.equals("false")) {
-                        PreparedStatement p4 = Main.connection.prepareStatement("INSERT INTO " + currency.toLowerCase() + "transaction (Transaction , amount , SellOrBuy , username , date)VAlUES (? , ? , ? , ? , ?)");
+                        PreparedStatement p4 = Main.connection.prepareStatement("INSERT INTO " + currency.toLowerCase() + "transaction (Transaction , amount , SellOrBuy , username , date , demo)VAlUES (? , ? , ? , ? , ? , ?)");
                         p4.setDouble(1, Price);
                         p4.setDouble(2, Turnover);
                         p4.setString(3, "sell");
                         p4.setString(4, usernameSecond);
                         p4.setString(5, dateFormat.format(date));
+                        p4.setString(6,"false");
                         p4.executeUpdate();
                     }
 
